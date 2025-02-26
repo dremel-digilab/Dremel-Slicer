@@ -14590,7 +14590,7 @@ msgstr "单线程开始测试"
 msgid "Export Log"
 msgstr "输出日志"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr "逆戟鲸版本："
 
 msgid "System Version:"
@@ -14599,10 +14599,10 @@ msgstr "系统版本："
 msgid "DNS Server:"
 msgstr "DNS服务："
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr "测试逆戟鲸项目网站(GitHub)"
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr "测试逆戟鲸项目网站(GitHub)"
 
 msgid "Test Bing.com"

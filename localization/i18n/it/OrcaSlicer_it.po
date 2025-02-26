@@ -15732,7 +15732,7 @@ msgstr "Avvia test a thread singolo"
 msgid "Export Log"
 msgstr "Esporta Log"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr ""
 
 msgid "System Version:"
@@ -15741,10 +15741,10 @@ msgstr "Versione del sistema:"
 msgid "DNS Server:"
 msgstr "Server DNS:"
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr ""
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr ""
 
 msgid "Test Bing.com"

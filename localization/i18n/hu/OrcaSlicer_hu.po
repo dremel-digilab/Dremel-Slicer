@@ -14970,7 +14970,7 @@ msgstr "Teszt indítása egy szálon"
 msgid "Export Log"
 msgstr "Napló exportálása"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr ""
 
 msgid "System Version:"
@@ -14979,10 +14979,10 @@ msgstr "Rendszerverzió:"
 msgid "DNS Server:"
 msgstr "DNS kiszolgáló:"
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr ""
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr ""
 
 msgid "Test Bing.com"

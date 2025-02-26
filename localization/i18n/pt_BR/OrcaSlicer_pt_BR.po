@@ -15689,7 +15689,7 @@ msgstr "Iniciar Teste de Única Thread"
 msgid "Export Log"
 msgstr "Exportar Registro"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr "Versão do OrcaSlicer:"
 
 msgid "System Version:"
@@ -15698,10 +15698,10 @@ msgstr "Versão do Sistema:"
 msgid "DNS Server:"
 msgstr "Servidor DNS:"
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr "Testar OrcaSlicer (GitHub)"
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr "Testar OrcaSlicer (GitHub):"
 
 msgid "Test Bing.com"

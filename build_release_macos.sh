@@ -184,6 +184,7 @@ function build_slicer() {
         # remove previously built app
         rm -rf ./DremelSlicer.app
         # fully copy newly built app
+        ls -l "../src$BUILD_DIR_CONFIG_SUBDIR/"
         cp -pR "../src$BUILD_DIR_CONFIG_SUBDIR/DremelSlicer.app" ./DremelSlicer.app
         # fix resources
         resources_path=$(readlink ./DremelSlicer.app/Contents/Resources)

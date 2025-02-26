@@ -15920,7 +15920,7 @@ msgstr "Tek İş Parçacığı Testini Başlat"
 msgid "Export Log"
 msgstr "Logu Dışa Aktar"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr "OrcaSlicer Sürümü:"
 
 msgid "System Version:"
@@ -15929,10 +15929,10 @@ msgstr "Sistem Versiyonu:"
 msgid "DNS Server:"
 msgstr "Dns sunucusu:"
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr "OrcaSlicer'ı (GitHub) test edin"
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr "OrcaSlicer'ı (GitHub) test edin:"
 
 msgid "Test Bing.com"

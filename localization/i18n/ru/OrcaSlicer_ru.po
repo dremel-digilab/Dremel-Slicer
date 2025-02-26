@@ -16321,7 +16321,7 @@ msgstr "Запуск однопоточного теста"
 msgid "Export Log"
 msgstr "Журнал экспорта"
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr "Версия OrcaSlicer:"
 
 msgid "System Version:"
@@ -16330,10 +16330,10 @@ msgstr "Версия ОС:"
 msgid "DNS Server:"
 msgstr "DNS-сервер:"
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr "Тест доступности OrcaSlicer(GitHub)"
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr "Тест доступности OrcaSlicer(GitHub):"
 
 msgid "Test Bing.com"

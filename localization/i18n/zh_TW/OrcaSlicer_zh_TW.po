@@ -14937,7 +14937,7 @@ msgstr ""
 msgid "Export Log"
 msgstr ""
 
-msgid "OrcaSlicer Version:"
+msgid "DremelSlicer Version:"
 msgstr ""
 
 msgid "System Version:"
@@ -14946,10 +14946,10 @@ msgstr ""
 msgid "DNS Server:"
 msgstr ""
 
-msgid "Test OrcaSlicer(GitHub)"
+msgid "Test DremelSlicer(GitHub)"
 msgstr ""
 
-msgid "Test OrcaSlicer(GitHub):"
+msgid "Test DremelSlicer(GitHub):"
 msgstr ""
 
 msgid "Test Bing.com"
