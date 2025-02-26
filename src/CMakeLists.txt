@@ -183,7 +183,7 @@ if (WIN32)
         target_link_options(DremelSlicer_app_gui PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")
     endif()
     target_compile_definitions(DremelSlicer_app_gui PRIVATE -DSLIC3R_WRAPPER_NOCONSOLE)
-    add_dependencies(DremelSlicer_app_gui OrcaSlicer)
+    add_dependencies(DremelSlicer_app_gui DremelSlicer)
     set_target_properties(DremelSlicer_app_gui PROPERTIES OUTPUT_NAME "dremel-slicer")
     target_link_libraries(DremelSlicer_app_gui PRIVATE boost_headeronly)
 endif ()
@@ -194,13 +194,13 @@ set(output_dlls_Debug "")
 set(output_dlls_RelWithDebInfo "")
 if (WIN32)
     # This has to be a separate target due to the windows command line lenght limits
-    add_custom_target(COPY_DLLS ALL DEPENDS OrcaSlicer)
+    add_custom_target(COPY_DLLS ALL DEPENDS DremelSlicer)
 
     if (CMAKE_CONFIGURATION_TYPES)
         foreach (CONF ${CMAKE_CONFIGURATION_TYPES})
             file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${CONF}" WIN_CONF_OUTPUT_DIR)
             file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${CONF}/resources" WIN_RESOURCES_SYMLINK)
-            add_custom_command(TARGET OrcaSlicer POST_BUILD
+            add_custom_command(TARGET DremelSlicer POST_BUILD
                 COMMAND if exist "${WIN_CONF_OUTPUT_DIR}" "("
                         if not exist "${WIN_RESOURCES_SYMLINK}" "("
                             mklink /J "${WIN_RESOURCES_SYMLINK}" "${SLIC3R_RESOURCES_DIR_WIN}"
@@ -220,7 +220,7 @@ if (WIN32)
         endif()
     else ()
         file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/resources" WIN_RESOURCES_SYMLINK)
-        add_custom_command(TARGET OrcaSlicer POST_BUILD
+        add_custom_command(TARGET DremelSlicer POST_BUILD
             COMMAND if not exist "${WIN_RESOURCES_SYMLINK}" "(" mklink /J "${WIN_RESOURCES_SYMLINK}" "${SLIC3R_RESOURCES_DIR_WIN}" ")"
             COMMENT "Symlinking the resources directory into the build tree"
             VERBATIM
@@ -231,12 +231,12 @@ if (WIN32)
 else ()
     if (APPLE AND NOT CMAKE_MACOSX_BUNDLE)
         # On OSX, the name of the binary matches the name of the Application.
-        add_custom_command(TARGET OrcaSlicer POST_BUILD
-            COMMAND ln -sf OrcaSlicer orca-slicer
+        add_custom_command(TARGET DremelSlicer POST_BUILD
+            COMMAND ln -sf DremelSlicer dremel-slicer
             WORKING_DIRECTORY "$<TARGET_FILE_DIR:DremelSlicer>"
             VERBATIM)
     else ()
-        add_custom_command(TARGET OrcaSlicer POST_BUILD
+        add_custom_command(TARGET DremelSlicer POST_BUILD
             WORKING_DIRECTORY "$<TARGET_FILE_DIR:DremelSlicer>"
             VERBATIM)
     endif ()
@@ -258,7 +258,7 @@ else ()
         set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${SoftFever_VERSION})
         set(MACOSX_BUNDLE_COPYRIGHT "Copyright(C) 2022-2024 Li Jiang All Rights Reserved")
     endif()
-    add_custom_command(TARGET OrcaSlicer POST_BUILD
+    add_custom_command(TARGET DremelSlicer POST_BUILD
         COMMAND ln -sfn "${SLIC3R_RESOURCES_DIR}" "${BIN_RESOURCES_DIR}"
         COMMENT "Symlinking the resources directory into the build tree"
         VERBATIM)
@@ -278,11 +278,11 @@ endif()
 message(STATUS "libslic3r-CMAKE_BUILD_TYPE: ${build_type}")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 if (WIN32)
-    install(TARGETS OrcaSlicer RUNTIME DESTINATION ".")
+    install(TARGETS DremelSlicer RUNTIME DESTINATION ".")
     if (MSVC)
         install(TARGETS DremelSlicer_app_gui RUNTIME DESTINATION ".")
     endif ()
     install(FILES ${output_dlls_${build_type}} DESTINATION ".")
 else ()
-    install(TARGETS OrcaSlicer RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(TARGETS DremelSlicer RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif ()
