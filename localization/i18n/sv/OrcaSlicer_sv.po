@@ -6589,7 +6589,7 @@ msgid ""
 "each printer automatically."
 msgstr ""
 
-msgid "Multi-device Management(Take effect after restarting Orca)."
+msgid "Multi-device Management(Take effect after restarting Dremel Slicer)."
 msgstr ""
 
 msgid ""
@@ -6625,22 +6625,22 @@ msgstr "Synkronisering av system"
 msgid "Clear my choice on the unsaved presets."
 msgstr "Rensa mitt val för de osparade förinställningarna."
 
-msgid "Associate files to OrcaSlicer"
+msgid "Associate Files to Dremel Slicer"
 msgstr "Associerade filer till Orca Slicer"
 
-msgid "Associate .3mf files to OrcaSlicer"
+msgid "Associate .3mf files to Dremel Slicer"
 msgstr "Associerade .3mf files till Orca Slicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .3mf files"
 msgstr "Om aktiverad, väljs Orca Slicer som standard att öppna .3mf filer"
 
-msgid "Associate .stl files to OrcaSlicer"
+msgid "Associate .stl files to Dremel Slicer"
 msgstr "Associerade .stl filer till Orca Slicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .stl files"
 msgstr "Om aktiverad, väljs Orca Slicer som standard att öppna .stl filer"
 
-msgid "Associate .step/.stp files to OrcaSlicer"
+msgid "Associate .step/.stp files to Dremel Slicer"
 msgstr "Associera .step/.stp-filer till OrcaSlicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .step files"

@@ -6779,7 +6779,7 @@ msgstr ""
 "Jeśli ta opcja jest włączona, Orca będzie automatycznie zapamiętywać i "
 "przełączać konfigurację filamentu/procesu dla każdej drukarki."
 
-msgid "Multi-device Management(Take effect after restarting Orca)."
+msgid "Multi-device Management(Take effect after restarting Dremel Slicer)."
 msgstr ""
 "Obsługa wielu urządzeń (zacznie być aktywna po ponownym uruchomieniu Orca)"
 
@@ -6815,10 +6815,10 @@ msgstr "Synchronizacja systemu"
 msgid "Clear my choice on the unsaved presets."
 msgstr "Wyczyść moje wybory w niezapisanych profilach."
 
-msgid "Associate files to OrcaSlicer"
+msgid "Associate Files to Dremel Slicer"
 msgstr "Skojarz pliki z OrcaSlicer"
 
-msgid "Associate .3mf files to OrcaSlicer"
+msgid "Associate .3mf files to Dremel Slicer"
 msgstr "Skojarz pliki .3mf z OrcaSlicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .3mf files"
@@ -6826,7 +6826,7 @@ msgstr ""
 "Jeśli włączone, ustawia OrcaSlicer jako domyślną aplikację do otwierania "
 "plików .3mf"
 
-msgid "Associate .stl files to OrcaSlicer"
+msgid "Associate .stl files to Dremel Slicer"
 msgstr "Skojarz pliki .stl z OrcaSlicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .stl files"
@@ -6834,7 +6834,7 @@ msgstr ""
 "Jeśli włączone, ustawia OrcaSlicer jako domyślną aplikację do otwierania "
 "plików .stl"
 
-msgid "Associate .step/.stp files to OrcaSlicer"
+msgid "Associate .step/.stp files to Dremel Slicer"
 msgstr "Skojarz pliki .step/.stp z OrcaSlicer"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .step files"

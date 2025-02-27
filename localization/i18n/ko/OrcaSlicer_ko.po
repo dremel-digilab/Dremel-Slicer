@@ -6596,7 +6596,7 @@ msgstr ""
 "활성화하면 Orca는 각 프린터의 필라멘트/프로세스 구성을 자동으로 기억하고 전환"
 "합니다."
 
-msgid "Multi-device Management(Take effect after restarting Orca)."
+msgid "Multi-device Management(Take effect after restarting Dremel Slicer)."
 msgstr "다중 장치 관리 (Orca를 다시 시작한 후 적용됨)."
 
 msgid ""
@@ -6629,24 +6629,24 @@ msgstr "시스템 동기화"
 msgid "Clear my choice on the unsaved presets."
 msgstr "저장되지 않은 사전 설정에서 선택을 취소합니다."
 
-msgid "Associate files to OrcaSlicer"
+msgid "Associate Files to Dremel Slicer"
 msgstr "파일을 OrcaSlicer에 연결"
 
-msgid "Associate .3mf files to OrcaSlicer"
+msgid "Associate .3mf files to Dremel Slicer"
 msgstr ".3mf 파일을 OrcaSlicer에 연결"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .3mf files"
 msgstr ""
 "활성화된 경우 OrcaSlicer를 기본 응용 프로그램으로 설정하여 .3mf 파일을 엽니다"
 
-msgid "Associate .stl files to OrcaSlicer"
+msgid "Associate .stl files to Dremel Slicer"
 msgstr ".stl 파일을 OrcaSlicer에 연결"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .stl files"
 msgstr ""
 "활성화된 경우 OrcaSlicer를 기본 응용 프로그램으로 설정하여 .stl 파일을 엽니다"
 
-msgid "Associate .step/.stp files to OrcaSlicer"
+msgid "Associate .step/.stp files to Dremel Slicer"
 msgstr ".step/.stp 파일을 OrcaSlicer에 연결"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .step files"

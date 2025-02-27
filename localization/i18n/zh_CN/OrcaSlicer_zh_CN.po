@@ -6446,7 +6446,7 @@ msgid ""
 "each printer automatically."
 msgstr "如果启用，Orca会自动记录并切换您不同打印机之间的耗材配置与打印参数。"
 
-msgid "Multi-device Management(Take effect after restarting Orca)."
+msgid "Multi-device Management(Take effect after restarting Dremel Slicer)."
 msgstr "多设备管理 （重启Orca后生效）"
 
 msgid ""
@@ -6478,22 +6478,22 @@ msgstr "系统同步"
 msgid "Clear my choice on the unsaved presets."
 msgstr "清除我对未保存的预置的选择。"
 
-msgid "Associate files to OrcaSlicer"
+msgid "Associate Files to Dremel Slicer"
 msgstr "逆戟鲸文件关联"
 
-msgid "Associate .3mf files to OrcaSlicer"
+msgid "Associate .3mf files to Dremel Slicer"
 msgstr "使用逆戟鲸打开.3mf文件"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .3mf files"
 msgstr "开启后，将缺省使用逆戟鲸打开.3mf文件"
 
-msgid "Associate .stl files to OrcaSlicer"
+msgid "Associate .stl files to Dremel Slicer"
 msgstr "使用逆戟鲸打开.stl文件"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .stl files"
 msgstr "开启后，将缺省使用逆戟鲸打开.stl文件"
 
-msgid "Associate .step/.stp files to OrcaSlicer"
+msgid "Associate .step/.stp files to Dremel Slicer"
 msgstr "使用逆戟鲸打开.step/.stp文件"
 
 msgid "If enabled, sets OrcaSlicer as default application to open .step files"
