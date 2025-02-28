@@ -3904,6 +3904,9 @@ std::string GUI_App::handle_web_request(std::string cmd)
                     }
                 }
             }
+            else if (command_str.compare("open_printer_connection_dialog") == 0) {
+                this->plater()->OpenPrinterConnectionDialog();
+            }
         }
     }
     catch (...) {

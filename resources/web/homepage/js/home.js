@@ -505,6 +505,14 @@ function OpenOneStaffPickModel( ModelID )
 	SendWXMessage( JSON.stringify(tSend) );		
 }
 
+function OpenPrinterConnectionDialog() 
+{
+	var tSend={};
+	tSend['sequence_id']=Math.round(new Date() / 1000);
+	tSend['command']="open_printer_connection_dialog";
+	
+	SendWXMessage( JSON.stringify(tSend) );	
+}
 
 //---------------Global-----------------
 window.postMessage = HandleStudio;

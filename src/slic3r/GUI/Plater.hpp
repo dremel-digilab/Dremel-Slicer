@@ -768,6 +768,7 @@ public:
     wxMenu* multi_selection_menu();
     int     GetPlateIndexByRightMenuInLeftUI();
     void    SetPlateIndexByRightMenuInLeftUI(int);
+    void    OpenPrinterConnectionDialog();
     static bool has_illegal_filename_characters(const wxString& name);
     static bool has_illegal_filename_characters(const std::string& name);
     static void show_illegal_characters_warning(wxWindow* parent);

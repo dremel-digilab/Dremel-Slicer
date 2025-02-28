@@ -14525,6 +14525,10 @@ wxMenu* Plater::layer_menu()            { return p->menus.layer_menu();         
 wxMenu* Plater::multi_selection_menu()  { return p->menus.multi_selection_menu();   }
 int     Plater::GetPlateIndexByRightMenuInLeftUI() { return p->m_is_RightClickInLeftUI; }
 void    Plater::SetPlateIndexByRightMenuInLeftUI(int index) { p->m_is_RightClickInLeftUI = index; }
+void    Plater::OpenPrinterConnectionDialog() {
+    PhysicalPrinterDialog dlg(this->GetParent());
+    dlg.ShowModal();
+}
 SuppressBackgroundProcessingUpdate::SuppressBackgroundProcessingUpdate() :
     m_was_scheduled(wxGetApp().plater()->is_background_process_update_scheduled())
 {

@@ -35,6 +35,7 @@ PrinterWebView::PrinterWebView(wxWindow *parent)
 
     m_browser->Bind(wxEVT_WEBVIEW_ERROR, &PrinterWebView::OnError, this);
     m_browser->Bind(wxEVT_WEBVIEW_LOADED, &PrinterWebView::OnLoaded, this);
+    m_browser->Bind(wxEVT_WEBVIEW_SCRIPT_MESSAGE_RECEIVED, &PrinterWebView::OnScriptMessage, this);
 
     SetSizer(topsizer);
 
@@ -167,6 +168,15 @@ void PrinterWebView::OnLoaded(wxWebViewEvent &evt)
     if (evt.GetURL().IsEmpty())
         return;
     SendAPIKey();
+}
+
+void PrinterWebView::OnScriptMessage(wxWebViewEvent& evt)
+{
+  BOOST_LOG_TRIVIAL(trace) << __FUNCTION__ << ": " << evt.GetString().ToUTF8().data();
+
+  if (wxGetApp().get_mode() == comDevelop)
+      wxLogMessage("Script message received; value = %s, handler = %s", evt.GetString(), evt.GetMessageHandler());
+  std::string response = wxGetApp().handle_web_request(evt.GetString().ToUTF8().data());
 }
 
 } // GUI
