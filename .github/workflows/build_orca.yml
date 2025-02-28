@@ -149,8 +149,6 @@ jobs:
       - name: setup MSVC
         if: inputs.os == 'windows-latest'
         uses: microsoft/setup-msbuild@v2
-        with:
-          vs-version: '[17.12,17.13)'
         
       - name: Install nsis
         if: inputs.os == 'windows-latest'
