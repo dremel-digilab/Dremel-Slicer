@@ -150,7 +150,7 @@ jobs:
         if: inputs.os == 'windows-latest'
         uses: microsoft/setup-msbuild@v2
         with:
-          vs-version: '[19.42,19.43)'
+          vs-version: '[19.42,19.43]'
         
       - name: Install nsis
         if: inputs.os == 'windows-latest'
