@@ -3,7 +3,7 @@ name: Build all
 on:
   push:
     branches:
-     - main
+     - main-dremel
      - release/dremel-branded-*
     paths:
      - 'deps/**'
