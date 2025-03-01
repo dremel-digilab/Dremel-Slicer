@@ -6576,7 +6576,7 @@ msgid ""
 "each printer automatically."
 msgstr ""
 
-msgid "Multi-device Management(Take effect after restarting Dremel Slicer)."
+msgid "Multi-device Management(Take effect after restarting Dremel 3D Slicer)."
 msgstr ""
 
 msgid ""
