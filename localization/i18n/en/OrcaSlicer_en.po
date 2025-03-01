@@ -2690,7 +2690,7 @@ msgstr "Dremel 3D Slicer is licensed under "
 msgid "GNU Affero General Public License, version 3"
 msgstr "GNU Affero General Public License, version 3"
 
-msgid "Dremel 3D Slicer is based on PrusaSlicer and BambuStudio"
+msgid "Dremel 3D Slicer is based on OrcaSlicer"
 msgstr ""
 
 msgid "Libraries"
