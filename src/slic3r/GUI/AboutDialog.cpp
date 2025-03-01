@@ -50,7 +50,7 @@ CopyrightsDialog::CopyrightsDialog()
     this->SetFont(wxGetApp().normal_font());
 	this->SetBackgroundColour(*wxWHITE);
 
-    std::string icon_path = (boost::format("%1%/images/DremelSlicerTitle.ico") % resources_dir()).str();
+    std::string icon_path = (boost::format("%1%/images/Dremel3DSlicerTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
 
     wxStaticLine *staticline1 = new wxStaticLine( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLI_HORIZONTAL );
@@ -216,7 +216,7 @@ AboutDialog::AboutDialog()
     SetFont(wxGetApp().normal_font());
 	SetBackgroundColour(*wxWHITE);
 
-    std::string icon_path = (boost::format("%1%/images/DremelSlicerTitle.ico") % resources_dir()).str();
+    std::string icon_path = (boost::format("%1%/images/Dremel3DSlicerTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
 
     wxPanel *m_panel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(FromDIP(560), FromDIP(237)), wxTAB_TRAVERSAL);
@@ -322,7 +322,7 @@ AboutDialog::AboutDialog()
 
     copyright_hor_sizer->Add(copyright_ver_sizer, 0, wxLEFT, FromDIP(20));
 
-    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, "Copyright(C) 2022-2024 Li Jiang All Rights Reserved", wxDefaultPosition, wxDefaultSize);
+    wxStaticText *html_text = new wxStaticText(this, wxID_ANY, "Copyright(C) 2025 3PI Tech solutions", wxDefaultPosition, wxDefaultSize);
     html_text->SetForegroundColour(wxColour(107, 107, 107));
 
     copyright_ver_sizer->Add(html_text, 0, wxALL , 0);
