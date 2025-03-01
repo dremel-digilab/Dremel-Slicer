@@ -15,8 +15,8 @@ on:
           type: string
 
 jobs:
-  build_orca:
-    name: Build DremelSlicer
+  build_dremel:
+    name: Build Dremel3DSlicer
     runs-on: ${{ inputs.os }}
     env:
       date:
@@ -84,8 +84,8 @@ jobs:
           brew install tree ninja libtool
           brew list
           mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}
-          mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}/DremelSlicer_dep_${{inputs.arch}}
-          tree ${{ github.workspace }}/deps/build_${{inputs.arch}}/DremelSlicer_dep_${{inputs.arch}}
+          mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
+          tree ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
 
       - name: Build slicer mac
         if: inputs.os == 'macos-14'
@@ -124,15 +124,15 @@ jobs:
         if: github.ref != 'refs/heads/main' && inputs.os == 'macos-14'
         working-directory: ${{ github.workspace }}
         run: |
-          ln -s /Applications ${{ github.workspace }}/build_${{inputs.arch}}/DremelSlicer/Applications
-          hdiutil create -volname "DremelSlicer" -srcfolder ${{ github.workspace }}/build_${{inputs.arch}}/DremelSlicer -ov -format UDZO DremelSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
+          ln -s /Applications ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer/Applications
+          hdiutil create -volname "Dremel3DSlicer" -srcfolder ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer -ov -format UDZO Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
 
       - name: Upload artifacts mac
         if: inputs.os == 'macos-14'
         uses: actions/upload-artifact@v4
         with:
-          name: DremelSlicer_Mac_${{inputs.arch}}_${{ env.ver }}
-          path: ${{ github.workspace }}/DremelSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
+          name: Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}
+          path: ${{ github.workspace }}/Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
 
       #- name: Deploy Mac release
       #  if: github.ref == 'refs/heads/main' && inputs.os == 'macos-14'
@@ -174,7 +174,7 @@ jobs:
         if: inputs.os == 'windows-latest'
         working-directory: ${{ github.workspace }}/build
         shell: cmd
-        run: '"C:/Program Files/7-Zip/7z.exe" a -tzip DremelSlicer_Windows_${{ env.ver }}_portable.zip ${{ github.workspace }}/build/DremelSlicer'
+        run: '"C:/Program Files/7-Zip/7z.exe" a -tzip Dremel3DSlicer_Windows_${{ env.ver }}_portable.zip ${{ github.workspace }}/build/Dremel3DSlicer'
 
       #- name: Pack PDB
       #  if: inputs.os == 'windows-latest'
@@ -186,15 +186,15 @@ jobs:
         if: inputs.os == 'windows-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: DremelSlicer_Windows_${{ env.ver }}_portable
-          path: ${{ github.workspace }}/build/DremelSlicer_Windows_${{ env.ver }}_portable.zip
+          name: Dremel3DSlicer_Windows_${{ env.ver }}_portable
+          path: ${{ github.workspace }}/build/Dremel3DSlicer_Windows_${{ env.ver }}_portable.zip
 
       - name: Upload artifacts Win installer
         if: inputs.os == 'windows-latest'
         uses: actions/upload-artifact@v4
         with:
-          name: DremelSlicer_Windows_${{ env.ver }}
-          path: ${{ github.workspace }}/build/DremelSlicer*.exe
+          name: Dremel3DSlicer_Windows_${{ env.ver }}
+          path: ${{ github.workspace }}/build/Dremel3DSlicer*.exe
 
       #- name: Upload artifacts Win PDB
       #  if: inputs.os == 'windows-latest'
@@ -209,8 +209,8 @@ jobs:
       #  with:
       #    upload_url: https://uploads.github.com/repos//dremel-digilab/Dremel-Slicer/releases/137995723/assets{?name,label}
       #    release_id: 137995723
-      #    asset_path: ${{ github.workspace }}/build/DremelSlicer_Windows_${{ env.ver }}_portable.zip
-      #    asset_name: DremelSlicer_Windows_${{ env.ver }}_portable.zip
+      #    asset_path: ${{ github.workspace }}/build/Dremel3DSlicer_Windows_${{ env.ver }}_portable.zip
+      #    asset_name: Dremel3DSlicer_Windows_${{ env.ver }}_portable.zip
       #    asset_content_type: application/x-zip-compressed
       #    max_releases: 1
 

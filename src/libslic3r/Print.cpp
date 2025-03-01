@@ -1580,7 +1580,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
             //         warning_key = "travel_speed";
             //    if (!warning_key.empty()) {
             //         warning->string = L(
-            //             "The speed setting exceeds the printer's maximum speed (machine_max_speed_x/machine_max_speed_y).\nOrca will "
+            //             "The speed setting exceeds the printer's maximum speed (machine_max_speed_x/machine_max_speed_y).\nDremel 3D Slicer will "
             //             "automatically cap the print speed to ensure it doesn't surpass the printer's capabilities.\nYou can adjust the "
             //             "maximum speed setting in your printer's configuration to get higher speeds.");
             //         warning->opt_key = warning_key;
@@ -1588,7 +1588,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
             // }
 
         } catch (std::exception& e) {
-            BOOST_LOG_TRIVIAL(warning) << "Orca: validate motion ability failed: " << e.what() << std::endl;
+            BOOST_LOG_TRIVIAL(warning) << "Dremel 3D Slicer: validate motion ability failed: " << e.what() << std::endl;
         }
     }
     if (!this->has_same_shrinkage_compensations()){

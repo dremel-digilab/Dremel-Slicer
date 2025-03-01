@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(DremelSlicer-native)
+project(Dremel3DSlicer-native)
 
 add_subdirectory(build-utils)
 add_subdirectory(admesh)
@@ -104,11 +104,11 @@ endif()
 
 if(ORCA_TOOLS)
     # OrcaSlicer_profile_validator
-    add_executable(DremelSlicer_profile_validator OrcaSlicer_profile_validator.cpp)
-    target_link_libraries(DremelSlicer_profile_validator libslic3r boost_headeronly libcurl OpenSSL::SSL OpenSSL::Crypto)
-    target_compile_definitions(DremelSlicer_profile_validator PRIVATE -DBOOST_ALL_NO_LIB -DBOOST_USE_WINAPI_VERSION=0x602 -DBOOST_SYSTEM_USE_UTF8)
+    add_executable(Dremel3DSlicer_profile_validator OrcaSlicer_profile_validator.cpp)
+    target_link_libraries(Dremel3DSlicer_profile_validator libslic3r boost_headeronly libcurl OpenSSL::SSL OpenSSL::Crypto)
+    target_compile_definitions(Dremel3DSlicer_profile_validator PRIVATE -DBOOST_ALL_NO_LIB -DBOOST_USE_WINAPI_VERSION=0x602 -DBOOST_SYSTEM_USE_UTF8)
     if(WIN32)
-        target_link_libraries(DremelSlicer_profile_validator bcrypt.lib)
+        target_link_libraries(Dremel3DSlicer_profile_validator bcrypt.lib)
     endif()
 endif()
 
@@ -118,51 +118,51 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platform/msw/OrcaSlicer.rc.in ${CMAKE
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platform/msw/OrcaSlicer.manifest.in ${CMAKE_CURRENT_BINARY_DIR}/OrcaSlicer.manifest @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platform/osx/Info.plist.in ${CMAKE_CURRENT_BINARY_DIR}/Info.plist @ONLY)
 if (WIN32)
-    add_library(DremelSlicer SHARED OrcaSlicer.cpp OrcaSlicer.hpp BaseException.cpp BaseException.h StackWalker.cpp StackWalker.h)
+    add_library(Dremel3DSlicer SHARED OrcaSlicer.cpp OrcaSlicer.hpp BaseException.cpp BaseException.h StackWalker.cpp StackWalker.h)
 else ()
-    add_executable(DremelSlicer OrcaSlicer.cpp OrcaSlicer.hpp)
+    add_executable(Dremel3DSlicer OrcaSlicer.cpp OrcaSlicer.hpp)
 endif ()
 
 if (MINGW)
-    target_link_options(DremelSlicer PUBLIC "-Wl,-allow-multiple-definition")
-    set_target_properties(DremelSlicer PROPERTIES PREFIX "")
+    target_link_options(Dremel3DSlicer PUBLIC "-Wl,-allow-multiple-definition")
+    set_target_properties(Dremel3DSlicer PROPERTIES PREFIX "")
 endif (MINGW)
 
 if (NOT WIN32 AND NOT APPLE)
     # Binary name on unix like systems (Linux, Unix)
-    set_target_properties(DremelSlicer PROPERTIES OUTPUT_NAME "dremel-slicer")
-    set(SLIC3R_APP_CMD "dremel-slicer")
+    set_target_properties(Dremel3DSlicer PROPERTIES OUTPUT_NAME "dremel-3d-slicer")
+    set(SLIC3R_APP_CMD "dremel-3d-slicer")
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/platform/unix/BuildLinuxImage.sh.in ${CMAKE_CURRENT_BINARY_DIR}/BuildLinuxImage.sh @ONLY)
 endif ()
 
-target_link_libraries(DremelSlicer libslic3r cereal::cereal)
+target_link_libraries(Dremel3DSlicer libslic3r cereal::cereal)
 if (APPLE)
 #    add_compile_options(-stdlib=libc++)
 #    add_definitions(-DBOOST_THREAD_DONT_USE_CHRONO -DBOOST_NO_CXX11_RVALUE_REFERENCES -DBOOST_THREAD_USES_MOVE)
     # -liconv: boost links to libiconv by default
-    target_link_libraries(DremelSlicer "-liconv -framework IOKit" "-framework CoreFoundation" "-framework AVFoundation" "-framework AVKit" "-framework CoreMedia" "-framework VideoToolbox" -lc++)
+    target_link_libraries(Dremel3DSlicer "-liconv -framework IOKit" "-framework CoreFoundation" "-framework AVFoundation" "-framework AVKit" "-framework CoreMedia" "-framework VideoToolbox" -lc++)
 elseif (MSVC)
     # Manifest is provided through OrcaSlicer.rc, don't generate your own.
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /MANIFEST:NO")
 else ()
     # Boost on Raspberry-Pi does not link to pthreads explicitely.
-    target_link_libraries(DremelSlicer ${CMAKE_DL_LIBS} -lstdc++ Threads::Threads pangoft2-1.0)
+    target_link_libraries(Dremel3DSlicer ${CMAKE_DL_LIBS} -lstdc++ Threads::Threads pangoft2-1.0)
 endif ()
 
 # Add the Slic3r GUI library, libcurl, OpenGL and GLU libraries.
 if (SLIC3R_GUI)
 #    target_link_libraries(OrcaSlicer ws2_32 uxtheme setupapi libslic3r_gui ${wxWidgets_LIBRARIES})
-target_link_libraries(DremelSlicer libslic3r_gui)
+target_link_libraries(Dremel3DSlicer libslic3r_gui)
     if (MSVC)
         # Generate debug symbols even in release mode.
-        target_link_options(DremelSlicer PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")
-        target_link_libraries(DremelSlicer user32.lib Setupapi.lib)
+        target_link_options(Dremel3DSlicer PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")
+        target_link_libraries(Dremel3DSlicer user32.lib Setupapi.lib)
     elseif (MINGW)
-        target_link_libraries(DremelSlicer ws2_32 uxtheme setupapi)
+        target_link_libraries(Dremel3DSlicer ws2_32 uxtheme setupapi)
     elseif (APPLE)
-        target_link_libraries(DremelSlicer "-framework OpenGL")
+        target_link_libraries(Dremel3DSlicer "-framework OpenGL")
     else ()
-        target_link_libraries(DremelSlicer -ldl)
+        target_link_libraries(Dremel3DSlicer -ldl)
     endif ()
     #if (WIN32)
     #    find_library(PSAPI_LIB NAMES Psapi)
@@ -177,15 +177,15 @@ if (WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -municode")
     endif()
 
-    add_executable(DremelSlicer_app_gui WIN32 OrcaSlicer_app_msvc.cpp ${CMAKE_CURRENT_BINARY_DIR}/OrcaSlicer.rc)
+    add_executable(Dremel3DSlicer_app_gui WIN32 OrcaSlicer_app_msvc.cpp ${CMAKE_CURRENT_BINARY_DIR}/OrcaSlicer.rc)
     # Generate debug symbols even in release mode.
     if(MSVC)
-        target_link_options(DremelSlicer_app_gui PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")
+        target_link_options(Dremel3DSlicer_app_gui PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")
     endif()
-    target_compile_definitions(DremelSlicer_app_gui PRIVATE -DSLIC3R_WRAPPER_NOCONSOLE)
-    add_dependencies(DremelSlicer_app_gui DremelSlicer)
-    set_target_properties(DremelSlicer_app_gui PROPERTIES OUTPUT_NAME "dremel-slicer")
-    target_link_libraries(DremelSlicer_app_gui PRIVATE boost_headeronly)
+    target_compile_definitions(Dremel3DSlicer_app_gui PRIVATE -DSLIC3R_WRAPPER_NOCONSOLE)
+    add_dependencies(Dremel3DSlicer_app_gui Dremel3DSlicer)
+    set_target_properties(Dremel3DSlicer_app_gui PROPERTIES OUTPUT_NAME "Dremel-3D-Slicer")
+    target_link_libraries(Dremel3DSlicer_app_gui PRIVATE boost_headeronly)
 endif ()
 
 # Link the resources dir to where Slic3r GUI expects it
@@ -194,13 +194,13 @@ set(output_dlls_Debug "")
 set(output_dlls_RelWithDebInfo "")
 if (WIN32)
     # This has to be a separate target due to the windows command line lenght limits
-    add_custom_target(COPY_DLLS ALL DEPENDS DremelSlicer)
+    add_custom_target(COPY_DLLS ALL DEPENDS Dremel3DSlicer)
 
     if (CMAKE_CONFIGURATION_TYPES)
         foreach (CONF ${CMAKE_CONFIGURATION_TYPES})
             file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${CONF}" WIN_CONF_OUTPUT_DIR)
             file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/${CONF}/resources" WIN_RESOURCES_SYMLINK)
-            add_custom_command(TARGET DremelSlicer POST_BUILD
+            add_custom_command(TARGET Dremel3DSlicer POST_BUILD
                 COMMAND if exist "${WIN_CONF_OUTPUT_DIR}" "("
                         if not exist "${WIN_RESOURCES_SYMLINK}" "("
                             mklink /J "${WIN_RESOURCES_SYMLINK}" "${SLIC3R_RESOURCES_DIR_WIN}"
@@ -220,7 +220,7 @@ if (WIN32)
         endif()
     else ()
         file(TO_NATIVE_PATH "${CMAKE_CURRENT_BINARY_DIR}/resources" WIN_RESOURCES_SYMLINK)
-        add_custom_command(TARGET DremelSlicer POST_BUILD
+        add_custom_command(TARGET Dremel3DSlicer POST_BUILD
             COMMAND if not exist "${WIN_RESOURCES_SYMLINK}" "(" mklink /J "${WIN_RESOURCES_SYMLINK}" "${SLIC3R_RESOURCES_DIR_WIN}" ")"
             COMMENT "Symlinking the resources directory into the build tree"
             VERBATIM
@@ -231,13 +231,13 @@ if (WIN32)
 else ()
     if (APPLE AND NOT CMAKE_MACOSX_BUNDLE)
         # On OSX, the name of the binary matches the name of the Application.
-        add_custom_command(TARGET DremelSlicer POST_BUILD
-            COMMAND ln -sf DremelSlicer dremel-slicer
-            WORKING_DIRECTORY "$<TARGET_FILE_DIR:DremelSlicer>"
+        add_custom_command(TARGET Dremel3DSlicer POST_BUILD
+            COMMAND ln -sf Dremel3DSlicer Dremel3DSlicer
+            WORKING_DIRECTORY "$<TARGET_FILE_DIR:Dremel3DSlicer>"
             VERBATIM)
     else ()
-        add_custom_command(TARGET DremelSlicer POST_BUILD
-            WORKING_DIRECTORY "$<TARGET_FILE_DIR:DremelSlicer>"
+        add_custom_command(TARGET Dremel3DSlicer POST_BUILD
+            WORKING_DIRECTORY "$<TARGET_FILE_DIR:Dremel3DSlicer>"
             VERBATIM)
     endif ()
     if (XCODE)
@@ -249,16 +249,16 @@ else ()
     endif ()
     if (CMAKE_MACOSX_BUNDLE)
         if (CMAKE_CONFIGURATION_TYPES)
-            set(BIN_RESOURCES_DIR "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/DremelSlicer.app/Contents/Resources")
+            set(BIN_RESOURCES_DIR "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/Dremel3DSlicer.app/Contents/Resources")
         else()
-            set(BIN_RESOURCES_DIR "${CMAKE_CURRENT_BINARY_DIR}/DremelSlicer.app/Contents/Resources")
+            set(BIN_RESOURCES_DIR "${CMAKE_CURRENT_BINARY_DIR}/Dremel3DSlicer.app/Contents/Resources")
         endif()
         set(MACOSX_BUNDLE_ICON_FILE Icon.icns)
-        set(MACOSX_BUNDLE_BUNDLE_NAME "DremelSlicer")
+        set(MACOSX_BUNDLE_BUNDLE_NAME "Dremel3DSlicer")
         set(MACOSX_BUNDLE_SHORT_VERSION_STRING ${SoftFever_VERSION})
         set(MACOSX_BUNDLE_COPYRIGHT "Copyright(C) 2022-2024 Li Jiang All Rights Reserved")
     endif()
-    add_custom_command(TARGET DremelSlicer POST_BUILD
+    add_custom_command(TARGET Dremel3DSlicer POST_BUILD
         COMMAND ln -sfn "${SLIC3R_RESOURCES_DIR}" "${BIN_RESOURCES_DIR}"
         COMMENT "Symlinking the resources directory into the build tree"
         VERBATIM)
@@ -278,11 +278,11 @@ endif()
 message(STATUS "libslic3r-CMAKE_BUILD_TYPE: ${build_type}")
 message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
 if (WIN32)
-    install(TARGETS DremelSlicer RUNTIME DESTINATION ".")
+    install(TARGETS Dremel3DSlicer RUNTIME DESTINATION ".")
     if (MSVC)
-        install(TARGETS DremelSlicer_app_gui RUNTIME DESTINATION ".")
+        install(TARGETS Dremel3DSlicer_app_gui RUNTIME DESTINATION ".")
     endif ()
     install(FILES ${output_dlls_${build_type}} DESTINATION ".")
 else ()
-    install(TARGETS DremelSlicer RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(TARGETS Dremel3DSlicer RUNTIME DESTINATION "${CMAKE_INSTALL_BINDIR}" BUNDLE DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif ()

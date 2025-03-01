@@ -29,7 +29,7 @@ Visit our GitHub Releases page for the latest stable version of Dremel Slicer, r
 
 **Mac**:
 1. Download the DMG for your computer: `arm64` version for Apple Silicon and `x86_64` for Intel CPU.  
-2. Drag DremelSlicer.app to Application folder. 
+2. Drag Dremel3DSlicer.app to Application folder. 
 3. *If you want to run a build from a PR, you also need to follow the instructions below:*  
     <details quarantine>
     - Option 1 (You only need to do this once. After that the app can be opened normally.):
@@ -37,9 +37,9 @@ Visit our GitHub Releases page for the latest stable version of Dremel Slicer, r
       - Step 2: A warning window will pop up, click _Open_  
       
     - Option 2:  
-      Execute this command in terminal: `xattr -dr com.apple.quarantine /Applications/DremelSlicer.app`
+      Execute this command in terminal: `xattr -dr com.apple.quarantine /Applications/Dremel3DSlicer.app`
       ```console
-          softfever@mac:~$ xattr -dr com.apple.quarantine /Applications/DremelSlicer.app
+          softfever@mac:~$ xattr -dr com.apple.quarantine /Applications/Dremel3DSlicer.app
       ```
     - Option 3:  
         - Step 1: open the app, a warning window will pop up  

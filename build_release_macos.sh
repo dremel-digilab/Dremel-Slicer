@@ -110,7 +110,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_BUILD_DIR="$PROJECT_DIR/build_$ARCH"
 DEPS_DIR="$PROJECT_DIR/deps"
 DEPS_BUILD_DIR="$DEPS_DIR/build_$ARCH"
-DEPS="$DEPS_BUILD_DIR/DremelSlicer_dep_$ARCH"
+DEPS="$DEPS_BUILD_DIR/Dremel3DSlicer_dep_$ARCH"
 
 # Fix for Multi-config generators
 if [ "$SLICER_CMAKE_GENERATOR" == "Xcode" ]; then
@@ -144,7 +144,7 @@ function pack_deps() {
         set -x
         mkdir -p "$DEPS"
         cd "$DEPS_BUILD_DIR"
-        tar -zcvf "DremelSlicer_dep_mac_${ARCH}_$(date +"%Y%m%d").tar.gz" "DremelSlicer_dep_$ARCH"
+        tar -zcvf "Dremel3DSlicer_dep_mac_${ARCH}_$(date +"%Y%m%d").tar.gz" "Dremel3DSlicer_dep_$ARCH"
     )
 }
 
@@ -159,7 +159,7 @@ function build_slicer() {
                 -G "${SLICER_CMAKE_GENERATOR}" \
                 -DBBL_RELEASE_TO_PUBLIC=1 \
                 -DCMAKE_PREFIX_PATH="$DEPS/usr/local" \
-                -DCMAKE_INSTALL_PREFIX="$PWD/DremelSlicer" \
+                -DCMAKE_INSTALL_PREFIX="$PWD/Dremel3DSlicer" \
                 -DCMAKE_BUILD_TYPE="$BUILD_CONFIG" \
                 -DCMAKE_MACOSX_RPATH=ON \
                 -DCMAKE_INSTALL_RPATH="${DEPS}/usr/local" \
@@ -179,19 +179,19 @@ function build_slicer() {
     echo "Fix macOS app package..."
     (
         cd "$PROJECT_BUILD_DIR"
-        mkdir -p DremelSlicer
-        cd DremelSlicer
+        mkdir -p Dremel3DSlicer
+        cd Dremel3DSlicer
         # remove previously built app
-        rm -rf ./DremelSlicer.app
+        rm -rf ./Dremel3DSlicer.app
         # fully copy newly built app
         ls -l "../src$BUILD_DIR_CONFIG_SUBDIR/"
-        cp -pR "../src$BUILD_DIR_CONFIG_SUBDIR/DremelSlicer.app" ./DremelSlicer.app
+        cp -pR "../src$BUILD_DIR_CONFIG_SUBDIR/Dremel3DSlicer.app" ./Dremel3DSlicer.app
         # fix resources
-        resources_path=$(readlink ./DremelSlicer.app/Contents/Resources)
-        rm ./DremelSlicer.app/Contents/Resources
-        cp -R "$resources_path" ./DremelSlicer.app/Contents/Resources
+        resources_path=$(readlink ./Dremel3DSlicer.app/Contents/Resources)
+        rm ./Dremel3DSlicer.app/Contents/Resources
+        cp -R "$resources_path" ./Dremel3DSlicer.app/Contents/Resources
         # delete .DS_Store file
-        find ./DremelSlicer.app/ -name '.DS_Store' -delete
+        find ./Dremel3DSlicer.app/ -name '.DS_Store' -delete
     )
 
     # extract version

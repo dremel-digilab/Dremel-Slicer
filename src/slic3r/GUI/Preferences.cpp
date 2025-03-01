@@ -867,7 +867,7 @@ wxWindow *PreferencesDialog ::create_item_radiobox(wxString title, wxWindow *par
 wxBoxSizer* PreferencesDialog::create_item_link_association(wxWindow* parent, wxString url_prefix, wxString website_name)
 {
     wxString title = _L("Associate") + (boost::format(" %1%://") % url_prefix.c_str()).str();
-    wxString tooltip = _L("Associate") + " " + url_prefix + ":// " + _L("with OrcaSlicer so that Orca can open models from") + " " + website_name;
+    wxString tooltip = _L("Associate") + " " + url_prefix + ":// " + _L("with Dremel 3D Slicer so that Dremel 3D Slicer can open models from") + " " + website_name;
 
     std::wstring registered_bin; // not used, just here to provide a ref to check fn
     bool reg_to_current_instance = wxGetApp().check_url_association(url_prefix.ToStdWstring(), registered_bin);
@@ -971,7 +971,7 @@ void PreferencesDialog::create()
     m_backup_interval_time = app_config->get("backup_interval");
 
     // set icon for dialog
-    std::string icon_path = (boost::format("%1%/images/OrcaSlicerTitle.ico") % resources_dir()).str();
+    std::string icon_path = (boost::format("%1%/images/DremelSlicerTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
     SetSizeHints(wxDefaultSize, wxDefaultSize);
 
@@ -1080,6 +1080,17 @@ wxWindow* PreferencesDialog::create_general_page()
         wxLANGUAGE_PORTUGUESE_BRAZILIAN
     };
 
+
+
+    // English for first releases
+    auto translations = wxTranslations::Get()->GetAvailableTranslations(SLIC3R_APP_KEY);
+    std::vector<const wxLanguageInfo *> language_infos;
+    
+    const wxLanguageInfo* english_info = wxLocale::GetLanguageInfo(wxLANGUAGE_ENGLISH);
+    if (english_info) {
+        language_infos.emplace_back(english_info);
+    }
+    /*
     auto translations = wxTranslations::Get()->GetAvailableTranslations(SLIC3R_APP_KEY);
     std::vector<const wxLanguageInfo *> language_infos;
     language_infos.emplace_back(wxLocale::GetLanguageInfo(wxLANGUAGE_ENGLISH));
@@ -1095,6 +1106,7 @@ wxWindow* PreferencesDialog::create_general_page()
         }
         //if (langinfo != nullptr) language_infos.emplace_back(langinfo);
     }
+    */
     sort_remove_duplicates(language_infos);
     std::sort(language_infos.begin(), language_infos.end(), [](const wxLanguageInfo *l, const wxLanguageInfo *r) { return l->Description < r->Description; });
     auto item_language = create_item_language_combobox(_L("Language"), page, _L("Language"), 50, "language", language_infos);
@@ -1108,12 +1120,12 @@ wxWindow* PreferencesDialog::create_general_page()
 
     std::vector<wxString> Units         = {_L("Metric") + " (mm, g)", _L("Imperial") + " (in, oz)"};
     auto item_currency = create_item_combobox(_L("Units"), page, _L("Units"), "use_inches", Units);
-    auto item_single_instance = create_item_checkbox(_L("Allow only one OrcaSlicer instance"), page, 
+    auto item_single_instance = create_item_checkbox(_L("Allow only one Dremel 3D Slicer instance"), page, 
     #if __APPLE__
             _L("On OSX there is always only one instance of app running by default. However it is allowed to run multiple instances "
                 "of same app from the command line. In such case this settings will allow only one instance."), 
     #else
-            _L("If this is enabled, when starting OrcaSlicer and another instance of the same OrcaSlicer is already running, that instance will be reactivated instead."), 
+            _L("If this is enabled, when starting Dremel 3D Slicer and another instance of the same Dremel 3D Slicer is already running, that instance will be reactivated instead."), 
     #endif
             50, "single_instance");
 
@@ -1132,7 +1144,7 @@ wxWindow* PreferencesDialog::create_general_page()
 
     auto item_calc_mode = create_item_checkbox(_L("Flushing volumes: Auto-calculate every time the color changed."), page, _L("If enabled, auto-calculate every time the color changed."), 50, "auto_calculate");
     auto item_calc_in_long_retract = create_item_checkbox(_L("Flushing volumes: Auto-calculate every time when the filament is changed."), page, _L("If enabled, auto-calculate every time when filament is changed"), 50, "auto_calculate_when_filament_change");
-    auto item_remember_printer_config = create_item_checkbox(_L("Remember printer configuration"), page, _L("If enabled, Orca will remember and switch filament/process configuration for each printer automatically."), 50, "remember_printer_config");
+    auto item_remember_printer_config = create_item_checkbox(_L("Remember printer configuration"), page, _L("If enabled, Dremel 3D Slicer will remember and switch filament/process configuration for each printer automatically."), 50, "remember_printer_config");
     auto item_multi_machine = create_item_checkbox(_L("Multi-device Management(Take effect after restarting Dremel Slicer)."), page, _L("With this option enabled, you can send a task to multiple devices at the same time and manage multiple devices."), 50, "enable_multi_machine");
     auto item_auto_arrange  = create_item_checkbox(_L("Auto arrange plate after cloning"), page, _L("Auto arrange plate after object cloning"), 50, "auto_arrange");
     auto title_presets = create_item_title(_L("Presets"), page, _L("Presets"));
@@ -1148,13 +1160,13 @@ wxWindow* PreferencesDialog::create_general_page()
 
     // associate file
     auto item_associate_3mf  = create_item_checkbox(_L("Associate .3mf files to Dremel Slicer"), page,
-                                                        _L("If enabled, sets OrcaSlicer as default application to open .3mf files"), 50, "associate_3mf");
+                                                        _L("If enabled, sets Dremel 3D Slicer as default application to open .3mf files"), 50, "associate_3mf");
     auto item_associate_stl  = create_item_checkbox(_L("Associate .stl files to Dremel Slicer"), page,
-                                                        _L("If enabled, sets OrcaSlicer as default application to open .stl files"), 50, "associate_stl");
+                                                        _L("If enabled, sets Dremel 3D Slicer as default application to open .stl files"), 50, "associate_stl");
     auto item_associate_step = create_item_checkbox(_L("Associate .step/.stp files to Dremel Slicer"), page,
-                                                         _L("If enabled, sets OrcaSlicer as default application to open .step files"), 50, "associate_step");
+                                                         _L("If enabled, sets Dremel 3D Slicer as default application to open .step files"), 50, "associate_step");
 
-    auto title_associate_url = create_item_title(_L("Associate web links to OrcaSlicer"), page, _L("Associate URLs to OrcaSlicer"));
+    auto title_associate_url = create_item_title(_L("Associate web links to Dremel 3D Slicer"), page, _L("Associate URLs to Dremel 3D Slicer"));
 
     auto associate_url_prusaslicer = create_item_link_association(page, L"prusaslicer", "Printables.com");
     auto associate_url_bambustudio = create_item_link_association(page, L"bambustudio", "Makerworld.com");

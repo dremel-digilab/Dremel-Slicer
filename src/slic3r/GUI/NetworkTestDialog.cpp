@@ -250,7 +250,7 @@ void NetworkTestDialog::start_all_job_sequence()
 		update_status(-1, "start_test_sequence");
         start_test_url(TEST_BING_JOB, "Bing", "http://www.bing.com");
         if (m_closing) return;
-		start_test_url(TEST_ORCA_JOB, "OrcaSlicer(GitHub)", "https://github.com/SoftFever/OrcaSlicer");
+		start_test_url(TEST_ORCA_JOB, "Dremel 3D Slicer(GitHub)", "https://github.com/dremel-digilab/Dremel-Slicer");
 		if (m_closing) return;
 		update_status(-1, "end_test_sequence");
 	});

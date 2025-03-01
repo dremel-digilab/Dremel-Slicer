@@ -8,7 +8,7 @@ if (APPLE)
     message(STATUS "CMAKE_OSX_DEPLOYMENT_TARGET: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 endif ()
 
-project(DremelSlicer)
+project(Dremel3DSlicer)
 
 include("version.inc")
 include(GNUInstallDirs)
@@ -61,7 +61,7 @@ if (APPLE)
     if (CMAKE_MACOSX_BUNDLE)
         set(CMAKE_INSTALL_RPATH @executable_path/../Frameworks)
     endif()
-    SET(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.dremel.dremel-slicer")
+    SET(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.dremel.dremel-3D-slicer")
 
     message(STATUS "Orca: IS_CROSS_COMPILE: ${IS_CROSS_COMPILE}")
 endif ()
@@ -722,7 +722,7 @@ endfunction()
 
 # libslic3r, OrcaSlicer GUI and the OrcaSlicer executable.
 add_subdirectory(src)
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT DremelSlicer_app_gui)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Dremel3DSlicer_app_gui)
 
 add_dependencies(gettext_make_pot hintsToPot)
 
@@ -780,29 +780,29 @@ endif ()
 install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.txt DESTINATION ".")
 configure_file(${LIBDIR}/platform/unix/fhs.hpp.in ${LIBDIR_BIN}/platform/unix/fhs.hpp)
 
-set (CPACK_PACKAGE_NAME "DremelSlicer")
-set (CPACK_PACKAGE_VENDOR "Dremel Digilab, 3PI Tech Solutions, Inc.")
+set (CPACK_PACKAGE_NAME "Dremel3DSlicer")
+set (CPACK_PACKAGE_VENDOR "Dremel Digilab")
 set (CPACK_PACKAGE_VERSION_MAJOR "${ORCA_VERSION_MAJOR}")
 set (CPACK_PACKAGE_VERSION_MINOR "${ORCA_VERSION_MINOR}")
 set (CPACK_PACKAGE_VERSION_PATCH "${ORCA_VERSION_PATCH}")
-set (CPACK_PACKAGE_FILE_NAME "DremelSlicer_Windows_Installer_V${SoftFever_VERSION}")
-set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Dremel Slicer is an open source slicer for FDM printers")
+set (CPACK_PACKAGE_FILE_NAME "Dremel3DSlicer_Windows_Installer_V${SoftFever_VERSION}")
+set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Dremel 3D Slicer is an open source slicer for FDM printers")
 set (CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/dremel-digilab/Dremel-Slicer/")
 set (CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
-set (CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources/images\\\\DremelSlicer.ico")
+set (CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources/images\\\\Dremel3DSlicer.ico")
 set (CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
 set (CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
-set (CPACK_NSIS_INSTALLED_ICON_NAME  "$INSTDIR\\\\dremel-slicer.exe")
+set (CPACK_NSIS_INSTALLED_ICON_NAME  "$INSTDIR\\\\Dremel-3D-Slicer.exe")
 set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
-    CreateShortCut \\\"$DESKTOP\\\\DremelSlicer.lnk\\\" \\\"$INSTDIR\\\\dremel-slicer.exe\\\"
+    CreateShortCut \\\"$DESKTOP\\\\Dremel-3D-Slicer.lnk\\\" \\\"$INSTDIR\\\\Dremel-3D-Slicer.exe\\\"
 ")
 set (CPACK_PACKAGE_CHECKSUM SHA256)
-set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "DremelSlicer")
+set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "Dremel3DSlicer")
 set (CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set (CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 # set (CPACK_NSIS_MODIFY_PATH "ON")
-set(CPACK_PACKAGE_EXECUTABLES "dremel-slicer;DremelSlicer")
-set(CPACK_CREATE_DESKTOP_LINKS "dremel-slicer")
+set(CPACK_PACKAGE_EXECUTABLES "Dremel-3D-Slicer;Dremel 3D Slicer")
+set(CPACK_CREATE_DESKTOP_LINKS "Dremel-3D-Slicer")
 set (CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE.txt) # must also include in install command
 
 set(CPACK_WIX_UPGRADE_GUID "d9e1a73f-3c1b-4e8d-90f4-2ab1cbdbe9b1")
