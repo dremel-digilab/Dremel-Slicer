@@ -1,0 +1,40 @@
+{
+    "additional_cooling_fan_speed": [
+        "100"
+    ],
+    "default_filament_colour": [
+        "#8080FF"
+    ],
+    "during_print_exhaust_fan_speed": [
+        "100"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "filament_max_volumetric_speed": [
+        "10"
+    ],
+    "filament_retract_when_changing_layer": [
+        "0"
+    ],
+    "filament_settings_id": [
+        "Dremel SILK - Easy and stiff, prints fast"
+    ],
+    "filament_wipe": [
+        "0"
+    ],
+    "from": "User",
+    "inherits": "Dremel PLA - Easy and stiff, prints fast",
+    "is_custom_defined": "0",
+    "name": "Dremel SILK - Easy and stiff, prints fast",
+    "nozzle_temperature": [
+        "225"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "225"
+    ],
+    "pressure_advance": [
+        "0.03"
+    ],
+    "version": "2.0.0.0"
+}
