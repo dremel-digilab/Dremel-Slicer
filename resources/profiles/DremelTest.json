@@ -1,0 +1,30 @@
+{
+	"name": "DremelTest",
+	"version": "02.02.00.04",
+	"force_update": "0",
+	"description": "DremelTest configurations",
+	"machine_model_list": [
+		{
+			"name": "Dremel 3D50",
+			"sub_path": "machine/3D50 V2_0.json"
+		}
+	],
+	"process_list": [
+		{
+			"name": "fdm_process_common",
+			"sub_path": "process/fdm_process_common.json"
+		}
+	],
+	"filament_list": [
+		{
+			"name": "fdm_filament_common",
+			"sub_path": "filament/fdm_filament_common.json"
+		}
+	],
+	"machine_list": [
+		{
+			"name": "Dremel 3D45 0.4 nozzle",
+			"sub_path": "machine/Dremel 3D45 0.4 nozzle.json"
+		}
+	]
+}

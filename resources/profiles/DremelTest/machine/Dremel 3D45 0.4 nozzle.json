@@ -1,0 +1,80 @@
+{
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\n\n",
+    "deretraction_speed": [
+        "45"
+    ],
+    "fan_kickstart": "1",
+    "fan_speedup_time": "1",
+    "from": "User",
+    "high_current_on_filament_swap": "1",
+    "inherits": "Dremel 3D45 0.4 nozzle",
+    "is_custom_defined": "0",
+    "layer_change_gcode": "; Layer Change G-code\n\nM27 ; Get print progress\nM150 R80 ; Set chamber fan speed to 80% (adjust R(xxx) as needed)\nM152 R100 ; set object cooling fan speed\nM106 ; Start regular fan (adjust if needed per layer)",
+    "machine_max_acceleration_e": [
+        "2500",
+        "10000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "2000",
+        "1500"
+    ],
+    "machine_max_acceleration_retracting": [
+        "2000",
+        "1500"
+    ],
+    "machine_max_acceleration_x": [
+        "2500",
+        "9000"
+    ],
+    "machine_max_acceleration_y": [
+        "2500",
+        "9000"
+    ],
+    "machine_max_acceleration_z": [
+        "2000",
+        "500"
+    ],
+    "machine_max_speed_e": [
+        "150",
+        "120"
+    ],
+    "machine_max_speed_x": [
+        "140",
+        "500"
+    ],
+    "machine_max_speed_y": [
+        "140",
+        "500"
+    ],
+    "machine_pause_gcode": "; Pause G-code\n\nM25 ; Pause print",
+    "machine_start_gcode": "G28; home printer\nG1 Z50.00 F400; pruge line\nG1 F200 E3\nM132 X Y Z A; prepare printer\nM907 X100 Y100 Z50 A100\nM140 S{first_layer_bed_temperature[0]}\nM104 S{first_layer_temperature[0]}\nG1 E2 F1000",
+    "min_layer_height": [
+        "0.08"
+    ],
+    "name": "Mike Dremel 3D45 0.4 nozzle",
+    "nozzle_type": "brass",
+    "printable_area": [
+        "-127.5x-77.5",
+        "127.5x-77.5",
+        "127.5x77.5",
+        "-127.5x77.5"
+    ],
+    "printer_settings_id": "Mike Dremel 3D45 0.4 nozzle",
+    "retract_when_changing_layer": [
+        "0"
+    ],
+    "retraction_length": [
+        "2"
+    ],
+    "retraction_minimum_travel": [
+        "10"
+    ],
+    "retraction_speed": [
+        "45"
+    ],
+    "time_cost": "25",
+    "version": "2.2.0.1",
+    "z_hop_types": [
+        "Spiral Lift"
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "activate_air_filtration": [
+        "0"
+    ],
+    "fan_max_speed": [
+        "25"
+    ],
+    "fan_min_speed": [
+        "0"
+    ],
+    "filament_max_volumetric_speed": [
+        "9"
+    ],
+    "filament_settings_id": [
+        "3D45 Nylon CoPa"
+    ],
+    "filament_type": [
+        "PA"
+    ],
+    "from": "User",
+    "hot_plate_temp": [
+        "50"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "50"
+    ],
+    "inherits": "3D45 PLA",
+    "name": "3D45 Nylon CoPa",
+    "nozzle_temperature": [
+        "265"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "265"
+    ],
+    "overhang_fan_speed": [
+        "25"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "slow_down_for_layer_cooling": [
+        "0"
+    ],
+    "slow_down_min_speed": [
+        "30"
+    ],
+    "version": "0.0.0.0"
+}

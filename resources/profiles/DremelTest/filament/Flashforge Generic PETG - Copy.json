@@ -1,0 +1,55 @@
+{
+    "additional_cooling_fan_speed": [
+        "0"
+    ],
+    "close_fan_the_first_x_layers": [
+        "1000"
+    ],
+    "complete_print_exhaust_fan_speed": [
+        "0"
+    ],
+    "during_print_exhaust_fan_speed": [
+        "0"
+    ],
+    "enable_overhang_bridge_fan": [
+        "0"
+    ],
+    "filament_flow_ratio": [
+        "1.01"
+    ],
+    "filament_max_volumetric_speed": [
+        "18"
+    ],
+    "filament_settings_id": [
+        "Flashforge Generic PETG - Copy"
+    ],
+    "from": "User",
+    "inherits": "Flashforge Generic PETG",
+    "is_custom_defined": "0",
+    "name": "Flashforge Generic PETG - Copy",
+    "nozzle_temperature": [
+        "270"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "270"
+    ],
+    "nozzle_temperature_range_high": [
+        "280"
+    ],
+    "nozzle_temperature_range_low": [
+        "230"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "0"
+    ],
+    "slow_down_for_layer_cooling": [
+        "0"
+    ],
+    "slow_down_min_speed": [
+        "20"
+    ],
+    "support_material_interface_fan_speed": [
+        "0"
+    ],
+    "version": "2.0.0.0"
+}
