@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 560 237" style="enable-background:new 0 0 560 237;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:#FFFFFF;}
+	.st2{font-family:'FuturaLight';}
+	.st3{font-size:28px;}
+</style>
+<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-16.4696" y1="538.6155" x2="-16.4696" y2="537.6155" gradientTransform="matrix(560 0 0 -237 9503 127651.8906)">
+	<stop  offset="0" style="stop-color:#00599E"/>
+	<stop  offset="0.5" style="stop-color:#53565A"/>
+	<stop  offset="1" style="stop-color:#7F7974"/>
+</linearGradient>
+<rect y="0" class="st0" width="560" height="237"/>
+<g>
+	<g>
+		<path class="st1" d="M170.2,74.2h23.5c9.5,0,9.9,4.6,10.6,10.5v9.1c-0.8,7-2.8,9.7-10.6,10.4h-23.5V74.2z M178,97.7h13.8
+			c3.7,0,4.7-2.3,4.7-6.6v-4.1c0-4.3-0.8-7-4.7-7H178V97.7z"/>
+		<path class="st1" d="M208,74.2h23.9c7.5,0,8,4.8,8,8.9V85c-0.2,3.8-1.8,5.1-3.7,6.1l0,0.2c2.2,1.5,3.5,2.7,3.4,7.7
+			c0.2,3.5,0.8,5.1,0.8,5.1h-7.7c-0.9-0.5-0.8-3.6-0.8-3.6c0-3.2-0.3-6-3.5-6.4h-12.5v10H208V74.2L208,74.2z M215.9,88.1H229
+			c2.1,0,3-1.6,3-3.8v-1c0-2.6-1.2-3.2-3.7-3.2h-12.4V88.1L215.9,88.1z"/>
+		<path class="st1" d="M244.3,74.2h28.3v5.9h-20.3V86h19.3v5.5h-19.3v6.2H273v6.6h-28.7V74.2z"/>
+		<path class="st1" d="M324.9,74.2h28.3v5.9h-20.3V86h19.3v5.5h-19.3v6.2h20.8v6.6h-28.7V74.2z"/>
+		<path class="st1" d="M276.7,74.2h11.9l9.4,19.3h0.2l9-19.3h12.6v30h-7.7V82.5h-0.4l-10.4,21.7h-6l-10.7-21.7h-0.4v21.7h-7.5V74.2z
+			"/>
+		<path class="st1" d="M357,74.2h7.9v23.5h17.8v6.6H357V74.2z"/>
+		<path class="st1" d="M369.4,76.3c0-1.2,1-2.2,2.3-2.2c1.3,0,2.3,1,2.3,2.2c0,1.2-1,2.2-2.3,2.2C370.5,78.5,369.4,77.5,369.4,76.3z
+			 M373.5,76.3c0-1-0.8-1.7-1.8-1.7c-1,0-1.8,0.8-1.8,1.7c0,1,0.8,1.7,1.8,1.7C372.7,78,373.5,77.2,373.5,76.3z M372.9,77.5h-0.6
+			l-0.6-1h-0.5v1h-0.5v-2.4h1.2c0.6,0,1,0.1,1,0.7c0,0.5-0.2,0.6-0.7,0.7L372.9,77.5z M372,76.1c0.3,0,0.4-0.1,0.4-0.4
+			c0-0.3-0.3-0.3-0.6-0.3h-0.6v0.6H372z"/>
+	</g>
+	<text transform="matrix(1 0 0 1 212.0782 156.5206)" class="st1 st2 st3">3D SLICER</text>
+</g>
+</svg>

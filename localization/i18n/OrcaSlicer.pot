@@ -2659,7 +2659,7 @@ msgstr ""
 msgid "Dremel 3D Slicer is based on OrcaSlicer"
 msgstr ""
 
-msgid "BambuStudio is originally based on PrusaSlicer by PrusaResearch."
+msgid "OrcaSlicer is based on BambuStudio, which is originally based on PrusaSlicer by PrusaResearch."
 msgstr ""
 
 msgid "PrusaSlicer is originally based on Slic3r by Alessandro Ranellucci."
