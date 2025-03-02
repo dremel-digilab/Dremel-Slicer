@@ -149,7 +149,7 @@ wxString CopyrightsDialog::get_html_text()
                 "<font size=\"3\">",
          bgr_clr_str, text_clr_str, text_clr_str,
         _L("License"),
-        _L("Dremel 3D Slicerlicer is licensed under "),
+        _L("Dremel 3D Slicer is licensed under "),
         "https://www.gnu.org/licenses/agpl-3.0.html",_L("GNU Affero General Public License, version 3"),
         _L("Dremel 3D Slicer is based on OrcaSlicer"),
         _L("Libraries"),
@@ -244,7 +244,7 @@ AboutDialog::AboutDialog()
         vesizer->Add(0, FromDIP(165), 1, wxEXPAND, FromDIP(5));
         auto version_string = _L("Dremel 3D Slicer ") + " " + std::string(SoftFever_VERSION);
         wxStaticText* version = new wxStaticText(this, wxID_ANY, version_string.c_str(), wxDefaultPosition, wxDefaultSize);
-        wxStaticText* bs_version = new wxStaticText(this, wxID_ANY, wxString::Format("Based on PrusaSlicer and BambuStudio"), wxDefaultPosition, wxDefaultSize);
+        wxStaticText* bs_version = new wxStaticText(this, wxID_ANY, wxString::Format("Based on OrcaSlicer"), wxDefaultPosition, wxDefaultSize);
         bs_version->SetFont(Label::Body_12);
         wxFont version_font = GetFont();
         #ifdef __WXMSW__
