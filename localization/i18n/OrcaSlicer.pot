@@ -6309,22 +6309,22 @@ msgstr ""
 msgid "Clear my choice on the unsaved presets."
 msgstr ""
 
-msgid "Associate Files to Dremel Slicer"
+msgid "Associate Files to Dremel 3D Slicer"
 msgstr ""
 
-msgid "Associate .3mf files to Dremel Slicer"
+msgid "Associate .3mf files to Dremel 3D Slicer"
 msgstr ""
 
 msgid "If enabled, sets Dremel 3D Slicer as default application to open .3mf files"
 msgstr ""
 
-msgid "Associate .stl files to Dremel Slicer"
+msgid "Associate .stl files to Dremel 3D Slicer"
 msgstr ""
 
 msgid "If enabled, sets Dremel 3D Slicer as default application to open .stl files"
 msgstr ""
 
-msgid "Associate .step/.stp files to Dremel Slicer"
+msgid "Associate .step/.stp files to Dremel 3D Slicer"
 msgstr ""
 
 msgid "If enabled, sets Dremel 3D Slicer as default application to open .step files"
