@@ -1,7 +1,7 @@
 {
 	"type": "filament",
 	"setting_id": "GFSL99_00",
-	"name": "Dremel Generic PLA @3D45 all",
+	"name": "Dremel Generic PLA @3D50 all",
 	"from": "system",
 	"instantiation": "true",
 	"inherits": "Dremel Generic PLA",
@@ -27,6 +27,6 @@
         "200"
     ],
 	"compatible_printers": [
-		"Dremel 3D45 0.4 nozzle"
+		"Dremel 3D50 0.4 nozzle"
 	]
 }

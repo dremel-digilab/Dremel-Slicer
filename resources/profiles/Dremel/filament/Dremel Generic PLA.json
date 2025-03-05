@@ -10,7 +10,7 @@
 	"filament_max_volumetric_speed": ["12"],
 	"slow_down_layer_time": ["8"],
 	"compatible_printers": [
-		"Dremel 3D45 0.4 nozzle", 
+		"Dremel 3D50 0.4 nozzle", 
 		"Dremel 3D40 0.4 nozzle",
 		"Dremel 3D20 0.4 nozzle"
 	]
