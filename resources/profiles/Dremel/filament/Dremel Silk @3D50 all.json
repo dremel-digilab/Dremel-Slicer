@@ -1,4 +1,13 @@
 {
+    "inherits": "dremel_base_tpu",
+    "name": "Dremel Silk @3D50 all",
+    "from": "system",
+    "type": "filament",
+    "version": "2.0.0.0",
+    "instantiation": "true",
+	"compatible_printers": [
+		"Dremel 3D50 0.4 nozzle"
+	],
     "activate_air_filtration": [
         "1"
     ],
@@ -41,10 +50,6 @@
     "filament_vendor": [
         "Dremel"
     ],
-    "from": "User",
-    "inherits": "TwoTrees Generic 95A TPU @SK1",
-    "is_custom_defined": "0",
-    "name": "Dremel Silk",
     "nozzle_temperature": [
         "230"
     ],
@@ -77,6 +82,5 @@
     ],
     "textured_plate_temp_initial_layer": [
         "55"
-    ],
-    "version": "2.0.0.0"
+    ]
 }

@@ -4,7 +4,7 @@
     "name": "Dremel 3D50 0.4 nozzle",
     "from": "system",
     "instantiation": "true",
-    "inherits": "TwoTrees SK1 0.4 nozzle",
+    "inherits": "fdm_klipper_common",
     "printer_model": "Dremel 3D50",
     "printer_variant": "0.4",
     "printer_settings_id": "Dremel 3D50",
@@ -140,6 +140,13 @@
     "version": "2.0.0.0",
     "z_hop_types": [
       "Spiral Lift"
-    ]
+    ],
+
+
+    "machine_max_acceleration_travel": ["1500", "1250"],
+    "machine_min_extruding_rate": ["0", "0"],
+    "machine_min_travel_rate": ["0", "0"],
+    "support_multi_bed_types": "1",
+    "thumbnails_format": "PNG"
   }
   

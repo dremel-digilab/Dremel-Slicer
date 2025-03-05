@@ -39,7 +39,8 @@
     "layer_height": "0.2",
     "line_width": "125%",
     "minimum_sparse_infill_area": "15",
-    "name": "Benchy - speed rules",
+    "name": ".20mm Benchy Speed Rules @Dremel 3D50 0.4",
+    "instantiation": "true",
     "only_one_wall_first_layer": "1",
     "outer_wall_line_width": "100%",
     "outer_wall_speed": "100",
@@ -84,5 +85,8 @@
     "wipe_before_external_loop": "1",
     "wipe_on_loops": "1",
     "wipe_speed": "100%",
-    "wipe_tower_no_sparse_layers": "1"
+    "wipe_tower_no_sparse_layers": "1",
+    "compatible_printers": [
+        "Dremel 3D50 0.4 nozzle"
+    ]
 }

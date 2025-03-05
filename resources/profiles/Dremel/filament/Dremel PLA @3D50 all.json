@@ -1,4 +1,13 @@
 {
+    "inherits": "dremel_base",
+    "name": "Dremel PLA @3D50 all",
+    "from": "system",
+    "type": "filament",
+    "version": "2.0.0.0",
+    "instantiation": "true",
+	"compatible_printers": [
+		"Dremel 3D50 0.4 nozzle"
+	],
     "activate_air_filtration": [
         "1"
     ],
@@ -41,10 +50,6 @@
     "filament_wipe": [
         "0"
     ],
-    "from": "User",
-    "inherits": "TwoTrees Generic PLA @SK1",
-    "is_custom_defined": "0",
-    "name": "Dremel PLA",
     "nozzle_temperature_range_high": [
         "240"
     ],
@@ -62,6 +67,5 @@
     ],
     "temperature_vitrification": [
         "65"
-    ],
-    "version": "2.0.0.0"
+    ]
 }

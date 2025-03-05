@@ -1,4 +1,13 @@
 {
+    "inherits": "dremel_base",
+    "name": "Dremel Nylon @3D50 all",
+    "from": "system",
+    "type": "filament",
+    "version": "2.0.0.0",
+    "instantiation": "true",
+	"compatible_printers": [
+		"Dremel 3D50 0.4 nozzle"
+	],
     "activate_air_filtration": [
         "1"
     ],
@@ -44,13 +53,9 @@
     "filament_vendor": [
         "Dremel"
     ],
-    "from": "User",
     "full_fan_speed_layer": [
         "2"
     ],
-    "inherits": "TwoTrees Generic PLA @SK1",
-    "is_custom_defined": "0",
-    "name": "Dremel Nylon",
     "nozzle_temperature": [
         "270"
     ],
@@ -86,6 +91,5 @@
     ],
     "textured_plate_temp_initial_layer": [
         "100"
-    ],
-    "version": "2.0.0.0"
+    ]
 }
