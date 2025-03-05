@@ -290,11 +290,11 @@ void DesktopIntegrationDialog::perform_desktop_integration()
     // slicer icon
     // iterate thru target_candidates to find icons folder
     for (size_t i = 0; i < target_candidates.size(); ++i) {
-        // Copy icon OrcaSlicer.png from resources_dir()/icons to target_dir_icons/icons/
+        // Copy icon Dremel3DSlicer.png from resources_dir()/icons to target_dir_icons/icons/
         if (contains_path_dir(target_candidates[i], "images")) {
             target_dir_icons = target_candidates[i];
-            std::string icon_path = GUI::format("%1%/images/OrcaSlicer.png",resources_dir());
-            std::string dest_path = GUI::format("%1%/images/%2%OrcaSlicer%3%.png", target_dir_icons, icon_theme_path, version_suffix);
+            std::string icon_path = GUI::format("%1%/images/Dremel3DSlicer.png",resources_dir());
+            std::string dest_path = GUI::format("%1%/images/%2%Dremel3DSlicer%3%.png", target_dir_icons, icon_theme_path, version_suffix);
             if (copy_icon(icon_path, dest_path))
                 break; // success
             else
@@ -305,8 +305,8 @@ void DesktopIntegrationDialog::perform_desktop_integration()
                 create_path(boost::nowide::narrow(wxFileName::GetHomeDir()), ".local/share/icons" + icon_theme_dirs);
                 // copy icon
                 target_dir_icons = GUI::format("%1%/.local/share",wxFileName::GetHomeDir());
-                std::string icon_path = GUI::format("%1%/images/OrcaSlicer.png",resources_dir());
-                std::string dest_path = GUI::format("%1%/images/%2%OrcaSlicer%3%.png", target_dir_icons, icon_theme_path, version_suffix);
+                std::string icon_path = GUI::format("%1%/images/Dremel3DSlicer.png",resources_dir());
+                std::string dest_path = GUI::format("%1%/images/%2%Dremel3DSlicer%3%.png", target_dir_icons, icon_theme_path, version_suffix);
                 if (!contains_path_dir(target_dir_icons, "images") 
                     || !copy_icon(icon_path, dest_path)) {
                 	// every attempt failed - icon wont be present

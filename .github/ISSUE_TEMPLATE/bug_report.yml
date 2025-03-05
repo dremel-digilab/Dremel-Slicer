@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        **Thank you for using Dremel Slicer and wanting to report a bug.**
+        **Thank you for using Dremel 3D Slicer and wanting to report a bug.**
         
         Please note that this is not the place to make feature requests or ask for help.
 
@@ -21,7 +21,7 @@ body:
     id: version
     attributes:
       label: Dremel 3D Slicer Version
-      description: Which version of Dremel Slicer are you running? You can see the full version in `Help` -> `About Dremel Slicer`.
+      description: Which version of Dremel 3D Slicer are you running? You can see the full version in `Help` -> `About Dremel 3D Slicer`.
       placeholder: e.g. 1.9.0
     validations:
       required: true
@@ -101,7 +101,7 @@ body:
             You can find your log file here:
             Windows: `%APPDATA%\Dremel3DSlicer\log` or usually `C:\Users\<your username>\AppData\Roaming\Dremel3DSlicer\log`
             MacOS: `$HOME/Library/Application Support/Dremel3DSlicer/log`
-            If Dremel Slicer still starts, you can also reach this directory from the application menu in `Help` -> `Show Configuration Folder`
+            If Dremel 3D Slicer still starts, you can also reach this directory from the application menu in `Help` -> `Show Configuration Folder`
             You can zip the log directory, or just select the newest logs when this issue happens, and zip them
   - type: textarea
     id: file_uploads

@@ -18,7 +18,7 @@ AboutDialogLogo::AboutDialogLogo(wxWindow* parent)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxDefaultSize)
 {
     this->SetBackgroundColour(*wxWHITE);
-    this->logo = ScalableBitmap(this, Slic3r::var("OrcaSlicer_192px.png"), wxBITMAP_TYPE_PNG);
+    this->logo = ScalableBitmap(this, Slic3r::var("Dremel3DSlicer_192px.png"), wxBITMAP_TYPE_PNG);
     this->SetMinSize(this->logo.GetBmpSize());
 
     this->Bind(wxEVT_PAINT, &AboutDialogLogo::onRepaint, this);
@@ -149,7 +149,7 @@ wxString CopyrightsDialog::get_html_text()
                 "<font size=\"3\">",
          bgr_clr_str, text_clr_str, text_clr_str,
         _L("License"),
-        _L("Dremel 3D Slicerlicer is licensed under "),
+        _L("Dremel 3D Slicer is licensed under "),
         "https://www.gnu.org/licenses/agpl-3.0.html",_L("GNU Affero General Public License, version 3"),
         _L("Dremel 3D Slicer is based on OrcaSlicer"),
         _L("Libraries"),
@@ -233,7 +233,7 @@ AboutDialog::AboutDialog()
     main_sizer->Add(ver_sizer, 0, wxEXPAND | wxALL, 0);
 
     // logo
-    m_logo_bitmap = ScalableBitmap(this, "OrcaSlicer_about", 250);
+    m_logo_bitmap = ScalableBitmap(this, "Dremel3DSlicer_about", 250);
     m_logo = new wxStaticBitmap(this, wxID_ANY, m_logo_bitmap.bmp(), wxDefaultPosition,wxDefaultSize, 0);
     m_logo->SetSizer(vesizer);
 
@@ -244,7 +244,7 @@ AboutDialog::AboutDialog()
         vesizer->Add(0, FromDIP(165), 1, wxEXPAND, FromDIP(5));
         auto version_string = _L("Dremel 3D Slicer ") + " " + std::string(SoftFever_VERSION);
         wxStaticText* version = new wxStaticText(this, wxID_ANY, version_string.c_str(), wxDefaultPosition, wxDefaultSize);
-        wxStaticText* bs_version = new wxStaticText(this, wxID_ANY, wxString::Format("Based on PrusaSlicer and BambuStudio"), wxDefaultPosition, wxDefaultSize);
+        wxStaticText* bs_version = new wxStaticText(this, wxID_ANY, wxString::Format("Based on OrcaSlicer"), wxDefaultPosition, wxDefaultSize);
         bs_version->SetFont(Label::Body_12);
         wxFont version_font = GetFont();
         #ifdef __WXMSW__
@@ -278,7 +278,7 @@ AboutDialog::AboutDialog()
 
     std::vector<wxString> text_list;
     text_list.push_back(_L("Dremel 3D Slicer is based on OrcaSlicer"));
-    text_list.push_back(_L("BambuStudio is originally based on PrusaSlicer by PrusaResearch."));
+    text_list.push_back(_L("OrcaSlicer is based on BambuStudio, which is originally based on PrusaSlicer by PrusaResearch."));
     text_list.push_back(_L("PrusaSlicer is originally based on Slic3r by Alessandro Ranellucci."));
     text_list.push_back(_L("Slic3r was created by Alessandro Ranellucci with the help of many other contributors."));
 

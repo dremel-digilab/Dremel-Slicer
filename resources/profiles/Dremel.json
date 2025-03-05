@@ -1,38 +1,94 @@
 {
 	"name": "Dremel",
-	"version": "02.02.00.04",
+	"version": "02.03.00.01",
 	"force_update": "0",
 	"description": "Dremel configurations",
 	"machine_model_list": [
 		{
 			"name": "Dremel 3D50",
-			"sub_path": "machine/Dremel V2_0.json"
+			"sub_path": "machine/Dremel 3D50.json"
 		}
 	],
 	"process_list": [
 		{
 			"name": "fdm_process_common",
 			"sub_path": "process/fdm_process_common.json"
+		},
+		{
+			"name": "0.16mm Optimal @SK1",
+			"sub_path": "process/0.16mm Optimal @SK1.json"
+		},
+		{
+			"name": "fdm_process_dremel_common",
+			"sub_path": "process/fdm_process_dremel_common.json"
+		},
+		{
+			"name": ".20mm Benchy Speed Rules @Dremel 3D50 0.4",
+			"sub_path": "process/.20mm Benchy Speed Rules @Dremel 3D50 0.4.json"
+		},
+		{
+			"name": ".20mm Standard @Dremel 3D50 0.4",
+			"sub_path": "process/.20mm Standard @Dremel 3D50 0.4.json"
+		},
+		{
+			"name": ".25mm Benchy Rules @Dremel 3D50 0.4",
+			"sub_path": "process/.25mm Benchy Rules @Dremel 3D50 0.4.json"
 		}
 	],
 	"filament_list": [
 		{
-			"name": "dremel_nylon",
-			"sub_path": "filament/Dremel Nylon.json"
+			"name": "fdm_filament_common",
+			"sub_path": "filament/fdm_filament_common.json"
 		},
 		{
-			"name": "dremel_pla",
-			"sub_path": "filament/Dremel PLA.json"
+			"name": "fdm_filament_pla",
+			"sub_path": "filament/fdm_filament_pla.json"
+		},
+		{
+			"name": "fdm_filament_tpu",
+			"sub_path": "filament/fdm_filament_tpu.json"
+		},
+		{
+			"name": "dremel_base",
+			"sub_path": "filament/dremel_base.json"
+		},
+		{
+			"name": "dremel_base_tpu",
+			"sub_path": "filament/dremel_base_tpu.json"
+		},
+		{
+			"name": "Dremel PLA @3D50 all",
+			"sub_path": "filament/Dremel PLA @3D50 all.json"
+		},
+		{
+			"name": "Dremel PLA Matte @3D50 all",
+			"sub_path": "filament/Dremel PLA Matte @3D50 all.json"
+		},
+		{
+			"name": "Dremel Nylon @3D50 all",
+			"sub_path": "filament/Dremel Nylon @3D50 all.json"
+		},
+		{
+			"name": "Dremel Silk @3D50 all",
+			"sub_path": "filament/Dremel Silk @3D50 all.json"
 		}
 	],
 	"machine_list": [
 		{
-			"name": "Dremel 3D45 0.4 nozzle",
-			"sub_path": "machine/Dremel 3D45 0.4 nozzle.json"
+			"name": "fdm_machine_common",
+			"sub_path": "machine/fdm_machine_common.json"
 		},
 		{
-			"name": "Dremel DigiLab 3D1000 - 0.4 Stainless nozzles",
-			"sub_path": "machine/Dremel DigiLab 3D1000 - 0.4 Stainless nozzles.json"
+			"name": "fdm_dremel_common",
+			"sub_path": "machine/fdm_dremel_common.json"
+		},
+		{
+			"name": "fdm_klipper_common",
+			"sub_path": "machine/fdm_klipper_common.json"
+		},
+		{
+			"name": "Dremel 3D50 0.4 nozzle",
+			"sub_path": "machine/Dremel 3D50 0.4 nozzle.json"
 		}
 	]
 }

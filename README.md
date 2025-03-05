@@ -1,5 +1,5 @@
 
-<h1>Dremel Slicer</h1>
+<h1>Dremel 3D Slicer</h1>
 
 # Main features
 - Auto-calibration for all printers
@@ -13,7 +13,7 @@
 
 ### Stable Release
 📥 **[Download the Latest Stable Release](https://github.com/dremel-digilab/Dremel-Slicer/releases/latest)**  
-Visit our GitHub Releases page for the latest stable version of Dremel Slicer, recommended for most users.
+Visit our GitHub Releases page for the latest stable version of Dremel 3D Slicer, recommended for most users.
 
 # How to install
 **Windows**: 
@@ -58,7 +58,7 @@ resolution: 0.1
 ```
 
 # License
-Dremel Slicer is licensed under the GNU Affero General Public License, version 3. Dremel Slicer is a fork of Orca Slicer which is based on Bambu Studio by BambuLab.
+Dremel 3D Slicer is licensed under the GNU Affero General Public License, version 3. Dremel 3D Slicer is a fork of Orca Slicer which is based on Bambu Studio by BambuLab.
 
 Bambu Studio is licensed under the GNU Affero General Public License, version 3. Bambu Studio is based on PrusaSlicer by PrusaResearch.
 

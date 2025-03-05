@@ -1156,14 +1156,14 @@ wxWindow* PreferencesDialog::create_general_page()
     });
 
 #ifdef _WIN32
-    auto title_associate_file = create_item_title(_L("Associate Files to Dremel Slicer"), page, _L("Associate Files to Dremel Slicer"));
+    auto title_associate_file = create_item_title(_L("Associate Files to Dremel 3D Slicer"), page, _L("Associate Files to Dremel 3D Slicer"));
 
     // associate file
-    auto item_associate_3mf  = create_item_checkbox(_L("Associate .3mf files to Dremel Slicer"), page,
+    auto item_associate_3mf  = create_item_checkbox(_L("Associate .3mf files to Dremel 3D Slicer"), page,
                                                         _L("If enabled, sets Dremel 3D Slicer as default application to open .3mf files"), 50, "associate_3mf");
-    auto item_associate_stl  = create_item_checkbox(_L("Associate .stl files to Dremel Slicer"), page,
+    auto item_associate_stl  = create_item_checkbox(_L("Associate .stl files to Dremel 3D Slicer"), page,
                                                         _L("If enabled, sets Dremel 3D Slicer as default application to open .stl files"), 50, "associate_stl");
-    auto item_associate_step = create_item_checkbox(_L("Associate .step/.stp files to Dremel Slicer"), page,
+    auto item_associate_step = create_item_checkbox(_L("Associate .step/.stp files to Dremel 3D Slicer"), page,
                                                          _L("If enabled, sets Dremel 3D Slicer as default application to open .step files"), 50, "associate_step");
 
     auto title_associate_url = create_item_title(_L("Associate web links to Dremel 3D Slicer"), page, _L("Associate URLs to Dremel 3D Slicer"));
