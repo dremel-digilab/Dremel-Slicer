@@ -124,7 +124,6 @@
     "layer_change_gcode": ";AFTER_LAYER_CHANGE\n;[layer_z]\n;layer\n;{if layer_num == 2}\n;M106 P1 S255\n;{endif}\nSET_PRINT_STATS_INFO CURRENT_LAYER=[layer_num]\n",
     "manual_filament_change": "1",
     "nozzle_type": "stainless_steel",
-    "print_host": "10.0.0.13",
     "retract_before_wipe": [
       "70%"
     ],
