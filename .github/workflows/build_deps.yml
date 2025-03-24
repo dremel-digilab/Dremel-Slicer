@@ -72,9 +72,9 @@ jobs:
             .\build_release_vs2022.bat pack
             cd ${{ github.workspace }}/deps/build
 
-      - name: Use Xcode 15.4
+      - name: Use Xcode 15.3
         if: inputs.os == 'macos-14'
-        run: sudo xcode-select -s /Applications/Xcode_15.4.app
+        run: sudo xcode-select -s /Applications/Xcode_15.3.app
 
       - name: Build on Mac ${{ inputs.arch }}
         if: inputs.os == 'macos-14'
