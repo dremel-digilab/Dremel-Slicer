@@ -132,9 +132,11 @@ function build_deps() {
                 -DOPENSSL_ARCH="darwin64-${ARCH}-cc" \
                 -DCMAKE_BUILD_TYPE="$BUILD_CONFIG" \
                 -DCMAKE_OSX_ARCHITECTURES:STRING="${ARCH}" \
-                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}" --verbose
+                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . --config "$BUILD_CONFIG" --target deps --verbose
+        echo "Manually building GLEW with verbose output for diagnostics..."
+        ninja -v dep_GLEW || true
+        cmake --build . --config "$BUILD_CONFIG" --target deps
     )
 }
 
@@ -165,9 +167,9 @@ function build_slicer() {
                 -DCMAKE_INSTALL_RPATH="${DEPS}/usr/local" \
                 -DCMAKE_MACOSX_BUNDLE=ON \
                 -DCMAKE_OSX_ARCHITECTURES="${ARCH}" \
-                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}" --verbose
+                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET" --verbose
+        cmake --build . --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET"
     )
 
     echo "Verify localization with gettext..."
