@@ -136,6 +136,8 @@ function build_deps() {
         fi
         echo "Manually building GLEW with verbose output for diagnostics..."
         ninja -v dep_GLEW || true
+        echo "Manually building all deps with verbose output for diagnostics..."
+        ninja -v deps
         cmake --build . --config "$BUILD_CONFIG" --target deps
     )
 }
