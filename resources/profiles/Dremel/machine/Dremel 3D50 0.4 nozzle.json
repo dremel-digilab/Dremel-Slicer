@@ -1,5 +1,6 @@
 {
     "type": "machine",
+    "default_bed_type": "Textured PEI Plate",
     "setting_id": "GM001",
     "name": "Dremel 3D50 0.4 nozzle",
     "from": "system",
@@ -8,21 +9,21 @@
     "printer_model": "Dremel 3D50",
     "printer_variant": "0.4",
     "printer_settings_id": "Dremel 3D50",
-    "gcode_flavor": "marlin",
+    "gcode_flavor": "klipper",
     "default_filament_profile": [
-      "Dremel Generic PLA @3D50 all"
+      "Dremel PLA @3D50"
     ],
-    "default_print_profile": ".20mm Standard @Dremel 3D50 0.4",
+    "default_print_profile": "0.20mm Standard @Dremel 3D50 0.4",
     "nozzle_diameter": [
       "0.4"
     ],
     "printable_area": [
-      "-127.5x-77.5",
-      "97.5x-77.5",
-      "97.5x77.5",
-      "-127.5x77.5"
+        "0x0",
+        "256x0",
+        "256x256",
+        "0x256"
     ],
-    "printable_height": "170",
+    "printable_height": "256",
     "deretraction_speed": [
       "40"
     ],
@@ -110,7 +111,7 @@
       "40"
     ],
     "use_relative_e_distances": "0",
-    "machine_start_gcode": "M106 P1 S0 ; Set THR fan based on slicer fan speed setting\nM106 P2 S0 ; Set Side_fan based on slicer fan speed setting\nM106 P3 S0 ; Set Filter_fan based on slicer fan speed setting\nM106 S0\nM140 S{first_layer_bed_temperature[0]} ; Set bed temperature\nM190 S{first_layer_bed_temperature[0]} ; Wait for bed to reach temperature\nM104 S{first_layer_temperature[0]} ; Set extruder temperature\nLAYERS=[total_layer_count]\n\n; Other start G-code commands\nG28 ; Home all axes\n;BED_MESH_CALIBRATE ; Start bed mesh calibration\n;G29 ; Auto bed leveling (if applicable)\nG1 Z5 F3000 ; Move the platform down 5mm\nG1 X0 Y0 F3000 ; Move the extruder to the starting position\nM104 S{first_layer_temperature[0]} ; Set extruder temperature\nM109 S{first_layer_temperature[0]} ; Wait for extruder to reach temperature\n\n; Purge the extruder\nG92 E0 ; Reset the extruder\nG1 Z2.0 F3000 ; Move Z Axis up\nG1 X0 Y200 Z0.3 F5000.0 ; Move to start position\nG1 X0 Y20.0 Z0.3 F1500.0 E35 ; Draw the first line\n;G1 X0 Y200.0 Z0.3 F5000.0 ; Move to side a little\n;G1 X0 Y20 Z0.3 F1500.0 E30 ; Draw the second line\nG92 E0 ; Reset the extruder\nG1 Z2.0 F3000 ; Move Z Axis up\nG1 X5 Y20 Z0.3 F5000.0 ; Move over to prevent blob squish\nG92 E0 ; Reset the extruder again\nG1 F1500 E-0.8 ; Retract a bit",
+    "machine_start_gcode": "M117 Printing...\nM107 ; Turn off the fan\nG21  ; set units to millimeters\nG90  ; use absolute coordinates\nM83  ; use relative distances for extrusion\nM104 S140\nM190 S[first_layer_bed_temperature]  ; wait for bed temp\nG32  ;Load bed mesh\nG28   ;home\n;G29   bed leveling\nM104 S[first_layer_temperature]      ; set extruder temp\nM140 S[first_layer_bed_temperature]  ; set bed temp\nM109 S[first_layer_temperature]      ; wait for extruder temp\nM190 S[first_layer_bed_temperature]  ; wait for bed temp\nG0 Z2.0 F600;\nG0 X50 Y10 F8000;\nG92 E0.0 ; reset extruder distance position\nG0 Z0.4 F600;\nG1 X100.0 E10 F3000.0 ; intro line\nG92 E0.0 ; reset extruder distance position\nG1 X200.0 E15 F3000.0 ; intro line\nG92 E0.0 ; reset extruder distance position\nG0 Z0.8 F600;\nG1 X100.0 E15 F3000.0 ; intro line\nG1 Z0.4 F600     ;Wipe\nG0 Y12 F6000    ;Wipe\nG1 X100 F6000    ;Wipe\nG0 Y8 F12000   ;Wipe\nG1 X200 F6000    ;Wipe\nG1 X190 Y12 F6000 ;Wipe\nG1 X180 Y8 F6000 ;Wipe\nG1 X170 Y12 F6000 ;Wipe\nG1 X160 Y8 F6000 ;Wipe\nG1 X150 Y12 F6000 ;Wipe\n;G0 Z2.0 F600;\nG92 E0.0 ; reset extruder distance position\n;START_PRINT\n",
     "machine_end_gcode": "; End G-code\n;SET_FAN_SPEED FAN=THR SPEED=0 ; Turn off THR fan\n;SET_FAN_SPEED FAN=Side_fan SPEED=0 ; Turn off Side_fan\n;SET_FAN_SPEED FAN=Filter_fan SPEED=0 ; Turn off Filter_fan\nG1 Z256 X10 Y10 F3000 ; Move Z up and retract filament more\n\n; Other end G-code commands\nM104 S0 ; Turn off extruder heater\nM400\n\n\nM140 S0 ; Turn off bed heater\nG91 ; Relative positioning\nG1 E-0.2 F3000 ; Retract the filament slightly\n\n;# Set the fan to the initial speed\nSET_FAN_SPEED FAN=Filter_fan SPEED=0.5\nM400 ; Wait for moves to finish   \nSET_FAN_SPEED FAN=Filter_fan SPEED=0.3 ;Set to your desired lower speed\nG4 P60000 ; Wait for 60 seconds    \nSET_FAN_SPEED FAN=Filter_fan SPEED=0\nSET_FAN_SPEED FAN=Aux_fan SPEED=0",
     "machine_pause_gcode": "G5",
     "change_filament_gcode": "G5",
@@ -140,8 +141,6 @@
     "z_hop_types": [
       "Spiral Lift"
     ],
-
-
     "machine_max_acceleration_travel": ["1500", "1250"],
     "machine_min_extruding_rate": ["0", "0"],
     "machine_min_travel_rate": ["0", "0"],

@@ -16,7 +16,7 @@
     "gcode_flavor": "marlin",
     "silent_mode": "0",
 	"support_chamber_temp_control": "0",
-	"support_air_filtration": "0",
+	"support_air_filtration": "1",
     "machine_max_acceleration_e": [
         "5000"
     ],
@@ -71,7 +71,7 @@
     "min_layer_height": [
         "0.08"
     ],
-    "printable_height": "250",
+    "printable_height": "256",
     "extruder_clearance_radius": "65",
     "extruder_clearance_height_to_rod": "36",
     "extruder_clearance_height_to_lid": "140",
@@ -105,7 +105,7 @@
         "0"
     ],
     "retraction_speed": [
-        "60"
+        "45"
     ],
     "single_extruder_multi_material": "1",
     "change_filament_gcode": "",
