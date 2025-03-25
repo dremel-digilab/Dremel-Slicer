@@ -343,7 +343,6 @@ include(OCCT/OCCT.cmake)
 include(OpenCV/OpenCV.cmake)
 
 set(_dep_list
-    dep_Boost
     dep_TBB
     ${OPENSSL_PKG}
     ${CURL_PKG}
@@ -351,6 +350,7 @@ set(_dep_list
     dep_Cereal
     dep_NLopt
     dep_OpenVDB
+    dep_OpenCSG
     dep_OpenCV
     dep_CGAL
     dep_GLFW
