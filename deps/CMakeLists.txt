@@ -351,7 +351,6 @@ set(_dep_list
     dep_Cereal
     dep_NLopt
     dep_OpenVDB
-    dep_OpenCSG
     dep_OpenCV
     dep_CGAL
     dep_GLFW
