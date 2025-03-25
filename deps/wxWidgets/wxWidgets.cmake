@@ -1,4 +1,3 @@
-set(_wx_git_tag v3.1.5)
 set(_wx_toolkit "")
 set(_wx_private_font "-DwxUSE_PRIVATE_FONTS=1")
 

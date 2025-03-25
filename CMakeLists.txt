@@ -407,10 +407,7 @@ if(SLIC3R_STATIC)
     set(Boost_USE_STATIC_LIBS ON)
     # Use boost libraries linked statically to the C++ runtime.
     # set(Boost_USE_STATIC_RUNTIME ON)
-else()
-    add_definitions(-DBOOST_LOG_DYN_LINK)
 endif()
-add_definitions(-DBOOST_URL_SEPARATE_COMPILATION)
 #set(Boost_DEBUG ON)
 # set(Boost_COMPILER "-mgw81")
 # boost::process was introduced first in version 1.64.0,
