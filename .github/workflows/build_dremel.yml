@@ -88,6 +88,7 @@ jobs:
           ninja --version
           cmake --version
           sw_vers
+          xcrun --sdk macosx --show-sdk-path
           mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}
           mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
           tree ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
