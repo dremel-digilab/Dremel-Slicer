@@ -111,13 +111,21 @@ jobs:
           security import $CERTIFICATE_PATH -P $P12_PASSWORD -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
           security list-keychain -d user -s $KEYCHAIN_PATH
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $P12_PASSWORD $KEYCHAIN_PATH
-          codesign --deep --force --verbose --options runtime --timestamp --entitlements ${{ github.workspace }}/scripts/disable_validation.entitlements --sign "$CERTIFICATE_ID" ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer/Dremel3DSlicer.app
-          ln -s /Applications ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer/Applications
-          hdiutil create -volname "Dremel3DSlicer" -srcfolder ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer -ov -format UDZO Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
-          codesign --deep --force --verbose --options runtime --timestamp --entitlements ${{ github.workspace }}/scripts/disable_validation.entitlements --sign "$CERTIFICATE_ID" Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
-          xcrun notarytool store-credentials "notarytool-profile" --apple-id "${{ secrets.APPLE_DEV_ACCOUNT }}" --team-id "${{ secrets.TEAM_ID }}" --password "${{ secrets.APP_PWD }}"
-          xcrun notarytool submit "Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg" --keychain-profile "notarytool-profile" --wait
-          xcrun stapler staple Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
+          echo "Certificate ID: $CERTIFICATE_ID"
+          echo "Signing Dremel3DSlicer.app with certificate: $CERTIFICATE_ID"
+          codesign --deep --force --verbose --options runtime --timestamp --entitlements "${GITHUB_WORKSPACE}/scripts/disable_validation.entitlements" --sign "$CERTIFICATE_ID" "${GITHUB_WORKSPACE}/build_${INPUTS_ARCH}/Dremel3DSlicer/Dremel3DSlicer.app"
+          echo "Creating symlink to /Applications in build directory"
+          ln -s /Applications "${GITHUB_WORKSPACE}/build_${INPUTS_ARCH}/Dremel3DSlicer/Applications"
+          echo "Creating DMG file..."
+          hdiutil create -volname "Dremel3DSlicer" -srcfolder "${GITHUB_WORKSPACE}/build_${INPUTS_ARCH}/Dremel3DSlicer" -ov -format UDZO "Dremel3DSlicer_Mac_${INPUTS_ARCH}_${ENV_VER}.dmg"
+          echo "Signing DMG with certificate: $CERTIFICATE_ID"
+          codesign --deep --force --verbose --options runtime --timestamp --entitlements "${GITHUB_WORKSPACE}/scripts/disable_validation.entitlements" --sign "$CERTIFICATE_ID" "Dremel3DSlicer_Mac_${INPUTS_ARCH}_${ENV_VER}.dmg"
+          echo "Storing notary credentials..."
+          xcrun notarytool store-credentials "notarytool-profile" --apple-id "${APPLE_DEV_ACCOUNT}" --team-id "${TEAM_ID}" --password "${APP_PWD}"
+          echo "Submitting DMG for notarization..."
+          xcrun notarytool submit "Dremel3DSlicer_Mac_${INPUTS_ARCH}_${ENV_VER}.dmg" --keychain-profile "notarytool-profile" --wait
+          echo "Stapling notarization ticket to DMG..."
+          xcrun stapler staple "Dremel3DSlicer_Mac_${INPUTS_ARCH}_${ENV_VER}.dmg"
 
       #- name: Create DMG without notary
       #  if: inputs.os == 'macos-13'

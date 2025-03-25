@@ -169,7 +169,7 @@ function build_slicer() {
                 -DCMAKE_OSX_ARCHITECTURES="${ARCH}" \
                 -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . -j 1 --parallel 1 --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET"
+        cmake --build . -j 2 --parallel 2 --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET"
     )
 
     echo "Verify localization with gettext..."
