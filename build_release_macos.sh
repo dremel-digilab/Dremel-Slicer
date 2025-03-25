@@ -132,11 +132,11 @@ function build_deps() {
                 -DOPENSSL_ARCH="darwin64-${ARCH}-cc" \
                 -DCMAKE_BUILD_TYPE="$BUILD_CONFIG" \
                 -DCMAKE_OSX_ARCHITECTURES:STRING="${ARCH}" \
-                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}" 2>&1
+                -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}" -- -j1 2>&1
         fi
         #echo "Manually building GLEW"
         #ninja -v dep_GLEW 2>&1 
-        cmake --build . --config "$BUILD_CONFIG" --target deps 2>&1
+        cmake --build . --config "$BUILD_CONFIG" --target deps -- -j1 2>&1
     )
 }
 
