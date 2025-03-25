@@ -65,7 +65,7 @@ jobs:
         if: inputs.os == 'windows-latest'
         working-directory: ${{ github.workspace }}
         run: |
-            choco install strawberryperl
+            choco install strawberryperl --force
             mkdir ${{ github.workspace }}/deps/build
             mkdir ${{ github.workspace }}/deps/build/Dremel3DSlicer_dep
             .\build_release_vs2022.bat deps

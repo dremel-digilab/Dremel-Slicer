@@ -136,7 +136,7 @@ function build_deps() {
         fi
         #echo "Manually building GLEW"
         #ninja -v dep_GLEW 2>&1 
-        cmake --build . -j 1 --parallel 1 --config "$BUILD_CONFIG" --target deps 2>&1
+        cmake --build . -j 1 --parallel 1 --j 1 --config "$BUILD_CONFIG" --target deps 2>&1
     )
 }
 
