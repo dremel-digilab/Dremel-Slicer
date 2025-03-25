@@ -97,6 +97,7 @@ jobs:
         if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-13'
         working-directory: ${{ github.workspace }}
         env:
+          INPUTS_ARCH: ${{ inputs.arch }}
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
