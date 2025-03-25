@@ -30,9 +30,9 @@ jobs:
       - name: set outputs
         id: set_outputs
         env:
-          underscore-arch: ${{ inputs.os == 'macos-14' && '_' || ''}}${{ inputs.os == 'macos-14' && inputs.arch || '' }} # if is macos, make a string that does "_{arch}", else output nothing
-          dash-arch: ${{ inputs.os == 'macos-14' && '-' || ''}}${{ inputs.os == 'macos-14' && inputs.arch || '' }} # if is macos, make a string that does "-{arch}", else output nothing
-          dep-folder-name: ${{ (inputs.os == 'windows-latest' || inputs.os == 'macos-14') && 'Dremel3DSlicer_dep' || 'destdir' }}
+          underscore-arch: ${{ inputs.os == 'macos-15' && '_' || ''}}${{ inputs.os == 'macos-15' && inputs.arch || '' }} # if is macos, make a string that does "_{arch}", else output nothing
+          dash-arch: ${{ inputs.os == 'macos-15' && '-' || ''}}${{ inputs.os == 'macos-15' && inputs.arch || '' }} # if is macos, make a string that does "-{arch}", else output nothing
+          dep-folder-name: ${{ (inputs.os == 'windows-latest' || inputs.os == 'macos-15') && 'Dremel3DSlicer_dep' || 'destdir' }}
           output-cmd: ${{ inputs.os == 'windows-latest' && '$env:GITHUB_OUTPUT' || '"$GITHUB_OUTPUT"'}}
         run: |
           echo cache-key=${{ inputs.os }}${{ env.dash-arch }}-cache-dremelslicer_deps-build-${{ hashFiles('deps/**') }} >> ${{ env.output-cmd }}
@@ -43,8 +43,32 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ steps.set_outputs.outputs.cache-path }}
-          key: ${{ steps.set_outputs.outputs.cache-key }}
+          key: no-cache-${{ github.run_id }}
+          #key: ${{ steps.set_outputs.outputs.cache-key }}
           lookup-only: true
+
+      - name: Clean Clang, Xcode, and Derived Data
+        run: |
+          echo "Cleaning derived data..."
+          rm -rf ~/Library/Developer/Xcode/DerivedData
+      
+          echo "Cleaning clang caches..."
+          rm -rf ~/.cache/clang
+          rm -rf ~/Library/Caches/com.apple.dt.Xcode
+          rm -rf ~/Library/Developer/Xcode/DerivedData/*
+          rm -rf /Users/runner/Library/Developer/Xcode/DerivedData/*
+          rm -rf /Users/runner/Library/Caches/com.apple.dt.Xcode
+      
+          echo "Cleaning CMake build directories..."
+          find . -type d -name "CMakeFiles" -exec rm -rf {} +
+          find . -type f -name "CMakeCache.txt" -exec rm -f {} +
+      
+          echo "Cleaning ninja build output..."
+          find . -type d -name ".ninja*" -exec rm -rf {} +
+      
+          echo "Cleaning general build output..."
+          find . -type d -name "build" -exec rm -rf {} +
+        
         
   build_deps: # call next step
     name: Build Deps

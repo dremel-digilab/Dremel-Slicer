@@ -93,6 +93,10 @@ jobs:
           mkdir -p ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
           tree ${{ github.workspace }}/deps/build_${{inputs.arch}}/Dremel3DSlicer_dep_${{inputs.arch}}
 
+      - name: Select Xcode 16.2
+        if: inputs.os == 'macos-15'
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app/Contents/Developer
+
       - name: Build slicer mac
         if: inputs.os == 'macos-15'
         working-directory: ${{ github.workspace }}
