@@ -134,7 +134,9 @@ function build_deps() {
                 -DCMAKE_OSX_ARCHITECTURES:STRING="${ARCH}" \
                 -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . --config "$BUILD_CONFIG" --target deps
+        echo "Manually building Boost"
+        ninja -v dep_Boost 2>&1
+        #cmake --build . --config "$BUILD_CONFIG" --target deps
     )
 }
 
