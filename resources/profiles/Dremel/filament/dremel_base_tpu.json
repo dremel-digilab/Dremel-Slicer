@@ -5,14 +5,16 @@
     "filament_id": "GFU99",
     "setting_id": "GFSU99",
     "name": "dremel_base_tpu",
+    "version": "2.0.0.1",
     "from": "system",
     "compatible_printers": [
-        "Dremel 3D50 0.4 nozzle"
+		"Dremel 3D50 0.4 nozzle",
+        "Dremel 3D45 0.4 nozzle"
     ],
     "fan_cooling_layer_time": "60",
     "fan_max_speed": "100",
     "fan_min_speed": "35",
-    "filament_max_volumetric_speed": "15",
+    "filament_max_volumetric_speed": "8",
     "filament_minimal_purge_on_wipe_tower": "15",
     "full_fan_speed_layer": "0",
     "nozzle_temperature": "235",

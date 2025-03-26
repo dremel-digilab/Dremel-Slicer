@@ -1,0 +1,43 @@
+{
+    "type": "filament",
+    "name": "Dremel PLA Matte @base",
+    "inherits": "fdm_filament_pla",
+    "from": "system",
+    "filament_id": "GFL01",
+    "version": "2.0.0.1",
+    "instantiation": "false",
+    "description": "To get higher gloss prints, please dry the filament before use, and set the outer wall speed to be 40 to 60 mm/s when slicing.",
+    "filament_cost": [
+        "35.99"
+    ],
+    "filament_density": [
+        "1.31"
+    ],
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "filament_vendor": [
+        "Dremel"
+    ],
+    "filament_scarf_height": [
+        "5%"
+    ],
+    "filament_scarf_gap": [
+        "0%"
+    ],
+    "nozzle_temperature": [
+        "230"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "230"
+    ],
+    "supertack_plate_temp": [
+        "0"
+    ],
+    "supertack_plate_temp_initial_layer": [
+        "0"
+    ],
+    "filament_start_gcode": [
+        ""
+    ]
+}

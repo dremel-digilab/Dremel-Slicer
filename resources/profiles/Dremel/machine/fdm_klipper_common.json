@@ -2,6 +2,7 @@
   "type": "machine",
   "name": "fdm_klipper_common",
   "from": "system",
+  "version": "2.0.0.1",
   "instantiation": "false",
   "inherits": "fdm_machine_common",
   "gcode_flavor": "klipper",
