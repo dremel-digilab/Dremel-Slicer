@@ -176,12 +176,6 @@ jobs:
           WindowsSDKVersion: '10.0.22000.0\'
         run: .\build_release_vs2022.bat slicer
 
-      - name: Create installer Win
-        if: inputs.os == 'windows-latest'
-        working-directory: ${{ github.workspace }}/build
-        run: |
-          cpack -G NSIS
-
       - name: Sign files with Trusted Signing
         uses: azure/trusted-signing-action@v0
         with:
@@ -193,6 +187,27 @@ jobs:
           certificate-profile-name: Engineering
           files-folder: ${{ github.workspace }}/build/Dremel3DSlicer
           files-folder-filter: exe,dll
+          file-digest: SHA256
+          timestamp-rfc3161: http://timestamp.acs.microsoft.com
+          timestamp-digest: SHA256
+
+      - name: Create installer Win
+        if: inputs.os == 'windows-latest'
+        working-directory: ${{ github.workspace }}/build
+        run: |
+          cpack -G NSIS
+
+      - name: Sign installer Trusted Signing
+        uses: azure/trusted-signing-action@v0
+        with:
+          azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          azure-client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          azure-client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+          endpoint: https://eus.codesigning.azure.net/
+          trusted-signing-account-name: engineering
+          certificate-profile-name: Engineering
+          files-folder: ${{ github.workspace }}/build/
+          files-folder-filter: exe
           file-digest: SHA256
           timestamp-rfc3161: http://timestamp.acs.microsoft.com
           timestamp-digest: SHA256
