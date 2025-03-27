@@ -40,12 +40,12 @@
       "0.5"
     ],
     "machine_max_acceleration_e": [
-      "10000",
+      "5000",
       "5000"
     ],
     "machine_max_acceleration_extruding": [
-      "10000",
-      "1250"
+      "5000",
+      "5000"
     ],
     "machine_max_acceleration_retracting": [
       "10000",
@@ -116,7 +116,7 @@
     "machine_pause_gcode": "G5",
     "change_filament_gcode": "G5",
     "auxiliary_fan": "1",
-    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]\nG92 E0",
+    "before_layer_change_gcode": ";BEFORE_LAYER_CHANGE\n;[layer_z]",
     "disable_m73": "1",
     "fan_kickstart": "1",
     "fan_speedup_overhangs": "0",
