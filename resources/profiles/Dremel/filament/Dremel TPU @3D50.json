@@ -1,9 +1,9 @@
 {
-  "inherits": "Dremel Silk @base",
-  "name": "Dremel Silk @3D50",
+  "inherits": "Dremel TPU @base",
+  "name": "Dremel TPU @3D50",
   "from": "system",
   "type": "filament",
-  "version": "2.0.0.2",
+  "version": "2.0.0.1",
   "instantiation": "true",
   "compatible_printers": [
     "Dremel 3D50 0.4 nozzle"
@@ -15,7 +15,7 @@
     "50"
   ],
   "default_filament_colour": [
-    "#AA6500"
+    "#17141F"
   ],
   "during_print_exhaust_fan_speed": [
     "80"
@@ -27,25 +27,25 @@
     "100"
   ],
   "filament_cost": [
-    "35.99"
+    "39.99"
   ],
   "filament_density": [
     "1.32"
   ],
   "filament_flow_ratio": [
-    "0.98"
+    "1.0"
   ],
   "filament_max_volumetric_speed": [
-    "12"
+    "7"
   ],
   "filament_settings_id": [
-    "Dremel Silk"
+    "Dremel TPU"
   ],
   "filament_start_gcode": [
-    "; filament_type = Silk\n\n; filament_name = Dremel Silk"
+    "; filament_type = TPU\n\n; filament_name = Dremel TPU"
   ],
   "filament_type": [
-    "PLA"
+    "TPU"
   ],
   "filament_vendor": [
     "Dremel"
@@ -72,15 +72,15 @@
     "4"
   ],
   "slow_down_min_speed": [
-    "20"
+    "10"
   ],
   "temperature_vitrification": [
     "60"
   ],
   "textured_plate_temp": [
-    "55"
+    "50"
   ],
   "textured_plate_temp_initial_layer": [
-    "55"
+    "50"
   ]
 }
