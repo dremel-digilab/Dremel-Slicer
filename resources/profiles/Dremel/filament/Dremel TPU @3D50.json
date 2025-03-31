@@ -1,9 +1,9 @@
 {
-  "inherits": "Dremel TPU @base",
+  "inherits": "dremel_base_tpu",
   "name": "Dremel TPU @3D50",
   "from": "system",
   "type": "filament",
-  "version": "2.0.0.1",
+  "version": "2.0.0.2",
   "instantiation": "true",
   "compatible_printers": [
     "Dremel 3D50 0.4 nozzle"
@@ -36,7 +36,7 @@
     "1.0"
   ],
   "filament_max_volumetric_speed": [
-    "7"
+    "5"
   ],
   "filament_settings_id": [
     "Dremel TPU"
@@ -51,13 +51,13 @@
     "Dremel"
   ],
   "nozzle_temperature": [
-    "230"
+    "240"
   ],
   "nozzle_temperature_initial_layer": [
-    "230"
+    "240"
   ],
   "nozzle_temperature_range_high": [
-    "240"
+    "250"
   ],
   "overhang_fan_threshold": [
     "50%"
