@@ -792,6 +792,19 @@ void GUI_App::post_init()
     if (! this->initialized())
         throw Slic3r::RuntimeError("Calling post_init() while not yet initialized");
 
+    /*
+    if (app_config->get("sync_user_preset") == "true") {
+        // BBS loading user preset
+        // Always async, not such startup step
+        // BOOST_LOG_TRIVIAL(info) << "Loading user presets...";
+        // scrn->SetText(_L("Loading user presets..."));
+        if (m_agent) { start_sync_user_preset(); }
+        BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " sync_user_preset: true";
+    } else {
+        BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " sync_user_preset: false";
+    }
+    */
+
     m_open_method = "double_click";
     bool switch_to_3d = false;
 
@@ -931,10 +944,13 @@ void GUI_App::post_init()
     }
 #endif
 
+    /*
     if (!app_config->get_stealth_mode())
         hms_query = new HMSQuery();
+    */
 
     m_show_gcode_window = app_config->get_bool("show_gcode_window");
+    /*
     if (m_networking_need_update) {
         //updating networking
         int ret = updating_bambu_networking();
@@ -946,6 +962,7 @@ void GUI_App::post_init()
             BOOST_LOG_TRIVIAL(error) << __FUNCTION__<<":networking plugin updated failed";
         }
     }
+    */
 
     // Start preset sync after project opened, otherwise we could have preset change during project opening which could cause crash 
     if (app_config->get("sync_user_preset") == "true") {
@@ -976,16 +993,22 @@ void GUI_App::post_init()
             this->preset_updater->sync(http_url, language, network_ver, sys_preset ? preset_bundle : nullptr);
 
             this->check_new_version_sf();
+            /*
             if (is_user_login() && !app_config->get_stealth_mode()) {
               // this->check_privacy_version(0);
               request_user_handle(0);
             }
+            */
         });
     }
 
+    /*
     if (is_user_login())
         request_user_handle(0);
+    */
+    
 
+    /*
     if(!m_networking_need_update && m_agent) {
         m_agent->set_on_ssdp_msg_fn(
             [this](std::string json_str) {
@@ -1004,6 +1027,7 @@ void GUI_App::post_init()
         });
         m_agent->start_discovery(true, false);
     }
+    */
 
     //update the plugin tips
     CallAfter([this] {
@@ -2516,8 +2540,8 @@ bool GUI_App::on_init_inner()
     std::map<std::string, std::string> extra_headers = get_extra_header();
     Slic3r::Http::set_extra_headers(extra_headers);
 
-    copy_network_if_available();
-    on_init_network();
+    //copy_network_if_available();
+    //on_init_network();
 
     if (m_agent && m_agent->is_user_login()) {
         enable_user_preset_folder(true);
@@ -2768,7 +2792,7 @@ void GUI_App::copy_network_if_available()
 
 bool GUI_App::on_init_network(bool try_backup)
 {
-    auto should_load_networking_plugin = app_config->get_bool("installed_networking");
+    auto should_load_networking_plugin = false; // app_config->get_bool("installed_networking");
     if(!should_load_networking_plugin) {
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << "Don't load plugin as installed_networking is false";
         return false;

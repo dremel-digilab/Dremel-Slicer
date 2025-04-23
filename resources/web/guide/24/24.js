@@ -300,20 +300,19 @@ function FilterModelList(keyword) {
 	TranslatePage();
 }
 
-function SelectPrinterAll( sVendor )
-{
-	$("input[vendor='"+sVendor+"']").prop("checked", true);
-	$("input[vendor='"+sVendor+"']").each(function() {
-		CheckBoxOnclick(this);
+function SelectPrinterAll(sVendor) {
+	$("input[vendor='" + sVendor + "']").each(function () {
+		if (!this.checked) {
+			$(this).click();
+		}
 	});
 }
 
-
-function SelectPrinterNone( sVendor )
-{
-	$("input[vendor='"+sVendor+"']").prop("checked", false);
-	$("input[vendor='"+sVendor+"']").each(function() {
-		CheckBoxOnclick(this);
+function SelectPrinterNone(sVendor) {
+	$("input[vendor='" + sVendor + "']").each(function () {
+		if (this.checked) {
+			$(this).click();
+		}
 	});
 }
 

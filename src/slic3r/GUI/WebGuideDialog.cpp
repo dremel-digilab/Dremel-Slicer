@@ -113,7 +113,7 @@ GuideFrame::GuideFrame(GUI_App *pGUI, long style)
     // INI
     m_SectionName = "firstguide";
     PrivacyUse    = false;
-    StealthMode   = false;
+    StealthMode   = true;
     InstallNetplugin = false;
 
     m_MainPtr = pGUI;
@@ -1105,14 +1105,14 @@ int GuideFrame::LoadProfile()
         }
 
         //----region
-        m_Region = wxGetApp().app_config->get("region");
+        m_Region = "North America"; //wxGetApp().app_config->get("region");
         m_ProfileJson["region"] = m_Region;
 
-        m_ProfileJson["network_plugin_install"] = wxGetApp().app_config->get("app","installed_networking");
+        m_ProfileJson["network_plugin_install"] = false; //wxGetApp().app_config->get("app","installed_networking");
         m_ProfileJson["network_plugin_compability"] = wxGetApp().is_compatibility_version() ? "1" : "0";
         network_plugin_ready = wxGetApp().is_compatibility_version();
 
-        StealthMode = wxGetApp().app_config->get_bool("app","stealth_mode");
+        StealthMode = true; //wxGetApp().app_config->get_bool("app","stealth_mode");
         m_ProfileJson["stealth_mode"] = StealthMode;
     }
     catch (std::exception &e) {
