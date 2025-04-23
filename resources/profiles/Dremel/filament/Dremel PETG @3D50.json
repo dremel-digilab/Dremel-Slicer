@@ -1,13 +1,13 @@
 {
     "inherits": "dremel_base",
-    "name": "Dremel PETG @3D50 all",
+    "name": "Dremel PETG @3D50",
     "from": "system",
     "type": "filament",
-    "version": "2.0.0.1",
+    "version": "2.0.0.3",
     "instantiation": "true",
-	"compatible_printers": [
+    "compatible_printers": [
         "Dremel 3D50 0.4 nozzle"
-	],
+    ],
     "activate_air_filtration": [
         "1"
     ],
@@ -57,16 +57,37 @@
         "2"
     ],
     "nozzle_temperature": [
-        "270"
+        "265"
     ],
     "nozzle_temperature_initial_layer": [
-        "270"
+        "265"
     ],
     "nozzle_temperature_range_high": [
         "270"
     ],
-    "nozzle_temperature_range_low": [
-        "230"
+    "cool_plate_temp": [
+        "0"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "0"
+    ],
+    "textured_cool_plate_temp": [
+        "0"
+    ],
+    "textured_cool_plate_temp_initial_layer": [
+        "0"
+    ],
+    "textured_plate_temp": [
+        "80"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "100"
+    ],
+    "smooth_pei_plate_temp": [
+        "80"
+    ],
+    "smooth_pei_plate_temp_initial_layer": [
+        "100"
     ],
     "overhang_fan_speed": [
         "0"
@@ -85,11 +106,5 @@
     ],
     "temperature_vitrification": [
         "85"
-    ],
-    "textured_plate_temp": [
-        "80"
-    ],
-    "textured_plate_temp_initial_layer": [
-        "100"
     ]
 }

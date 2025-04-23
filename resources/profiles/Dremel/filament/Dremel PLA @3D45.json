@@ -50,8 +50,26 @@
     "filament_wipe": [
         "0"
     ],
+    "nozzle_temperature": [
+        "230"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "230"
+    ],
     "nozzle_temperature_range_high": [
         "240"
+    ],
+    "cool_plate_temp": [
+        "0"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "0"
+    ],
+    "textured_cool_plate_temp": [
+        "0"
+    ],
+    "textured_cool_plate_temp_initial_layer": [
+        "0"
     ],
     "overhang_fan_threshold": [
         "95%"

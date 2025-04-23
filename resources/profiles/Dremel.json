@@ -1,7 +1,7 @@
 {
 	"name": "Dremel",
-	"version": "02.03.00.02",
-	"force_update": "0",
+	"version": "02.03.00.05",
+	"force_update": "1",
 	"description": "Dremel configurations",
 	"machine_model_list": [
 		{
@@ -33,6 +33,10 @@
 		{
 			"name": "0.20mm Standard @Dremel 3D50 0.4",
 			"sub_path": "process/0.20mm Standard @Dremel 3D50 0.4.json"
+		},
+		{
+			"name": "0.20mm Strong @Dremel 3D50 0.4",
+			"sub_path": "process/0.20mm Strong @Dremel 3D50 0.4.json"
 		},
 		{
 			"name": "0.24mm Detailed Draft @Dremel 3D50 0.4",
@@ -101,8 +105,16 @@
 			"sub_path": "filament/Dremel ECO-ABS @3D50.json"
 		},	
 		{
-			"name": "Dremel PETG @3D50 all",
+			"name": "Dremel Nylon @3D50",
+			"sub_path": "filament/Dremel Nylon @3D50.json"
+		},
+		{
+			"name": "Dremel PETG @3D50",
 			"sub_path": "filament/Dremel PETG @3D50.json"
+		},
+		{
+			"name": "Dremel TPU @3D50",
+			"sub_path": "filament/Dremel TPU @3D50.json"
 		}
 	],
 	"machine_list": [

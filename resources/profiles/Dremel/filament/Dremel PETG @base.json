@@ -4,7 +4,7 @@
     "inherits": "fdm_filament_pla",
     "from": "system",
     "filament_id": "GFG60",
-    "version": "2.0.0.1",
+    "version": "2.0.0.2",
     "instantiation": "false",
     "description": "",
     "filament_cost": [
