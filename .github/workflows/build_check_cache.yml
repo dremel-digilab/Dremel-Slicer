@@ -27,20 +27,16 @@ jobs:
         with:
           lfs: "true"
 
-      - name: get timestamp
-        id: ts
-        run: echo "timestamp=$(date +%s)" >> $GITHUB_OUTPUT
-
       - name: set outputs
         id: set_outputs
         env:
           underscore-arch: ${{ inputs.os == 'macos-13' && '_' || '' }}${{ inputs.os == 'macos-13' && inputs.arch || '' }}
           dash-arch: ${{ inputs.os == 'macos-13' && '-' || '' }}${{ inputs.os == 'macos-13' && inputs.arch || '' }}
           dep-folder-name: ${{ (inputs.os == 'windows-latest' || inputs.os == 'macos-13') && 'Dremel3DSlicer_dep' || 'destdir' }}
-          timestamp: ${{ steps.ts.outputs.timestamp }}
+          runid: ${{ github.run_id }}
           output-cmd: ${{ inputs.os == 'windows-latest' && '$env:GITHUB_OUTPUT' || '"$GITHUB_OUTPUT"' }}
         run: |
-          echo cache-key=${{ inputs.os }}${{ env.dash-arch }}-cache-dremelslicer_deps-build-${{ hashFiles('deps/**') }}-${{ env.timestamp }} >> ${{ env.output-cmd }}
+          echo cache-key=${{ inputs.os }}${{ env.dash-arch }}-cache-dremelslicer_deps-build-${{ hashFiles('deps/**') }}-${{ env.runid }} >> ${{ env.output-cmd }}
           echo cache-path=${{ github.workspace }}/deps/build${{ env.underscore-arch }}/${{ env.dep-folder-name }}${{ env.underscore-arch }} >> ${{ env.output-cmd }}
 
       - name: load cache
