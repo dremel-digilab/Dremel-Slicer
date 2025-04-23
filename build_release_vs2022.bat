@@ -58,6 +58,14 @@ mkdir %build_dir%
 cd %build_dir%
 
 echo on
+set WXWIN=D:\a\Dremel-Slicer\Dremel-Slicer\deps\build\Dremel3DSlicer_dep\usr\local
+echo ==== ENVIRONMENT ====
+echo CMake:     & cmake --version
+echo MSVC:      & cl.exe
+echo WXWIN:     %WXWIN%
+echo WindowsSDK & echo %WindowsSdkDir%\Include\%WindowsSDKVersion%
+dir /b "%WXWIN%\include"
+dir /b "%WXWIN%\lib\vc_x64_lib"
 cmake .. -G "Visual Studio 17 2022" -A x64 -DBBL_RELEASE_TO_PUBLIC=1 -DCMAKE_PREFIX_PATH="%DEPS%/usr/local" -DCMAKE_INSTALL_PREFIX="./Dremel3DSlicer" -DCMAKE_BUILD_TYPE=%build_type% -DWIN10SDK_PATH="%WindowsSdkDir%Include\%WindowsSDKVersion%\"
 cmake --build . --config %build_type% --target ALL_BUILD -- -m
 @echo off
