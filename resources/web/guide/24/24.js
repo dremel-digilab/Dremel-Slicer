@@ -300,15 +300,20 @@ function FilterModelList(keyword) {
 	TranslatePage();
 }
 
-function SelectPrinterAll( sVendor )
-{
-	$("input[vendor='"+sVendor+"']").prop("checked", true);
+function SelectPrinterAll(sVendor) {
+	$("input[vendor='" + sVendor + "']").each(function () {
+		if (!this.checked) {
+			$(this).click();
+		}
+	});
 }
 
-
-function SelectPrinterNone( sVendor )
-{
-	$("input[vendor='"+sVendor+"']").prop("checked", false);
+function SelectPrinterNone(sVendor) {
+	$("input[vendor='" + sVendor + "']").each(function () {
+		if (this.checked) {
+			$(this).click();
+		}
+	});
 }
 
 function OnExitFilter() {
