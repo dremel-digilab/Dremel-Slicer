@@ -35,11 +35,11 @@ jobs:
         with:
           lfs: 'true'
 
-      - name: load cached deps
-        uses: actions/cache@v4
-        with:
-          path: ${{ inputs.cache-path }}
-          key: ${{ inputs.cache-key }}
+      #- name: load cached deps
+      #  uses: actions/cache@v4
+      #  with:
+      #    path: ${{ inputs.cache-path }}
+      #    key: ${{ inputs.cache-key }}
 
       - uses: lukka/get-cmake@latest
         with:
