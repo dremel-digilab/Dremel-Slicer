@@ -339,6 +339,7 @@ if(NOT FREETYPE_FOUND)
     set(FREETYPE_PKG "dep_FREETYPE") 
 endif()
 
+include(wxWidgets/wxWidgets.cmake)
 include(OCCT/OCCT.cmake)
 include(OpenCV/OpenCV.cmake)
 
