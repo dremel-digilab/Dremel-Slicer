@@ -42,10 +42,10 @@ endif ()
 
 set(DESTDIR "${CMAKE_CURRENT_BINARY_DIR}/destdir" CACHE PATH "Destination directory")
 set(DEP_DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/../DL_CACHE CACHE PATH "Path for downloaded source packages.")
-set(FLATPAK FALSE CACHE BOOL "Toggles various build settings for flatpak, like /usr/local in DESTDIR or not building wxwidgets")
-if (NOT FLATPAK)
-    set(DESTDIR "${DESTDIR}/usr/local/")
-endif()
+# FALSE CACHE BOOL "Toggles various build settings for flatpak, like /usr/local in DESTDIR or not building wxwidgets")
+#if (NOT FLATPAK)
+#    set(DESTDIR "${DESTDIR}/usr/local/")
+#endif()
 
 get_property(_is_multi GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
@@ -144,39 +144,39 @@ if (NOT IS_CROSS_COMPILE OR NOT APPLE)
        BUILD_COMMAND ${CMAKE_COMMAND} --build . --config Release -- ${_build_j}
        INSTALL_COMMAND ${CMAKE_COMMAND} --build . --target install --config Release
     )
-elseif(FLATPAK)
+#elseif(FLATPAK)
     # the only reason this is here is because of the HACK at the bottom for ci
     #
     # note for future devs: shared libs may actually create a size reduction
     # but orcaslicer_deps tends to get really funny regarding linking after that (notably boost)
     # so, as much as I would like to use that, it's not happening
-    ExternalProject_Add(
-        dep_${projectname}
-        EXCLUDE_FROM_ALL    ON
-        INSTALL_DIR         ${DESTDIR}
-        DOWNLOAD_DIR        ${DEP_DOWNLOAD_DIR}/${projectname}
-        ${_gen}
-        CMAKE_ARGS
-            -DCMAKE_INSTALL_PREFIX:STRING=${DESTDIR}
-            -DCMAKE_MODULE_PATH:STRING=${PROJECT_SOURCE_DIR}/../cmake/modules
-            -DCMAKE_PREFIX_PATH:STRING=${DESTDIR}
-            -DCMAKE_DEBUG_POSTFIX:STRING=d
-            -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
-            -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
-            -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
-            -DBUILD_SHARED_LIBS:BOOL=OFF
-            ${_cmake_osx_arch}
-            "${_configs_line}"
-            ${DEP_CMAKE_OPTS}
-            ${P_ARGS_CMAKE_ARGS}
-       ${P_ARGS_UNPARSED_ARGUMENTS}
-       BUILD_COMMAND ${CMAKE_COMMAND} --build . --config Release -- ${_build_j}
-       INSTALL_COMMAND ${CMAKE_COMMAND} --build . --target install --config Release
-       # HACK: save space after each compile job, because CI
-       # reasoning: cmake changes directory after this command, so just keep only the folders
-       # so that it can navigate out
-       COMMAND find "${CMAKE_BINARY_DIR}/dep_${projectname}-prefix/" -type f -delete
-    )
+    #ExternalProject_Add(
+    #    dep_${projectname}
+    #    EXCLUDE_FROM_ALL    ON
+    #    INSTALL_DIR         ${DESTDIR}
+    #    DOWNLOAD_DIR        ${DEP_DOWNLOAD_DIR}/${projectname}
+    #    ${_gen}
+    #    CMAKE_ARGS
+    #        -DCMAKE_INSTALL_PREFIX:STRING=${DESTDIR}
+    #        -DCMAKE_MODULE_PATH:STRING=${PROJECT_SOURCE_DIR}/../cmake/modules
+    #        -DCMAKE_PREFIX_PATH:STRING=${DESTDIR}
+    #        -DCMAKE_DEBUG_POSTFIX:STRING=d
+    #        -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
+    #        -DCMAKE_CXX_COMPILER:STRING=${CMAKE_CXX_COMPILER}
+    #        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+    #        -DBUILD_SHARED_LIBS:BOOL=OFF
+    #        ${_cmake_osx_arch}
+    #        "${_configs_line}"
+    #        ${DEP_CMAKE_OPTS}
+    #        ${P_ARGS_CMAKE_ARGS}
+    #   ${P_ARGS_UNPARSED_ARGUMENTS}
+    #   BUILD_COMMAND ${CMAKE_COMMAND} --build . --config Release -- ${_build_j}
+    #   INSTALL_COMMAND ${CMAKE_COMMAND} --build . --target install --config Release
+    #   # HACK: save space after each compile job, because CI
+    #   # reasoning: cmake changes directory after this command, so just keep only the folders
+    #   # so that it can navigate out
+    #   COMMAND find "${CMAKE_BINARY_DIR}/dep_${projectname}-prefix/" -type f -delete
+    #)
 else()
     ExternalProject_Add(
         dep_${projectname}
@@ -240,19 +240,19 @@ else()
     include("deps-linux.cmake")
 endif()
 
-if(FLATPAK)
-    # flatpak bundles some deps with the layer, so attempt to find them first
-    # also, yes, this reduces CI by not needing to vendor certain deps
-    find_package(ZLIB)
-    find_package(PNG)
-    find_package(EXPAT)
-    find_package(CURL)
-    find_package(JPEG)
-    find_package(TIFF)
-    find_package(Freetype)
-    find_package(OpenSSL 1.1...<3.2)
-    find_package(CURL)
-endif()
+#if(FLATPAK)
+#    # flatpak bundles some deps with the layer, so attempt to find them first
+#    # also, yes, this reduces CI by not needing to vendor certain deps
+#    find_package(ZLIB)
+#    find_package(PNG)
+#    find_package(EXPAT)
+#    find_package(CURL)
+#    find_package(JPEG)
+#    find_package(TIFF)
+#    find_package(Freetype)
+#    find_package(OpenSSL 1.1...<3.2)
+#    find_package(CURL)
+#endif()
 
 set(ZLIB_PKG "")
 if (NOT ZLIB_FOUND) 
@@ -327,11 +327,11 @@ if (NOT TIFF_FOUND)
 endif()
 
 # flatpak builds wxwidgets separately 
-set(WXWIDGETS_PKG "")
-if (NOT FLATPAK)
-    include(wxWidgets/wxWidgets.cmake)
-    set(WXWIDGETS_PKG "dep_wxWidgets")
-endif()
+#set(WXWIDGETS_PKG "dep_wxWidgets")
+#if (NOT FLATPAK)
+#    include(wxWidgets/wxWidgets.cmake)
+#    set(WXWIDGETS_PKG "dep_wxWidgets")
+#endif()
 
 set(FREETYPE_PKG "")
 if(NOT FREETYPE_FOUND)
@@ -347,7 +347,7 @@ set(_dep_list
     dep_TBB
     ${OPENSSL_PKG}
     ${CURL_PKG}
-    ${WXWIDGETS_PKG}
+    dep_wxWidgets
     dep_Cereal
     dep_NLopt
     dep_OpenVDB
