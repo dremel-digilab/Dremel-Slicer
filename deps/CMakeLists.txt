@@ -335,34 +335,21 @@ endif()
 #    set(WXWIDGETS_PKG "dep_wxWidgets")
 #endif()
 
+include(wxWidgets/wxWidgets.cmake)
+set(WXWIDGETS_PKG "dep_wxWidgets")
+
 set(FREETYPE_PKG "")
 if(NOT FREETYPE_FOUND)
     include(FREETYPE/FREETYPE.cmake)
     set(FREETYPE_PKG "dep_FREETYPE") 
 endif()
 
-include(wxWidgets/wxWidgets.cmake)
+
 include(OCCT/OCCT.cmake)
 include(OpenCV/OpenCV.cmake)
 
 set(_dep_list
-    dep_Boost
-    dep_TBB
-    ${OPENSSL_PKG}
-    ${CURL_PKG}
-    dep_wxWidgets
-    dep_Cereal
-    dep_NLopt
-    dep_OpenVDB
-    dep_OpenCSG
-    dep_OpenCV
-    dep_CGAL
-    dep_GLFW
-    dep_OCCT
-    ${FREETYPE_PKG}
-    ${PNG_PKG}
-    ${ZLIB_PKG}
-    ${EXPAT_PKG}
+    ${WXWIDGETS_PKG}
     )
 
 if (MSVC)
