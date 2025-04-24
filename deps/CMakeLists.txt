@@ -47,6 +47,8 @@ set(DEP_DOWNLOAD_DIR ${CMAKE_CURRENT_BINARY_DIR}/../DL_CACHE CACHE PATH "Path fo
 #    set(DESTDIR "${DESTDIR}/usr/local/")
 #endif()
 
+set(DESTDIR "${DESTDIR}/usr/local/")
+
 get_property(_is_multi GLOBAL PROPERTY GENERATOR_IS_MULTI_CONFIG)
 
 if (_is_multi)
