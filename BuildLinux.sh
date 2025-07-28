@@ -170,10 +170,10 @@ then
         -DORCA_TOOLS=ON \
         ${BUILD_ARGS}
     echo "done"
-    echo "Building OrcaSlicer ..."
-    cmake --build build --target OrcaSlicer
-    echo "Building OrcaSlicer_profile_validator .."
-    cmake --build build --target OrcaSlicer_profile_validator
+    echo "Building Dremel3DSlicer ..."
+    cmake --build build --target 
+    echo "Building Dremel3DSlicer_profile_validator .."
+    cmake --build build --target Dremel3DSlicer_profile_validator
     ./run_gettext.sh
     echo "done"
 fi

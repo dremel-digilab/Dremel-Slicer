@@ -326,14 +326,14 @@ jobs:
           mv -n ./build/Dremel3DSlicer_Linux_V${{ env.ver_pure }}.AppImage ./build/Dremel3DSlicer_Linux_AppImage${{ env.ubuntu-ver-str }}_${{ env.ver }}.AppImage
           chmod +x ./build/Dremel3DSlicer_Linux_AppImage${{ env.ubuntu-ver-str }}_${{ env.ver }}.AppImage
 
-      #- name: Build dremel3dslicer_custom_preset_tests
-      #  if: github.ref == 'refs/heads/main' && inputs.os == 'ubuntu-20.04'
-      #  working-directory: ${{ github.workspace }}/build/src
-      #  shell: bash
-      #  run: |
-      #    ./OrcaSlicer_profile_validator -p ${{ github.workspace }}/resources/profiles -g 1
-      #    cd ${{ github.workspace }}/resources/profiles
-      #    zip -r dremel3dslicer_custom_preset_tests.zip user/
+      - name: Build dremel3dslicer_custom_preset_tests
+        if: github.ref == 'refs/heads/main' && inputs.os == 'ubuntu-20.04'
+        working-directory: ${{ github.workspace }}/build/src
+        shell: bash
+        run: |
+          ./Dremel3DSlicer_profile_validator -p ${{ github.workspace }}/resources/profiles -g 1
+          cd ${{ github.workspace }}/resources/profiles
+          zip -r dremel3dslicer_custom_preset_tests.zip user/
 
       - name: Upload artifacts Ubuntu
         if: ${{ ! env.ACT && inputs.os == 'ubuntu-20.04' || inputs.os == 'ubuntu-24.04' }}
