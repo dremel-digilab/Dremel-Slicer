@@ -116,7 +116,7 @@ jobs:
           path: ${{ github.workspace }}/Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}_NoNotary.dmg
 
       - name: Sign app and notary
-        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-13'
+        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-14'
         working-directory: ${{ github.workspace }}
         env:
           INPUTS_ARCH: ${{ inputs.arch }}
@@ -155,21 +155,21 @@ jobs:
           xcrun stapler staple "Dremel3DSlicer_Mac_${INPUTS_ARCH}_${ENV_VER}.dmg"
 
       #- name: Create DMG without notary
-      #  if: inputs.os == 'macos-13'
+      #  if: inputs.os == 'macos-14'
       #  working-directory: ${{ github.workspace }}
       #  run: |
       #    ln -s /Applications ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer/Applications
       #    hdiutil create -volname "Dremel3DSlicer" -srcfolder ${{ github.workspace }}/build_${{inputs.arch}}/Dremel3DSlicer -ov -format UDZO Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
 
       - name: Upload artifacts mac
-        if: inputs.os == 'macos-13'
+        if: inputs.os == 'macos-14'
         uses: actions/upload-artifact@v4
         with:
           name: Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}
           path: ${{ github.workspace }}/Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
 
       - name: Deploy Mac release
-        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-13'
+        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-14'
         uses: WebFreak001/deploy-nightly@v3.1.0
         with:
           upload_url: https://uploads.github.com/repos/dremel-digilab/Dremel-Slicer/releases/235607526/assets{?name,label}
