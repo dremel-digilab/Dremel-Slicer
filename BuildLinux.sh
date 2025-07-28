@@ -171,7 +171,7 @@ then
         ${BUILD_ARGS}
     echo "done"
     echo "Building Dremel3DSlicer ..."
-    cmake --build build --target 
+    cmake --build build --target Dremel3DSlicer
     echo "Building Dremel3DSlicer_profile_validator .."
     cmake --build build --target Dremel3DSlicer_profile_validator
     ./run_gettext.sh

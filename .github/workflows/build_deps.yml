@@ -127,14 +127,14 @@ jobs:
           name: Dremel3DSlicer_dep_win64_${{ env.date }}
           path: ${{ github.workspace }}/deps/build/Dremel3DSlicer_dep*.zip
 
-      #- name: Upload Ubuntu artifacts
-      #  if: ${{ ! env.ACT && inputs.os == 'ubuntu-20.04' || inputs.os == 'ubuntu-24.04' }}
-      #  env:
-      #    ubuntu-ver: ${{ (inputs.os == 'ubuntu-20.04' && '2004') || (inputs.os == 'ubuntu-24.04' && '2404') || '' }}
-      #  uses: actions/upload-artifact@v4
-      #  with:
-      #    name: Dremel3DSlicer_dep_ubuntu_${{ env.ubuntu-ver }}_${{ env.date }}
-      #    path: ${{ github.workspace }}/deps/build/Dremel3DSlicer_dep_ubuntu_*.tar.gz
+      - name: Upload Ubuntu artifacts
+        if: ${{ ! env.ACT && inputs.os == 'ubuntu-20.04' || inputs.os == 'ubuntu-24.04' }}
+        env:
+          ubuntu-ver: ${{ (inputs.os == 'ubuntu-20.04' && '2004') || (inputs.os == 'ubuntu-24.04' && '2404') || '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: Dremel3DSlicer_dep_ubuntu_${{ env.ubuntu-ver }}_${{ env.date }}
+          path: ${{ github.workspace }}/deps/build/Dremel3DSlicer_dep_ubuntu_*.tar.gz
 
   build_orca:
     name: Build Dremel 3D Slicer
