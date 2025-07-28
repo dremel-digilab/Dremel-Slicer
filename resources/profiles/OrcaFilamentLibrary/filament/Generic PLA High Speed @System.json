@@ -1,0 +1,44 @@
+<<<<<<<< HEAD:resources/profiles/Dremel/filament/dremel_base.json
+{
+    "type": "filament",
+    "filament_id": "GFL99",
+    "setting_id": "GFSL99",
+    "name": "dremel_base",
+    "from": "system",
+    "version": "2.0.0.1",
+    "instantiation": "false",
+    "inherits": "fdm_filament_pla",
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "filament_max_volumetric_speed": [
+        "12"
+    ],
+    "slow_down_layer_time": [
+        "8"
+    ],
+	"compatible_printers": [
+		"Dremel 3D50 0.4 nozzle",
+        "Dremel 3D45 0.4 nozzle"
+	]
+========
+{
+    "type": "filament",
+    "name": "Generic PLA High Speed @System",
+    "inherits": "fdm_filament_pla",
+    "filament_id": "GFL95",
+    "from": "system",
+    "setting_id": "OGFSL95_00",
+    "instantiation": "true",
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "filament_max_volumetric_speed": [
+        "18"
+    ],
+    "slow_down_layer_time": [
+        "4"
+    ],
+    "compatible_printers": []
+>>>>>>>> 70931e5321fa66966a5bfb251efca0e82307d427:resources/profiles/OrcaFilamentLibrary/filament/Generic PLA High Speed @System.json
+}
