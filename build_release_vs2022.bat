@@ -35,7 +35,7 @@ echo build type set to %build_type%
 
 setlocal DISABLEDELAYEDEXPANSION 
 cd deps
-mkdir %build_dir%
+cmd /c "mkdir %build_dir%"
 cd %build_dir%
 set DEPS=%CD%/Dremel3DSlicer_dep
 
@@ -54,7 +54,7 @@ if "%1"=="deps" exit /b 0
 :slicer
 echo "building Dremel 3D Slicer..."
 cd %WP%
-mkdir %build_dir%
+cmd /c "mkdir %build_dir%"
 cd %build_dir%
 
 echo on
