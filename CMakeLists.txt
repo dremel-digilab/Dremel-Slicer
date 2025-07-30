@@ -760,7 +760,7 @@ if(SLIC3R_BUILD_TESTS)
 endif()
 
 if (NOT WIN32 AND NOT APPLE)
-    set(SLIC3R_APP_CMD "orca-slicer")
+    set(SLIC3R_APP_CMD "dremel-3d-slicer")
     configure_file(${LIBDIR}/platform/unix/build_appimage.sh.in ${CMAKE_CURRENT_BINARY_DIR}/build_appimage.sh @ONLY)
 endif()
 

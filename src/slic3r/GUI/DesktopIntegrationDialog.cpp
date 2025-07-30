@@ -209,7 +209,7 @@ bool DesktopIntegrationDialog::is_integrated()
     if (path.empty())
         return false;
 
-    // confirmation that OrcaSlicer.desktop exists
+    // confirmation that Dremel3DSlicer.desktop exists
     struct stat buffer;   
     return (stat (path.c_str(), &buffer) == 0);
 }
@@ -330,9 +330,9 @@ void DesktopIntegrationDialog::perform_desktop_integration()
             // Write slicer desktop file
             std::string desktop_file = GUI::format(
                 "[Desktop Entry]\n"
-                "Name=OrcaSlicer%1%\n"
+                "Name=Dremel3DSlicer%1%\n"
                 "GenericName=3D Printing Software\n"
-                "Icon=OrcaSlicer%2%\n"
+                "Icon=Dremel3DSlicer%2%\n"
                 "Exec=\"%3%\" %%F\n"
                 "Terminal=false\n"
                 "Type=Application\n"
@@ -340,15 +340,15 @@ void DesktopIntegrationDialog::perform_desktop_integration()
                 "Categories=Graphics;3DGraphics;Engineering;\n"
                 "Keywords=3D;Printing;Slicer;slice;3D;printer;convert;gcode;stl;obj;amf;SLA\n"
                 "StartupNotify=false\n"
-                "StartupWMClass=orca-slicer\n", name_suffix, version_suffix, excutable_path);
+                "StartupWMClass=dremel-3d-slicer\n", name_suffix, version_suffix, excutable_path);
 
-            std::string path = GUI::format("%1%/applications/OrcaSlicer%2%.desktop", target_dir_desktop, version_suffix);
+            std::string path = GUI::format("%1%/applications/Dremel3DSlicer%2%.desktop", target_dir_desktop, version_suffix);
             if (create_desktop_file(path, desktop_file)){
-                BOOST_LOG_TRIVIAL(debug) << "OrcaSlicer.desktop file installation success.";
+                BOOST_LOG_TRIVIAL(debug) << "Dremel3DSlicer.desktop file installation success.";
                 break;
             } else {
             	// write failed - try another path
-                BOOST_LOG_TRIVIAL(debug) << "Attempt to OrcaSlicer.desktop file installation failed. failed path: " << target_candidates[i];
+                BOOST_LOG_TRIVIAL(debug) << "Attempt to Dremel3DSlicer.desktop file installation failed. failed path: " << target_candidates[i];
                 target_dir_desktop.clear(); 
             }
             // if all failed - try creating default home folder
@@ -357,7 +357,7 @@ void DesktopIntegrationDialog::perform_desktop_integration()
                 create_path(boost::nowide::narrow(wxFileName::GetHomeDir()), ".local/share/applications");
                 // create desktop file
                 target_dir_desktop = GUI::format("%1%/.local/share",wxFileName::GetHomeDir());
-                std::string path = GUI::format("%1%/applications/OrcaSlicer%2%.desktop", target_dir_desktop, version_suffix);
+                std::string path = GUI::format("%1%/applications/Dremel3DSlicer%2%.desktop", target_dir_desktop, version_suffix);
                 if (contains_path_dir(target_dir_desktop, "applications")) {
                     if (!create_desktop_file(path, desktop_file)) {    
                         // Desktop file not written - end desktop integration
@@ -379,7 +379,7 @@ void DesktopIntegrationDialog::perform_desktop_integration()
         return;
     }
     // save path to desktop file
-    app_config->set("desktop_integration_app_path", GUI::format("%1%/applications/OrcaSlicer%2%.desktop", target_dir_desktop, version_suffix));
+    app_config->set("desktop_integration_app_path", GUI::format("%1%/applications/Dremel3DSlicer%2%.desktop", target_dir_desktop, version_suffix));
 
     // Repeat for Gcode viewer - use same paths as for slicer files
     // Do NOT add gcode viewer desktop file on ChromeOS
