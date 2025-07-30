@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-    <id>io.github.dremel-digilab.Dremel3DSlicer</id>
-    <launchable type="desktop-id">io.github.dremel-digilab.Dremel3DSlicer.desktop</launchable>
+    <id>io.github.dremeldigilab.Dremel3DSlicer</id>
+    <launchable type="desktop-id">io.github.dremeldigilab.Dremel3DSlicer.desktop</launchable>
     <provides>
-        <id>io.github.dremel-digilab.Dremel3DSlicer.desktop</id>
+        <id>io.github.dremeldigilab.Dremel3DSlicer.desktop</id>
     </provides>
     <name>Dremel3DSlicer</name>
     <!-- hehe hadess @ppd 
