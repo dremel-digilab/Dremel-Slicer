@@ -101,7 +101,7 @@ jobs:
       shell: bash
     - uses: flathub-infra/flatpak-github-actions/flatpak-builder@master
       with:
-        bundle: OrcaSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
+        bundle: Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
         manifest-path: flatpak/io.github.dremeldigilab.Dremel3DSlicer.yml
         cache: true
         arch: ${{ matrix.variant.arch }}
@@ -109,8 +109,8 @@ jobs:
     - name: Upload artifacts Flatpak
       uses: actions/upload-artifact@v4
       with:
-        name: OrcaSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
-        path: '/__w/OrcaSlicer/OrcaSlicer/OrcaSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak'
+        name: Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
+        path: '/__w/Dremel3DSlicer/Dremel3DSlicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak'
     - name: Deploy Flatpak to nightly release
       if: ${{github.ref == 'refs/heads/main'}}
       uses: WebFreak001/deploy-nightly@v3.2.0
