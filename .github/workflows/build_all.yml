@@ -110,14 +110,14 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
-        path: '/__w/Dremel3DSlicer/Dremel3DSlicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak'
+        path: '/__w/Dremel-Slicer/Dremel-Slicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak'
     - name: Deploy Flatpak to nightly release
       if: ${{github.ref == 'refs/heads/main'}}
       uses: WebFreak001/deploy-nightly@v3.2.0
       with:
         upload_url: https://uploads.github.com/repos/dremel-digilab/Dremel-Slicer/releases/235607526/assets{?name,label}
         release_id: 235607526
-        asset_path: /__w/Dremel3DSlicer/Dremel3DSlicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
+        asset_path: /__w/Dremel-Slicer/Dremel-Slicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
         asset_name: Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
         asset_content_type: application/octet-stream
         max_releases: 1 # optional, if there are more releases than this matching the asset_name, the oldest ones are going to be deleted
