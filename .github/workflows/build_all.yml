@@ -112,7 +112,7 @@ jobs:
         name: Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak
         path: '/__w/Dremel-Slicer/Dremel-Slicer/Dremel3DSlicer-Linux-flatpak_${{ env.ver }}_${{ matrix.variant.arch }}.flatpak'
     - name: Deploy Flatpak to nightly release
-      if: ${{github.ref == 'refs/heads/main'}}
+      if: ${{github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')}}
       uses: WebFreak001/deploy-nightly@v3.2.0
       with:
         upload_url: https://uploads.github.com/repos/dremel-digilab/Dremel-Slicer/releases/235607526/assets{?name,label}
