@@ -16,7 +16,7 @@
     "default_acceleration": "2000",
     "detect_overhang_wall": "1",
     "enable_support": "1",
-    "filename_format": "{input_filename_base}_{filament_type[0]}_{print_time}.gcode",
+    "filename_format": "{input_filename_base}_{filament_type[0]}_{print_time}.gcode\n",
     "gap_infill_speed": "35",
     "infill_direction": "45",
     "initial_layer_line_width": "0.4",
