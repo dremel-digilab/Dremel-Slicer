@@ -114,6 +114,7 @@ jobs:
         with:
           name: Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}
           path: ${{ github.workspace }}/Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}_NoNotary.dmg
+          overwrite: true
 
       - name: Sign app and notary
         if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-14'
@@ -167,6 +168,7 @@ jobs:
         with:
           name: Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}
           path: ${{ github.workspace }}/Dremel3DSlicer_Mac_${{inputs.arch}}_${{ env.ver }}.dmg
+          overwrite: true
 
       - name: Deploy Mac release
         if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'macos-14'
