@@ -23,6 +23,10 @@ class Bonjour;
 class BonjourReplyEvent;
 class ReplySet;
 
+struct LifetimeGuard;
+wxDECLARE_EVENT(EVT_SCAN_HIT, wxCommandEvent);
+wxDECLARE_EVENT(EVT_DISCOVERY_PROGRESS, wxCommandEvent);
+wxDECLARE_EVENT(EVT_LOG_APPEND, wxCommandEvent);
 
 class BonjourDialog: public wxDialog
 {
@@ -38,6 +42,7 @@ public:
 	wxString get_selected() const;
 private:
 	wxListView *list;
+    wxTextCtrl* m_log;  // progress log box
 	std::unique_ptr<ReplySet> replies;
 	wxStaticText *label;
 	std::shared_ptr<Bonjour> bonjour;
@@ -45,9 +50,14 @@ private:
 	unsigned timer_state;
 	Slic3r::PrinterTechnology tech;
 
+    // Starts the Moonraker fallback scan after Bonjour completes.
+    void start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard);
+
 	virtual void on_reply(BonjourReplyEvent &);
 	void on_timer(wxTimerEvent &);
     void on_timer_process();
+    
+    void on_scan_hit(wxCommandEvent &e);
 };
 
 class IPListDialog : public wxDialog
