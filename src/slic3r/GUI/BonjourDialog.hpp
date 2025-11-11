@@ -27,6 +27,7 @@ struct LifetimeGuard;
 wxDECLARE_EVENT(EVT_SCAN_HIT, wxCommandEvent);
 wxDECLARE_EVENT(EVT_DISCOVERY_PROGRESS, wxCommandEvent);
 wxDECLARE_EVENT(EVT_LOG_APPEND, wxCommandEvent);
+wxDECLARE_EVENT(EVT_BONJOUR_REPLY, Slic3r::BonjourReplyEvent);
 
 class BonjourDialog: public wxDialog
 {

@@ -40,6 +40,52 @@ constexpr int      kHttpTimeoutMs    = 600; // HTTP read timeout
 constexpr int      kMaxWorkers       = 48; 
 constexpr size_t   kMaxReadBytes     = 2048;
 
+
+IPListDialog::IPListDialog(wxWindow* parent, const wxString& hostname, const std::vector<boost::asio::ip::address>& ips, size_t& selected_index)
+    : wxDialog(parent, wxID_ANY, _(L("Multiple resolved IP addresses")), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
+    , m_list(new wxListView(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxLC_REPORT | wxSIMPLE_BORDER))
+    , m_selected_index (selected_index)
+{
+    const int em = GUI::wxGetApp().em_unit();
+    m_list->SetMinSize(wxSize(40 * em, 30 * em));
+
+    wxBoxSizer* vsizer = new wxBoxSizer(wxVERTICAL);
+
+    auto* label = new wxStaticText(this, wxID_ANY, GUI::format_wxstr(_L("There are several IP addresses resolving to hostname %1%.\nPlease select one that should be used."), hostname));
+    vsizer->Add(label, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, em);
+
+    m_list->SetSingleStyle(wxLC_SINGLE_SEL);
+    m_list->AppendColumn(_(L("Address")), wxLIST_FORMAT_LEFT, 40 * em);
+
+    for (size_t i = 0; i < ips.size(); i++)
+        m_list->InsertItem(i, boost::nowide::widen(ips[i].to_string()));
+
+    m_list->Select(0);
+
+    vsizer->Add(m_list, 1, wxEXPAND | wxALL, em);
+
+    wxBoxSizer* button_sizer = new wxBoxSizer(wxHORIZONTAL);
+    button_sizer->Add(new wxButton(this, wxID_OK, "OK"), 0, wxALL, em);
+    button_sizer->Add(new wxButton(this, wxID_CANCEL, "Cancel"), 0, wxALL, em);
+
+    vsizer->Add(button_sizer, 0, wxALIGN_CENTER);
+    SetSizerAndFit(vsizer);
+
+    GUI::wxGetApp().UpdateDlgDarkUI(this);
+}
+
+IPListDialog::~IPListDialog()
+{
+}
+
+void IPListDialog::EndModal(int retCode)
+{
+    if (retCode == wxID_OK) {
+        m_selected_index = (size_t)m_list->GetFirstSelected();
+    }
+    wxDialog::EndModal(retCode);
+}
+
 // Events
 class BonjourReplyEvent : public wxEvent
 {
@@ -54,7 +100,7 @@ public:
     wxEvent* Clone() const override { return new BonjourReplyEvent(*this); }
 };
 
-wxDEFINE_EVENT(EVT_BONJOUR_REPLY, BonjourReplyEvent);
+wxDEFINE_EVENT(EVT_BONJOUR_REPLY, Slic3r::BonjourReplyEvent);
 wxDEFINE_EVENT(EVT_BONJOUR_COMPLETE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_SCAN_HIT, wxCommandEvent);
 wxDEFINE_EVENT(EVT_DISCOVERY_PROGRESS, wxCommandEvent);
@@ -187,7 +233,14 @@ static bool probe_moonraker_host(const std::string& ip, uint16_t port)
         sock = tcp::socket(io);
         if (!tcp_connect_with_timeout(ip, port, kConnectTimeoutMs)) return false;
         if (looks_like_moonraker_http(sock, ip, port, "/",            kHttpTimeoutMs)) return true;
-    } catch (...) {}
+    } catch (const std::exception& e) {
+        fprintf(stderr, "[probe_moonraker_host] Exception at %s:%u — %s\n",
+                ip.c_str(), port, e.what());
+    }
+    catch (...) {
+        fprintf(stderr, "[probe_moonraker_host] Unknown non-std exception at %s:%u\n",
+                ip.c_str(), port);
+    }
     return false;
 }
 
@@ -281,7 +334,7 @@ bool BonjourDialog::show_and_lookup()
     bonjour = Bonjour("moonraker")
         .set_txt_keys(std::move(txt_keys))
         .set_retries(3)
-        .set_timeout(4)
+        .set_timeout(5)
         .on_reply([dguard](BonjourReply &&reply) {
             std::lock_guard<std::mutex> lock_guard(dguard->mutex);
             if (auto *dialog = dguard->dialog) {
@@ -329,9 +382,9 @@ void BonjourDialog::on_reply(BonjourReplyEvent &e)
         return; // de-dupe
     }
 
-    const auto model = e.reply.txt_data.find("model");
-    const bool sl1 = model != e.reply.txt_data.end() && model->second == "SL1";
-    if ((tech == ptFFF && sl1) || (tech == ptSLA && !sl1)) return;
+    //const auto model = e.reply.txt_data.find("model");
+    //const bool sl1 = model != e.reply.txt_data.end() && model->second == "SL1";
+    //if ((tech == ptFFF && sl1) || (tech == ptSLA && !sl1)) return;
 
     replies->insert(std::move(e.reply));
 
@@ -406,6 +459,7 @@ void BonjourDialog::on_scan_hit(wxCommandEvent &e)
 
 void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
 {
+    
     std::thread([dguard]() {
         // tell log we’re scanning and what subnet we inferred
         {
@@ -456,11 +510,16 @@ void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
         const int hosts = 254; // .1 .. .254
         const int chunk = std::max(1, hosts / kMaxWorkers);
         std::vector<std::thread> pool;
+        
+        const char* dbg = "10.0.0.164";   // e.g. 192.168.1.50
+        const std::string debug_ip = dbg ? dbg : "";
 
         auto worker = [&](int start, int end) {
             for (int i = start; i <= end; ++i) {
                 const std::string ip = base + "." + std::to_string(i);
                 if (ip == local) continue;
+                
+                if (!debug_ip.empty() && ip != debug_ip) continue;
 
                 if (probe_moonraker_host(ip, kMoonrakerPort)) {
                     std::lock_guard<std::mutex> lock(dguard->mutex);
