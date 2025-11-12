@@ -201,7 +201,7 @@ jobs:
         run: .\build_release_vs2022.bat slicer
 
       - name: Sign files with Trusted Signing
-        if: inputs.os == 'windows-latest'
+        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'windows-latest'
         uses: azure/trusted-signing-action@v0
         with:
           azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
@@ -223,7 +223,7 @@ jobs:
           cpack -G NSIS
 
       - name: Sign installer Trusted Signing
-        if: inputs.os == 'windows-latest'
+        if: (github.ref == 'refs/heads/main-dremel' || startsWith(github.ref, 'refs/heads/release/')) && inputs.os == 'windows-latest'
         uses: azure/trusted-signing-action@v0
         with:
           azure-tenant-id: ${{ secrets.AZURE_TENANT_ID }}
