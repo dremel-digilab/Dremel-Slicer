@@ -261,11 +261,11 @@ BonjourDialog::BonjourDialog(wxWindow *parent, Slic3r::PrinterTechnology tech)
 
     vsizer->Add(label, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, em);
 
-    m_log = new wxTextCtrl(this, wxID_ANY, wxEmptyString,
+    this->m_log = new wxTextCtrl(this, wxID_ANY, wxEmptyString,
                            wxDefaultPosition, wxDefaultSize,
                            wxTE_MULTILINE | wxTE_READONLY | wxTE_RICH2 | wxTE_DONTWRAP);
-    m_log->SetMinSize(wxSize(-1, 8 * em));
-    vsizer->Add(m_log, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, em);
+    this->m_log->SetMinSize(wxSize(-1, 8 * em));
+    vsizer->Add(this->m_log, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, em);
 
     list->SetSingleStyle(wxLC_SINGLE_SEL);
     list->SetSingleStyle(wxLC_SORT_DESCENDING);
@@ -291,20 +291,20 @@ BonjourDialog::BonjourDialog(wxWindow *parent, Slic3r::PrinterTechnology tech)
     Bind(EVT_BONJOUR_COMPLETE, [this](wxCommandEvent &) {
         this->timer_state = 0;
         label->SetLabel(_L("Searching for devices: Finished."));
-        if (m_log) m_log->AppendText(now_tag() + "  Discovery complete.\n");
+        if (this->m_log) this->m_log->AppendText(now_tag() + "  Discovery complete.\n");
     });
 
     // Phase update (Bonjour finished => starting scan)
     Bind(EVT_DISCOVERY_PROGRESS, [this](wxCommandEvent &e) {
         if (e.GetInt() == 1) {
             label->SetLabel(_L("Searching for devices… (Moonraker scan)"));
-            if (m_log) m_log->AppendText(now_tag() + "  Bonjour finished. Starting Moonraker scan…\n");
+            if (this->m_log) this->m_log->AppendText(now_tag() + "  Bonjour finished. Starting Moonraker scan…\n");
         }
     });
 
     // Append log lines
     Bind(EVT_LOG_APPEND, [this](wxCommandEvent &e) {
-        if (m_log) m_log->AppendText(e.GetString() + "\n");
+        if (this->m_log) this->m_log->AppendText(e.GetString() + "\n");
     });
 
     Bind(wxEVT_TIMER, &BonjourDialog::on_timer, this);
@@ -329,7 +329,7 @@ bool BonjourDialog::show_and_lookup()
 
     Bonjour::TxtKeys txt_keys { "version", "model" };
 
-    if (m_log) m_log->AppendText(now_tag() + "  Bonjour: browsing for _moonraker._tcp …\n");
+    if (this->m_log) this->m_log->AppendText(now_tag() + "  Bonjour: browsing for _moonraker._tcp …\n");
 
     bonjour = Bonjour("moonraker")
         .set_txt_keys(std::move(txt_keys))
