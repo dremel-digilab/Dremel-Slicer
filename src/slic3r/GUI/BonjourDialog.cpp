@@ -140,17 +140,21 @@ static std::string get_local_ipv4()
     return "127.0.0.1";
 }
 
-static bool tcp_connect_with_timeout(const std::string& ip, uint16_t port, int timeout_ms)
+static bool tcp_connect_with_timeout(boost::asio::ip::tcp::socket& sock,
+                                     const std::string& ip, uint16_t port,
+                                     int timeout_ms)
 {
     using boost::asio::ip::tcp;
     try {
-        boost::asio::io_context io;
-        tcp::socket sock(io);
-        sock.open(tcp::v4());
+        // assume sock is already constructed, just ensure v4 and non-blocking
+        if (!sock.is_open())
+            sock.open(tcp::v4());
+
         sock.non_blocking(true);
 
         boost::system::error_code ec;
-        sock.connect({ boost::asio::ip::make_address(ip), port }, ec);
+        sock.connect(tcp::endpoint(boost::asio::ip::make_address(ip), port), ec);
+
         if (ec == boost::asio::error::would_block || ec == boost::asio::error::in_progress) {
 #ifdef _WIN32
             int fd = static_cast<int>(sock.native_handle());
@@ -158,20 +162,25 @@ static bool tcp_connect_with_timeout(const std::string& ip, uint16_t port, int t
             int fd = sock.native_handle();
 #endif
             fd_set wfds; FD_ZERO(&wfds); FD_SET(fd, &wfds);
-            timeval tv{ timeout_ms/1000, (timeout_ms%1000)*1000 };
-            if (select(fd+1, nullptr, &wfds, nullptr, &tv) <= 0) return false;
+            timeval tv{ timeout_ms / 1000, (timeout_ms % 1000) * 1000 };
+            int sel = select(fd + 1, nullptr, &wfds, nullptr, &tv);
+            if (sel <= 0) return false;
+
             int soerr = 0; socklen_t len = sizeof(soerr);
 #ifdef _WIN32
             getsockopt(fd, SOL_SOCKET, SO_ERROR, reinterpret_cast<char*>(&soerr), &len);
 #else
             getsockopt(fd, SOL_SOCKET, SO_ERROR, &soerr, &len);
 #endif
-            if (soerr) return false;
+            if (soerr != 0) return false;
         } else if (ec) {
             return false;
         }
+
         return true;
-    } catch (...) { return false; }
+    } catch (...) {
+        return false;
+    }
 }
 
 static bool looks_like_moonraker_http(boost::asio::ip::tcp::socket& sock,
@@ -224,16 +233,33 @@ static bool probe_moonraker_host(const std::string& ip, uint16_t port)
     try {
         boost::asio::io_context io;
         tcp::socket sock(io);
-        if (!tcp_connect_with_timeout(ip, port, kConnectTimeoutMs)) return false;
 
-        if (looks_like_moonraker_http(sock, ip, port, "/server/info",  kHttpTimeoutMs)) return true;
+        // 1) /server/info
+        if (!tcp_connect_with_timeout(sock, ip, port, kConnectTimeoutMs))
+            return false;
+
+        if (looks_like_moonraker_http(sock, ip, port, "/server/info", kHttpTimeoutMs))
+            return true;
+
+        // 2) /printer/info
+        sock.close();
         sock = tcp::socket(io);
-        if (!tcp_connect_with_timeout(ip, port, kConnectTimeoutMs)) return false;
-        if (looks_like_moonraker_http(sock, ip, port, "/printer/info", kHttpTimeoutMs)) return true;
+        if (!tcp_connect_with_timeout(sock, ip, port, kConnectTimeoutMs))
+            return false;
+
+        if (looks_like_moonraker_http(sock, ip, port, "/printer/info", kHttpTimeoutMs))
+            return true;
+
+        // 3) /
+        sock.close();
         sock = tcp::socket(io);
-        if (!tcp_connect_with_timeout(ip, port, kConnectTimeoutMs)) return false;
-        if (looks_like_moonraker_http(sock, ip, port, "/",            kHttpTimeoutMs)) return true;
-    } catch (const std::exception& e) {
+        if (!tcp_connect_with_timeout(sock, ip, port, kConnectTimeoutMs))
+            return false;
+
+        if (looks_like_moonraker_http(sock, ip, port, "/", kHttpTimeoutMs))
+            return true;
+    }
+    catch (const std::exception& e) {
         fprintf(stderr, "[probe_moonraker_host] Exception at %s:%u — %s\n",
                 ip.c_str(), port, e.what());
     }

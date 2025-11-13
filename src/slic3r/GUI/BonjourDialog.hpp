@@ -15,6 +15,7 @@ class wxListView;
 class wxStaticText;
 class wxTimer;
 class wxTimerEvent;
+class wxTextCtrl; 
 class address;
 
 namespace Slic3r {
