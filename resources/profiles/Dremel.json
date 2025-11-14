@@ -1,162 +1,194 @@
 {
-	"name": "Dremel",
-	"version": "02.03.01.3",
-	"force_update": "1",
-	"description": "Dremel configurations",
-	"machine_model_list": [
-		{
-			"name": "Dremel 3D45",
-			"sub_path": "machine/Dremel 3D45.json"
-		},
-		{
-			"name": "Dremel 3D50",
-			"sub_path": "machine/Dremel 3D50.json"
-		}
-	],			
-	"process_list": [
-		{
-			"name": "fdm_process_common",
-			"sub_path": "process/fdm_process_common.json"
-		},
-		{
-			"name": "fdm_process_dremel_common",
-			"sub_path": "process/fdm_process_dremel_common.json"
-		},
-		{
-			"name": "0.16mm Optimal @SK1",
-			"sub_path": "process/0.16mm Optimal @SK1.json"
-		},
-		{
-			"name": "0.10mm Detailed @Dremel 3D45 0.4",
-			"sub_path": "process/0.10mm Detailed @Dremel 3D45 0.4.json"
-		},
-		{
-			"name": "0.12mm Detailed @Dremel 3D50 0.4",
-			"sub_path": "process/0.12mm Detailed @Dremel 3D50 0.4.json"
-		},
-		{
-			"name": "0.20mm Standard @Dremel 3D45 0.4",
-			"sub_path": "process/0.20mm Standard @Dremel 3D45 0.4.json"
-		},
-		{
-			"name": "0.20mm Standard @Dremel 3D50 0.4",
-			"sub_path": "process/0.20mm Standard @Dremel 3D50 0.4.json"
-		},
-		{
-			"name": "0.20mm Strong @Dremel 3D50 0.4",
-			"sub_path": "process/0.20mm Strong @Dremel 3D50 0.4.json"
-		},
-		{
-			"name": "0.24mm Detailed Draft @Dremel 3D50 0.4",
-			"sub_path": "process/0.24mm Detailed Draft @Dremel 3D50 0.4.json"
-		},
-		{
-			"name": "0.28mm Draft @Dremel 3D45 0.4",
-			"sub_path": "process/0.28mm Draft @Dremel 3D45 0.4.json"
-		},
-		{
-			"name": "0.28mm Draft @Dremel 3D50 0.4",
-			"sub_path": "process/0.28mm Draft @Dremel 3D50 0.4.json"
-		}
-	],
-	"filament_list": [
-		{
-			"name": "fdm_filament_common",
-			"sub_path": "filament/fdm_filament_common.json"
-		},
-		{
-			"name": "fdm_filament_pla",
-			"sub_path": "filament/fdm_filament_pla.json"
-		},
-		{
-			"name": "fdm_filament_pet",
-			"sub_path": "filament/fdm_filament_pet.json"
-		},
-		{
-			"name": "fdm_filament_tpu",
-			"sub_path": "filament/fdm_filament_tpu.json"
-		},
-		{
-			"name": "dremel_base",
-			"sub_path": "filament/dremel_base.json"
-		},
-		{
-			"name": "dremel_base_tpu",
-			"sub_path": "filament/dremel_base_tpu.json"
-		},
-		{
-			"name": "Dremel PLA @3D45",
-			"sub_path": "filament/Dremel PLA @3D45.json"
-		},
-		{
-			"name": "Dremel PLA @3D50",
-			"sub_path": "filament/Dremel PLA @3D50.json"
-		},
-		{
-			"name": "Dremel PLA Matte @base",
-			"sub_path": "filament/Dremel PLA Matte @base.json"
-		},
-		{
-			"name": "Dremel ECO-ABS @3D45",
-			"sub_path": "filament/Dremel ECO-ABS @3D45.json"
-		},
-		{
-			"name": "Dremel PETG @3D45",
-			"sub_path": "filament/Dremel PETG @3D45.json"
-		},
-		{
-			"name": "Dremel SILK @3D45",
-			"sub_path": "filament/Dremel SILK @3D45.json"
-		},
-		{
-			"name": "Dremel PLA Matte @3D45",
-			"sub_path": "filament/Dremel PLA Matte @3D45.json"
-		},
-		{
-			"name": "Dremel PLA Matte @3D50",
-			"sub_path": "filament/Dremel PLA Matte @3D50.json"
-		},
-		{
-			"name": "Dremel TPU @3D50",
-			"sub_path": "filament/Dremel TPU @3D50.json"
-		},
-		{
-			"name": "Dremel Silk @base",
-			"sub_path": "filament/Dremel Silk @base.json"
-		},
-		{
-			"name": "Dremel Silk @3D50",
-			"sub_path": "filament/Dremel Silk @3D50.json"
-		},
-		{
-			"name": "Dremel ECO-ABS @3D50",
-			"sub_path": "filament/Dremel ECO-ABS @3D50.json"
-		},	
-		{
-			"name": "Dremel PETG @3D50",
-			"sub_path": "filament/Dremel PETG @3D50.json"
-		}
-	],
-	"machine_list": [
-		{
-			"name": "fdm_machine_common",
-			"sub_path": "machine/fdm_machine_common.json"
-		},
-		{
-			"name": "fdm_dremel_common",
-			"sub_path": "machine/fdm_dremel_common.json"
-		},
-		{
-			"name": "fdm_klipper_common",
-			"sub_path": "machine/fdm_klipper_common.json"
-		},
-		{
-			"name": "Dremel 3D45 0.4 nozzle",
-			"sub_path": "machine/Dremel 3D45 0.4 nozzle.json"
-		},
-		{
-			"name": "Dremel 3D50 0.4 nozzle",
-			"sub_path": "machine/Dremel 3D50 0.4 nozzle.json"
-		}
-	]
+  "name": "Dremel",
+  "version": "02.03.00.02",
+  "force_update": "1",
+  "description": "Dremel configurations",
+  "machine_model_list": [
+    {
+      "name": "Dremel 3D40",
+      "sub_path": "machine/Dremel 3D40.json"
+    },
+    {
+      "name": "Dremel 3D45",
+      "sub_path": "machine/Dremel 3D45.json"
+    },
+    {
+      "name": "Dremel 3D50",
+      "sub_path": "machine/Dremel 3D50.json"
+    }
+  ],
+  "process_list": [
+    {
+      "name": "fdm_process_common",
+      "sub_path": "process/fdm_process_common.json"
+    },
+    {
+      "name": "fdm_process_dremel_common",
+      "sub_path": "process/fdm_process_dremel_common.json"
+    },
+    {
+      "name": "0.16mm Optimal @SK1",
+      "sub_path": "process/0.16mm Optimal @SK1.json"
+    },
+    {
+      "name": "0.10mm Detailed @Dremel 3D40 0.4",
+      "sub_path": "process/0.10mm Detailed @Dremel 3D40 0.4.json"
+    },
+    {
+      "name": "0.10mm Detailed @Dremel 3D45 0.4",
+      "sub_path": "process/0.10mm Detailed @Dremel 3D45 0.4.json"
+    },
+    {
+      "name": "0.12mm Detailed @Dremel 3D50 0.4",
+      "sub_path": "process/0.12mm Detailed @Dremel 3D50 0.4.json"
+    },
+    {
+      "name": "0.20mm Standard @Dremel 3D40 0.4",
+      "sub_path": "process/0.20mm Standard @Dremel 3D40 0.4.json"
+    },
+    {
+      "name": "0.20mm Standard @Dremel 3D45 0.4",
+      "sub_path": "process/0.20mm Standard @Dremel 3D45 0.4.json"
+    },
+    {
+      "name": "0.20mm Standard @Dremel 3D50 0.4",
+      "sub_path": "process/0.20mm Standard @Dremel 3D50 0.4.json"
+    },
+    {
+      "name": "0.20mm Strong @Dremel 3D50 0.4",
+      "sub_path": "process/0.20mm Strong @Dremel 3D50 0.4.json"
+    },
+    {
+      "name": "0.24mm Detailed Draft @Dremel 3D50 0.4",
+      "sub_path": "process/0.24mm Detailed Draft @Dremel 3D50 0.4.json"
+    },
+    {
+      "name": "0.28mm Draft @Dremel 3D40 0.4",
+      "sub_path": "process/0.28mm Draft @Dremel 3D40 0.4.json"
+    },
+    {
+      "name": "0.28mm Draft @Dremel 3D45 0.4",
+      "sub_path": "process/0.28mm Draft @Dremel 3D45 0.4.json"
+    },
+    {
+      "name": "0.28mm Draft @Dremel 3D50 0.4",
+      "sub_path": "process/0.28mm Draft @Dremel 3D50 0.4.json"
+    }
+  ],
+  "filament_list": [
+    {
+      "name": "fdm_filament_common",
+      "sub_path": "filament/fdm_filament_common.json"
+    },
+    {
+      "name": "fdm_filament_pla",
+      "sub_path": "filament/fdm_filament_pla.json"
+    },
+    {
+      "name": "fdm_filament_pet",
+      "sub_path": "filament/fdm_filament_pet.json"
+    },
+    {
+      "name": "fdm_filament_tpu",
+      "sub_path": "filament/fdm_filament_tpu.json"
+    },
+    {
+      "name": "dremel_base",
+      "sub_path": "filament/dremel_base.json"
+    },
+    {
+      "name": "dremel_base_tpu",
+      "sub_path": "filament/dremel_base_tpu.json"
+    },
+    {
+      "name": "Dremel PLA @3D40",
+      "sub_path": "filament/Dremel PLA @3D40.json"
+    },
+    {
+      "name": "Dremel PLA @3D45",
+      "sub_path": "filament/Dremel PLA @3D45.json"
+    },
+    {
+      "name": "Dremel PLA @3D50",
+      "sub_path": "filament/Dremel PLA @3D50.json"
+    },
+    {
+      "name": "Dremel PLA Matte @base",
+      "sub_path": "filament/Dremel PLA Matte @base.json"
+    },
+    {
+      "name": "Dremel ECO-ABS @3D45",
+      "sub_path": "filament/Dremel ECO-ABS @3D45.json"
+    },
+    {
+      "name": "Dremel PETG @3D45",
+      "sub_path": "filament/Dremel PETG @3D45.json"
+    },
+    {
+      "name": "Dremel SILK @3D40",
+      "sub_path": "filament/Dremel SILK @3D40.json"
+    },
+    {
+      "name": "Dremel SILK @3D45",
+      "sub_path": "filament/Dremel SILK @3D45.json"
+    },
+    {
+      "name": "Dremel PLA Matte @3D40",
+      "sub_path": "filament/Dremel PLA Matte @3D40.json"
+    },
+    {
+      "name": "Dremel PLA Matte @3D45",
+      "sub_path": "filament/Dremel PLA Matte @3D45.json"
+    },
+    {
+      "name": "Dremel PLA Matte @3D50",
+      "sub_path": "filament/Dremel PLA Matte @3D50.json"
+    },
+    {
+      "name": "Dremel TPU @3D50",
+      "sub_path": "filament/Dremel TPU @3D50.json"
+    },
+    {
+      "name": "Dremel Silk @base",
+      "sub_path": "filament/Dremel Silk @base.json"
+    },
+    {
+      "name": "Dremel Silk @3D50",
+      "sub_path": "filament/Dremel Silk @3D50.json"
+    },
+    {
+      "name": "Dremel ECO-ABS @3D50",
+      "sub_path": "filament/Dremel ECO-ABS @3D50.json"
+    },
+    {
+      "name": "Dremel PETG @3D50",
+      "sub_path": "filament/Dremel PETG @3D50.json"
+    }
+  ],
+  "machine_list": [
+    {
+      "name": "fdm_machine_common",
+      "sub_path": "machine/fdm_machine_common.json"
+    },
+    {
+      "name": "fdm_dremel_common",
+      "sub_path": "machine/fdm_dremel_common.json"
+    },
+    {
+      "name": "fdm_klipper_common",
+      "sub_path": "machine/fdm_klipper_common.json"
+    },
+    {
+      "name": "Dremel 3D40 0.4 nozzle",
+      "sub_path": "machine/Dremel 3D40 0.4 nozzle.json"
+    },
+	{
+      "name": "Dremel 3D45 0.4 nozzle",
+      "sub_path": "machine/Dremel 3D45 0.4 nozzle.json"
+    },
+    {
+      "name": "Dremel 3D50 0.4 nozzle",
+      "sub_path": "machine/Dremel 3D50 0.4 nozzle.json"
+    }
+  ]
 }

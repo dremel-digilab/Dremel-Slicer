@@ -6,7 +6,7 @@
     "version": "2.0.0.3",
     "bed_model": "Dremel_3D50.stl",
     "bed_texture": "3D50 - logo.svg",
-    "default_bed_type": "Textured PEI Plate",
+    "default_bed_type": "Textured Plate",
     "hotend_model": "hotend.stl",
     "machine_tech": "FFF",
     "model_id": "Dremel_3D50",

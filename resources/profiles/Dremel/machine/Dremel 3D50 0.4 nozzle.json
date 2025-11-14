@@ -10,7 +10,7 @@
   "printer_variant": "0.4",
   "printer_settings_id": "Dremel 3D50",
   "gcode_flavor": "klipper",
-  "default_bed_type": "Textured PEI Plate",
+  "default_bed_type": "Textured Plate",
   "default_filament_profile": ["Dremel PLA @3D50"],
   "default_print_profile": "0.20mm Standard @Dremel 3D50 0.4",
   "nozzle_diameter": ["0.4"],

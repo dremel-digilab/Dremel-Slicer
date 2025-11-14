@@ -25,6 +25,8 @@
 #include <wx/textctrl.h>
 #include <wx/timer.h>
 #include <wx/wupdlock.h>
+#include <wx/utils.h>
+#include <wx/app.h>
 
 #include "slic3r/GUI/GUI.hpp"
 #include "slic3r/GUI/GUI_App.hpp"
@@ -34,10 +36,10 @@
 
 namespace Slic3r {
 
-constexpr uint16_t kMoonrakerPort = 7125;
+constexpr uint16_t kMoonrakerPort    = 7125;
 constexpr int      kConnectTimeoutMs = 400; // TCP connect timeout
 constexpr int      kHttpTimeoutMs    = 600; // HTTP read timeout
-constexpr int      kMaxWorkers       = 48; 
+constexpr int      kMaxWorkers       = 48;
 constexpr size_t   kMaxReadBytes     = 2048;
 
 
@@ -316,15 +318,15 @@ BonjourDialog::BonjourDialog(wxWindow *parent, Slic3r::PrinterTechnology tech)
     // Only stop timer at the true end:
     Bind(EVT_BONJOUR_COMPLETE, [this](wxCommandEvent &) {
         this->timer_state = 0;
-        label->SetLabel(_L("Searching for devices: Finished."));
+        label->SetLabel(_L("Searching for 3D Printers: Finished."));
         if (this->m_log) this->m_log->AppendText(now_tag() + "  Discovery complete.\n");
     });
 
     // Phase update (Bonjour finished => starting scan)
     Bind(EVT_DISCOVERY_PROGRESS, [this](wxCommandEvent &e) {
         if (e.GetInt() == 1) {
-            label->SetLabel(_L("Searching for devices… (Moonraker scan)"));
-            if (this->m_log) this->m_log->AppendText(now_tag() + "  Bonjour finished. Starting Moonraker scan…\n");
+            label->SetLabel(_L("Searching for 3D Printers..."));
+            if (this->m_log) this->m_log->AppendText(now_tag() + "  Bonjour discovery finished. Starting service scan...\n");
         }
     });
 
@@ -340,7 +342,6 @@ BonjourDialog::BonjourDialog(wxWindow *parent, Slic3r::PrinterTechnology tech)
 }
 
 BonjourDialog::~BonjourDialog() {}
-
 bool BonjourDialog::show_and_lookup()
 {
     Show();
@@ -353,36 +354,75 @@ bool BonjourDialog::show_and_lookup()
 
     auto dguard = std::make_shared<LifetimeGuard>(this);
 
+    if (this->m_log)
+        this->m_log->AppendText(now_tag() + "  Bonjour: Searching for 3D Printers (Moonraker & OctoPrint)...\n");
+
+    // Common TXT keys
     Bonjour::TxtKeys txt_keys { "version", "model" };
 
-    if (this->m_log) this->m_log->AppendText(now_tag() + "  Bonjour: browsing for _moonraker._tcp …\n");
+    // Common on_reply handler for both Moonraker & OctoPrint
+    auto on_reply_common = [dguard](BonjourReply &&reply) {
+        std::lock_guard<std::mutex> lock_guard(dguard->mutex);
+        if (auto *dialog = dguard->dialog) {
+            auto evt = new BonjourReplyEvent(EVT_BONJOUR_REPLY, dialog->GetId(), std::move(reply));
+            wxQueueEvent(dialog, evt);
+        }
+    };
 
+    // This will be called when OctoPrint Bonjour finishes
+    auto start_fallback_after_octoprint = [dguard]() {
+        {
+            std::lock_guard<std::mutex> lock_guard(dguard->mutex);
+            if (auto *dialog = dguard->dialog) {
+                auto *evt = new wxCommandEvent(EVT_DISCOVERY_PROGRESS, dialog->GetId());
+                evt->SetInt(1); // “Bonjour done → starting scan”
+                wxQueueEvent(dialog, evt);
+            }
+        }
+        {
+            std::lock_guard<std::mutex> lock_guard(dguard->mutex);
+            if (auto *dialog = dguard->dialog) {
+                dialog->start_moonraker_scan(dguard);
+            }
+        }
+    };
+
+    // When Moonraker Bonjour completes, schedule OctoPrint Bonjour on the main thread
+    auto start_octoprint_browse = [dguard, on_reply_common, start_fallback_after_octoprint]() {
+        wxTheApp->CallAfter([dguard, on_reply_common, start_fallback_after_octoprint]() {
+            std::lock_guard<std::mutex> lock_guard(dguard->mutex);
+            if (auto *dialog = dguard->dialog) {
+                if (dialog->m_log)
+                    dialog->m_log->AppendText(now_tag() + "  Bonjour: Searching for OctoPrint...\n");
+
+                Bonjour::TxtKeys txt_keys2 { "version", "model" };
+
+                dialog->bonjour = Bonjour("octoprint")
+                    .set_txt_keys(std::move(txt_keys2))
+                    .set_retries(3)
+                    .set_timeout(5)
+                    .on_reply([on_reply_common](BonjourReply &&reply) {
+                        on_reply_common(std::move(reply));
+                    })
+                    .on_complete([start_fallback_after_octoprint]() {
+                        start_fallback_after_octoprint();
+                    })
+                    .lookup();
+            }
+        });
+    };
+
+    // First: Moonraker Bonjour, exactly in the style you had
     bonjour = Bonjour("moonraker")
         .set_txt_keys(std::move(txt_keys))
         .set_retries(3)
         .set_timeout(5)
-        .on_reply([dguard](BonjourReply &&reply) {
-            std::lock_guard<std::mutex> lock_guard(dguard->mutex);
-            if (auto *dialog = dguard->dialog) {
-                auto evt = new BonjourReplyEvent(EVT_BONJOUR_REPLY, dialog->GetId(), std::move(reply));
-                wxQueueEvent(dialog, evt);
-            }
+        .on_reply([on_reply_common](BonjourReply &&reply) {
+            on_reply_common(std::move(reply));
         })
-        .on_complete([dguard]() {
-            {   // phase: Bonjour finished (do NOT stop timer)
-                std::lock_guard<std::mutex> lock_guard(dguard->mutex);
-                if (auto *dialog = dguard->dialog) {
-                    auto *evt = new wxCommandEvent(EVT_DISCOVERY_PROGRESS, dialog->GetId());
-                    evt->SetInt(1); // “Bonjour done → starting scan”
-                    wxQueueEvent(dialog, evt);
-                }
-            }
-            {   // start fallback scan
-                std::lock_guard<std::mutex> lock_guard(dguard->mutex);
-                if (auto *dialog = dguard->dialog) {
-                    dialog->start_moonraker_scan(dguard);
-                }
-            }
+        .on_complete([start_octoprint_browse]() {
+            // After Moonraker discovery completes, kick off OctoPrint discovery
+            start_octoprint_browse();
         })
         .lookup();
 
@@ -394,10 +434,22 @@ bool BonjourDialog::show_and_lookup()
     return res;
 }
 
+
+
 wxString BonjourDialog::get_selected() const
 {
     auto sel = list->GetFirstSelected();
-    return sel >= 0 ? list->GetItemText(sel) : wxString();
+    if (sel < 0)
+        return {};
+
+    wxString addr = list->GetItemText(sel);
+
+    // Strip ":port" if present so callers only get the IP
+    int colon = addr.Find(":");
+    if (colon != wxNOT_FOUND)
+        addr = addr.SubString(0, colon - 1);
+
+    return addr;
 }
 
 // Replies
@@ -450,7 +502,7 @@ void BonjourDialog::on_timer(wxTimerEvent &) { on_timer_process(); }
 
 void BonjourDialog::on_timer_process()
 {
-    const auto search_str = _L("Searching for devices");
+    const auto search_str = _L("Searching for 3D Printers");
     if (timer_state > 0) {
         const std::string dots(timer_state, '.');
         label->SetLabel(search_str + dots);
@@ -470,9 +522,9 @@ void BonjourDialog::on_scan_hit(wxCommandEvent &e)
     wxWindowUpdateLocker freeze_guard(this);
 
     long item = list->InsertItem(0, addr);
-    list->SetItem(item, 1, _("(scanned)"));
-    list->SetItem(item, 2, _("moonraker (scan)"));
-    if (tech == ptFFF) list->SetItem(item, 3, _("scan"));
+    list->SetItem(item, 1, _("3D Printer"));
+    list->SetItem(item, 2, _("Moonraker"));
+    if (tech == ptFFF) list->SetItem(item, 3, _(""));
 
     const int em = GUI::wxGetApp().em_unit();
     for (int i = 0; i < list->GetColumnCount(); i++) {
@@ -485,7 +537,6 @@ void BonjourDialog::on_scan_hit(wxCommandEvent &e)
 
 void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
 {
-    
     std::thread([dguard]() {
         // tell log we’re scanning and what subnet we inferred
         {
@@ -493,7 +544,7 @@ void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
             if (auto *dialog = dguard->dialog) {
                 auto* logevt = new wxCommandEvent(EVT_LOG_APPEND, dialog->GetId());
                 logevt->SetString(now_tag() + "  Scanning local /24 for Moonraker on port " +
-                                  GUI::from_u8(std::to_string(kMoonrakerPort)) + " …");
+                                  GUI::from_u8(std::to_string(kMoonrakerPort)) + "...");
                 wxQueueEvent(dialog, logevt);
             }
         }
@@ -537,7 +588,7 @@ void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
         const int chunk = std::max(1, hosts / kMaxWorkers);
         std::vector<std::thread> pool;
         
-        const char* dbg = "10.0.0.164";   // e.g. 192.168.1.50
+        const char* dbg = "";   // e.g. 192.168.1.50
         const std::string debug_ip = dbg ? dbg : "";
 
         auto worker = [&](int start, int end) {
@@ -551,11 +602,11 @@ void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
                     std::lock_guard<std::mutex> lock(dguard->mutex);
                     if (auto *dialog = dguard->dialog) {
                         auto* logevt = new wxCommandEvent(EVT_LOG_APPEND, dialog->GetId());
-                        logevt->SetString(now_tag() + "  Found Moonraker at " + GUI::from_u8(ip) + ":" + GUI::from_u8(std::to_string(kMoonrakerPort)));
+                        logevt->SetString(now_tag() + "  Found 3D Printer at " + GUI::from_u8(ip));
                         wxQueueEvent(dialog, logevt);
 
                         auto *evt = new wxCommandEvent(EVT_SCAN_HIT, dialog->GetId());
-                        evt->SetString(GUI::from_u8(ip + ":" + std::to_string(kMoonrakerPort)));
+                        evt->SetString(GUI::from_u8(ip));
                         wxQueueEvent(dialog, evt);
                     }
                 }
@@ -574,7 +625,7 @@ void BonjourDialog::start_moonraker_scan(std::shared_ptr<LifetimeGuard> dguard)
         std::lock_guard<std::mutex> lock(dguard->mutex);
         if (auto *dialog = dguard->dialog) {
             auto* logevt = new wxCommandEvent(EVT_LOG_APPEND, dialog->GetId());
-            logevt->SetString(now_tag() + "  Moonraker scan finished.");
+            logevt->SetString(now_tag() + "  Scan finished.");
             wxQueueEvent(dialog, logevt);
 
             wxQueueEvent(dialog, new wxCommandEvent(EVT_BONJOUR_COMPLETE, dialog->GetId()));

@@ -1,0 +1,122 @@
+{
+    "inherits": "dremel_base",
+    "name": "Dremel PLA @3D40",
+    "from": "system",
+    "type": "filament",
+    "version": "2.0.0.3",
+    "instantiation": "true",
+	"compatible_printers": [
+		"Dremel 3D40 0.4 nozzle"
+	],
+    "activate_air_filtration": [
+        "1"
+    ],
+    "additional_cooling_fan_speed": [
+        "100"
+    ],
+    "complete_print_exhaust_fan_speed": [
+        "0"
+    ],
+    "default_filament_colour": [
+        "#0000FF"
+    ],
+    "during_print_exhaust_fan_speed": [
+        "100"
+    ],
+    "enable_pressure_advance": [
+		"1"
+	],
+    "fan_cooling_layer_time": [
+        "45"
+    ],
+    "fan_min_speed": [
+        "100"
+    ],
+    "filament_cost": [
+        "32"
+    ],
+    "filament_flow_ratio": [
+        "1.024"
+    ],
+    "filament_max_volumetric_speed": [
+        "14.75"
+    ],
+    "filament_retract_when_changing_layer": [
+        "1"
+    ],
+    "filament_settings_id": [
+        "Dremel PLA"
+    ],
+    "filament_vendor": [
+        "Dremel"
+    ],
+    "filament_wipe": [
+        "1"
+    ],
+    "nozzle_temperature": [
+        "220"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "220"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "nozzle_temperature_range_low": [
+        "210"
+    ],
+    "overhang_fan_threshold": [
+        "95%"
+    ],
+    "pressure_advance": [
+        "0.045"
+    ],
+    "slow_down_layer_time": [
+        "3"
+    ],
+    "slow_down_min_speed": [
+        "20"
+    ],
+    "nozzle_temperature": [
+        "220"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "220"
+    ],
+    "nozzle_temperature_range_high": [
+        "240"
+    ],
+    "cool_plate_temp": [
+        "45"
+    ],
+    "cool_plate_temp_initial_layer": [
+        "45"
+    ],
+    "textured_cool_plate_temp": [
+        "45"
+    ],
+    "textured_cool_plate_temp_initial_layer": [
+        "45"
+    ],
+    "hot_plate_temp": [
+        "45"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "45"
+    ],
+	"smooth_pei_plate_temp":[
+		"45"
+	],
+    "smooth_pei_plate_temp_initial_layer":[
+		"45"
+	],
+    "textured_plate_temp": [
+        "45"
+    ],
+    "textured_plate_temp_initial_layer": [
+        "45"
+    ],
+    "temperature_vitrification": [
+        "65"
+    ]
+}
