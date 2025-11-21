@@ -1,9 +1,9 @@
 {
     "inherits": "dremel_base",
-    "name": "Dremel SILK @3D40",
+    "name": "Dremel Silk @3D40",
     "from": "system",
     "type": "filament",
-    "version": "2.0.0.3",
+    "version": "2.0.0.4",
     "instantiation": "true",
 	"compatible_printers": [
 		"Dremel 3D40 0.4 nozzle"
@@ -48,7 +48,7 @@
         "40"
     ],
     "filament_settings_id": [
-        "Dremel SILK"
+        "Dremel Silk"
     ],
     "filament_vendor": [
         "Dremel"

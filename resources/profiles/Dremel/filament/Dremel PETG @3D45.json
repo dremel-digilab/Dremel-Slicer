@@ -3,7 +3,7 @@
     "name": "Dremel PETG @3D45",
     "from": "system",
     "type": "filament",
-    "version": "2.0.0.3",
+    "version": "2.0.0.4",
     "instantiation": "true",
 	"compatible_printers": [
 		"Dremel 3D45 0.4 nozzle"
@@ -30,7 +30,7 @@
         "35.99"
     ],
     "filament_flow_ratio": [
-        "0.963072"
+        "1.151"
     ],
     "filament_max_volumetric_speed": [
         "12.5"
@@ -75,42 +75,42 @@
         "65"
     ],
     "nozzle_temperature": [
-        "230"
+        "250"
     ],
     "nozzle_temperature_initial_layer": [
-        "230"
+        "250"
     ],
     "nozzle_temperature_range_high": [
-        "240"
+        "250"
     ],
     "cool_plate_temp": [
-        "45"
+        "0"
     ],
     "cool_plate_temp_initial_layer": [
-        "45"
+        "0"
     ],
     "textured_cool_plate_temp": [
-        "45"
+        "0"
     ],
     "textured_cool_plate_temp_initial_layer": [
-        "45"
+        "0"
     ],
     "hot_plate_temp": [
-        "45"
+        "0"
     ],
     "hot_plate_temp_initial_layer": [
-        "45"
+        "0"
     ],
 	"smooth_pei_plate_temp":[
-		"45"
+		"80"
 	],
     "smooth_pei_plate_temp_initial_layer":[
-		"45"
+		"80"
 	],
     "textured_plate_temp": [
-        "45"
+        "80"
     ],
     "textured_plate_temp_initial_layer": [
-        "45"
+        "80"
     ]
 }

@@ -1,6 +1,6 @@
 {
   "name": "Dremel",
-  "version": "02.03.00.02",
+  "version": "02.03.02.01",
   "force_update": "1",
   "description": "Dremel configurations",
   "machine_model_list": [
@@ -109,6 +109,14 @@
       "sub_path": "filament/Dremel PLA @3D45.json"
     },
     {
+      "name": "Dremel TPU @3D45",
+      "sub_path": "filament/Dremel TPU @3D45.json"
+    },
+    {
+      "name": "Dremel Nylon @3D45",
+      "sub_path": "filament/Dremel Nylon @3D45.json"
+    },
+    {
       "name": "Dremel PLA @3D50",
       "sub_path": "filament/Dremel PLA @3D50.json"
     },
@@ -125,12 +133,12 @@
       "sub_path": "filament/Dremel PETG @3D45.json"
     },
     {
-      "name": "Dremel SILK @3D40",
-      "sub_path": "filament/Dremel SILK @3D40.json"
+      "name": "Dremel Silk @3D40",
+      "sub_path": "filament/Dremel Silk @3D40.json"
     },
     {
-      "name": "Dremel SILK @3D45",
-      "sub_path": "filament/Dremel SILK @3D45.json"
+      "name": "Dremel Silk @3D45",
+      "sub_path": "filament/Dremel Silk @3D45.json"
     },
     {
       "name": "Dremel PLA Matte @3D40",
